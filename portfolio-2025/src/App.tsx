@@ -1,5 +1,6 @@
 import Hero from './components/Hero'
 import Feature from './components/Feature'
+import Projects from './components/Projects'
 import './App.css'
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <div className='bg-black min-h-screen'>
       <Hero />
       <Feature />
-      {/* Add more sections as needed */}
+      <Projects />
     </div>
   )
 }
