@@ -3,8 +3,14 @@ import React from 'react'
 const Hero = () => {
   return (
    <>
-    <div className='text-6xl text-white tracking-tighter text-balance mx-10'>Ian Sabado</div>
-    <div className='text-4xl text-white tracking-tighter text-balance mx-10'>Software Engineer</div>
+    <section className='flex items-center justify-center h-screen'>
+      <div className='container mx-auto border-2 border-gray-500 p-10'>
+        <h1 className='text-6xl text-white'>Ian Sabado</h1>
+        <h2 className='text-4xl text-white'>Software Engineer</h2>
+        <p className='text-white mt-4'>Crafting beautiful front-end experiences powered by clean, efficient code</p>
+        <p className='text-white'>Passionate about building architecture that performs as good as it looks</p>
+      </div>
+    </section>
    </>
   )
 }
