@@ -13,9 +13,9 @@ const Feature = () => {
         
         <div className='grid md:grid-cols-2 gap-8 max-w-5xl mx-auto'>
           {/* Feature Cards */}
-          <div className='group hover:scale-[1.02] transition-all duration-300 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 animate-slide-up'>
+          <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 animate-slide-up'>
             <div className='flex flex-col h-full'>
-              <h3 className='text-2xl font-semibold text-white mb-4 group-hover:text-purple-400 transition-colors'>
+              <h3 className='text-2xl font-semibold text-white mb-4'>
                 Front-end Development
               </h3>
               <p className='text-gray-400 text-lg leading-relaxed'>
@@ -24,9 +24,9 @@ const Feature = () => {
             </div>
           </div>
 
-          <div className='group hover:scale-[1.02] transition-all duration-300 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 animate-slide-up delay-100'>
+          <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 animate-slide-up delay-100'>
             <div className='flex flex-col h-full'>
-              <h3 className='text-2xl font-semibold text-white mb-4 group-hover:text-pink-400 transition-colors'>
+              <h3 className='text-2xl font-semibold text-white mb-4'>
                 UI/UX Design
               </h3>
               <p className='text-gray-400 text-lg leading-relaxed'>
@@ -35,9 +35,9 @@ const Feature = () => {
             </div>
           </div>
 
-          <div className='group hover:scale-[1.02] transition-all duration-300 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 animate-slide-up delay-200'>
+          <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 animate-slide-up delay-200'>
             <div className='flex flex-col h-full'>
-              <h3 className='text-2xl font-semibold text-white mb-4 group-hover:text-purple-400 transition-colors'>
+              <h3 className='text-2xl font-semibold text-white mb-4'>
                 Architecture
               </h3>
               <p className='text-gray-400 text-lg leading-relaxed'>
@@ -46,9 +46,9 @@ const Feature = () => {
             </div>
           </div>
 
-          <div className='group hover:scale-[1.02] transition-all duration-300 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 hover:border-gray-700 animate-slide-up delay-300'>
+          <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 animate-slide-up delay-300'>
             <div className='flex flex-col h-full'>
-              <h3 className='text-2xl font-semibold text-white mb-4 group-hover:text-pink-400 transition-colors'>
+              <h3 className='text-2xl font-semibold text-white mb-4'>
                 Full Stack Development
               </h3>
               <p className='text-gray-400 text-lg leading-relaxed'>
