@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface Project {
   title: string;
@@ -37,30 +38,102 @@ const projects: Project[] = [
 ];
 
 const Projects = () => {
+  // Animation variants for container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2 // Stagger children animations by 0.2s
+      }
+    }
+  };
+
+  // Animation variants for each project card
+  const projectVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
+  };
+
+  // Hover animation for project cards
+  const hoverVariants = {
+    hover: {
+      scale: 1.05,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }
+    }
+  };
+
   return (
-    <section className='py-20 bg-black'>
+    <motion.section 
+      className='py-20 bg-black'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className='container mx-auto px-4'>
-        <h2 className='text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4 text-center'>
+        <motion.h2 
+          className='text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4 text-center'
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           Featured Projects
-        </h2>
-        <p className='text-gray-400 text-center mb-12 max-w-2xl mx-auto'>
+        </motion.h2>
+        <motion.p 
+          className='text-gray-400 text-center mb-12 max-w-2xl mx-auto'
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           Here are some of my recent projects that showcase my skills and experience in web development.
-        </p>
+        </motion.p>
         
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <motion.div 
+          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {projects.map((project, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className='group relative bg-gray-900 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl'
+              className='relative bg-gray-900 rounded-xl overflow-hidden'
+              variants={projectVariants}
+              whileHover={hoverVariants.hover}
+              whileTap={{ scale: 0.98 }}
             >
-              <div className='relative h-48 overflow-hidden'>
+              <motion.div 
+                className='relative h-48 overflow-hidden'
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
                 <img 
                   src={project.imageUrl} 
                   alt={project.title}
-                  className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-110'
+                  className='w-full h-full object-cover'
                 />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-              </div>
+                <motion.div 
+                  className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
               
               <div className='p-6'>
                 <h3 className='text-xl font-bold text-white mb-2'>{project.title}</h3>
@@ -68,35 +141,43 @@ const Projects = () => {
                 
                 <div className='flex flex-wrap gap-2 mb-6'>
                   {project.technologies.map((tech, techIndex) => (
-                    <span 
+                    <motion.span 
                       key={techIndex}
                       className='px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm'
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.1 * techIndex }}
+                      whileHover={{ scale: 1.1, backgroundColor: "#374151" }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
                 
                 <div className='flex gap-4'>
-                  <a 
+                  <motion.a 
                     href={project.githubUrl}
                     className='flex-1 text-center bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition'
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     GitHub
-                  </a>
-                  <a 
+                  </motion.a>
+                  <motion.a 
                     href={project.liveUrl}
                     className='flex-1 text-center border border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition'
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Live Demo
-                  </a>
+                  </motion.a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
