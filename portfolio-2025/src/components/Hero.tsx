@@ -5,9 +5,9 @@ const Hero = () => {
    <>
    <section className={`flex items-center justify-center min-h-screen ${styles['animate-gradient']} bg-gradient-to-r from-blue-500 via-orange-700 to-white`}>
       <div className='container mx-auto px-4 py-16 text-left md:text-center'>
-        <h1 className='text-9xl md:text-9xl font-bold text-white tracking-tighter mb-8'>
-          Ian Sabado
-        </h1>
+      <h1 className={`text-9xl md:text-9xl font-bold text-white tracking-tighter mb-8 ${styles['fun-hover']}`}>
+        Ian Sabado
+      </h1>
         <h2 className='text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto mb-8'>
           Software Engineer crafting beautiful front-end experiences powered by clean, efficient code
         </h2>

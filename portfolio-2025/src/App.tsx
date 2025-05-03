@@ -3,11 +3,11 @@ import Feature from './components/Feature'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import './App.css'
-
+import Background from './components/Background'
 function App() {
   return (
     <div className='bg-black min-h-screen'>
-      <Hero />
+      <Background />
       <Feature />
       <Projects />
       <Contact />

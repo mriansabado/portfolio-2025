@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.0.2",
-    "motion": "^12.9.4"
-  },
-  "devDependencies": {
-    "daisyui": "^5.0.35"
+    "normalize.css": "^8.0.1"
   }
 }
