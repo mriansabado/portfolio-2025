@@ -23,9 +23,9 @@ body {
 }
 
 .chopsticks {
-	height: 20%;
+	height: 30%;
 	position: absolute;
-	right: 0;
+	right: 100px;
 	top: 10%;
 }
 
@@ -41,8 +41,7 @@ body {
 	position: absolute;
 	bottom: 0%;
 	left: 10%;
-	rotate: 90deg;
-	height: 40vmin;
+	height: 30vmin;
 }
 
 @media (max-width: 768px) {
@@ -52,9 +51,9 @@ body {
 }
 
 h1 {
-	font-size: clamp(2rem, 6vw + 1rem, 8rem);
+	font-size: clamp(4rem, 6vw + 2rem, 8rem);
 	font-weight: 600;
-	background: linear-gradient(90deg, oklch(36% 0.50 340), oklch(90% 0.5 200));
+	background: linear-gradient(90deg, oklch(0.72 0.17 242.65), oklch(0.77 0.19 51.49));
 	color: transparent;
 	-webkit-background-clip: text;
 }
@@ -90,16 +89,13 @@ section {
 	container-type: inline-size;
 }
 
-section:nth-of-type(2) p {
-	font-weight: 600;
-	font-size: clamp(1.5rem, 3vw + 1rem, 4rem);
+.medium-description {
+	font-weight: 800;
+	font-size: clamp(2rem, 3vw + 1.5rem, 3rem);
 	text-align: center;
 	max-width: 80%;
 	margin: 25vh auto;
-	background: linear-gradient(
-      to right in oklab, 
-      oklch(63% 0.50 337) 0%, oklch(36% 0.50 340) 37% 37%, oklch(90% 0.5 200) 97% 97%
-    );
+	background: linear-gradient(90deg, oklch(0.72 0.17 242.65), oklch(0.77 0.19 51.49));
 	color: transparent;
 	-webkit-background-clip: text;
 	overflow: visible;
@@ -112,7 +108,7 @@ section:nth-of-type(2) p {
 .box .logo {
 	width: clamp(1rem, 4vw + 1rem, 4rem);
 	aspect-ratio: 1;
-	background: linear-gradient(90deg, rgb(61, 195, 248), rgb(248, 69, 3));
+	background: linear-gradient(90deg, oklch(0.68 0.2 240.2), oklch(1 0 0));
 	justify-self: start;
 	position: absolute;
 	bottom: 100%;
@@ -133,7 +129,7 @@ p {
 section:nth-of-type(3) h2 {
 	font-size: clamp(2rem, 8vw + 1rem, 12rem);
 	font-weight: 600;
-	background: linear-gradient(90deg, purple, lightblue);
+	background: linear-gradient(90deg, oklch(0.72 0.17 242.65), oklch(0.77 0.19 51.49));
 	color: transparent;
 	-webkit-background-clip: text;
 /*	translate: 0 20%;*/
@@ -173,7 +169,7 @@ section:nth-of-type(4) .box:first-of-type {
 }
 
 .box p {
-	font-weight: 600;
+	font-weight: 300;
 	color: hsl(0 0% 50%);
 	font-size: clamp(0.875rem, 0.5vw + 1rem, 2rem);
 }
@@ -192,7 +188,7 @@ section:nth-of-type(4) .box:first-of-type {
 }
 
 .box--two p span {
-	background: linear-gradient(90deg, purple, lightblue);
+	background: linear-gradient(90deg, oklch(0.68 0.2 240.2), oklch(0.62 0.28 28.96));
 	color: transparent;
 	-webkit-background-clip: text;
 }
@@ -304,7 +300,7 @@ section:nth-of-type(6) svg {
 .bento--mini a {
 	text-decoration: none;
 	font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
-	font-weight: 600;
+	font-weight: 400;
 	color: hsl(0 0% 5%);
 	position: relative;
 }
@@ -323,7 +319,7 @@ section:nth-of-type(6) svg {
 .bento--mini a .logo {
 	width: clamp(1rem, 4vw + 1rem, 2rem);
 	aspect-ratio: 1;
-	background: linear-gradient(90deg, purple, lightblue);
+	background: linear-gradient(90deg, oklch(0.68 0.2 240.2), oklch(1 0 0));
 	justify-self: start;
 	position: absolute;
 	bottom: 100%;
@@ -334,47 +330,6 @@ section:nth-of-type(6) svg {
 .bento--mini:first-of-type a .logo {
 	mask: url('data:image/svg+xml;utf8,<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>') center/contain no-repeat;
 
-}
-
-
-/* That nav stuff */
-nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	border-bottom: 1px solid hsl(0 0% 50%);
-	height: 52px;
-	background: hsl(0 0% 100% / 0.75);
-	backdrop-filter: blur(4px);
-	z-index: 2;
-}
-
-
-.nav__content {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 800px;
-	max-width: 100%;
-	padding: 0 1rem;
-	margin: 0 auto;
-	height: 100%;
-}
-
-nav a {
-	text-decoration: none;
-	background: hsl(210 100% 45%);
-	color: hsl(0 0% 98%);
-	font-weight: 400;
-	padding: 0.5rem 1rem;
-	border-radius: 100px;
-	font-size: 0.875rem;
-}
-
-nav img {
-	height: 50%;
-	justify-self: start;
 }
 
 section:nth-of-type(4) .box:nth-of-type(2) {
@@ -410,10 +365,13 @@ section:nth-of-type(4) .box:nth-of-type(2) {
 
 	section:nth-of-type(4) .box:nth-of-type(2) p {
 		animation: slide both linear;
-		animation-range: cover 15% cover 75%;
+		animation-range: cover 80% cover 20%;
 		animation-timeline: view();
 		--opacity: 0;
 		--y: -10%;
+		height: 20px;
+        font-weight: bold;
+        color: white;
 	}
 
 	section:nth-of-type(5)::before {
