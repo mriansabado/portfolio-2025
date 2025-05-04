@@ -28,7 +28,7 @@ const Background = () => {
         <div className="box">
           <div className="box__content">
             <p className="mobile-description">
-             Experience with modern web development frameworks and tools
+            Crafting web solutions that just work – from React to AWS and everything in between
             </p>
           </div>
         </div>
@@ -39,7 +39,8 @@ const Background = () => {
           <div className="box__content">
             <p>
               <span className="logo"></span>
-              <span>Hey Friend 🤙</span>
+              <span>Hey Friend 👋 </span>
+              <span>lets code something amazing together</span>
             </p>
           </div>
         </div>
