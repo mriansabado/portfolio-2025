@@ -41,7 +41,7 @@ body {
 	position: absolute;
 	bottom: 0%;
 	left: 10%;
-	height: 30vmin;
+	height: 50vmin;
 }
 
 @media (max-width: 768px) {
@@ -53,7 +53,7 @@ body {
 h1 {
 	font-size: clamp(4rem, 6vw + 2rem, 8rem);
 	font-weight: 800;
-	background: linear-gradient(90deg, oklch(1 0 0), oklch(1 0 0));
+	background: linear-gradient(90deg, oklch(0.8 0.14 60.1), oklch(0.81 0.18 320.66));
 	color: transparent;
 	-webkit-background-clip: text;
 }
@@ -106,8 +106,8 @@ section {
 	font-size: clamp(2rem, 3vw + 1.5rem, 3rem);
 	text-align: center;
 	max-width: 80%;
-	margin: 25vh auto;
-	background: linear-gradient(123deg, oklch(0.51 0.29 262.02), oklch(0.65 0.29 30.33));
+	margin: 10vh auto;
+	background: linear-gradient(90deg, oklch(0.8 0.14 60.1), oklch(0.81 0.18 320.66));
 	color: transparent;
 	-webkit-background-clip: text;
 	overflow: visible;
@@ -139,9 +139,9 @@ p {
 
 
 section:nth-of-type(3) h2 {
-	font-size: clamp(2rem, 8vw + 1rem, 12rem);
+	font-size: clamp(2rem, 8vw + 1rem, 8rem);
 	font-weight: 600;
-	background: linear-gradient(123deg, oklch(0.51 0.29 262.02), oklch(0.65 0.29 30.33));
+	background: linear-gradient(90deg, oklch(0.8 0.14 60.1), oklch(0.81 0.18 320.66));
 	color: transparent;
 	-webkit-background-clip: text;
 /*	translate: 0 20%;*/

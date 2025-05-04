@@ -1,7 +1,7 @@
 import '../Background.css'
-import devIcon from '../assets/dev-icon.png'
+import devIcon from '../assets/cloud-tech.png'
 import codeIcon from '../assets/code-icon.png'
-import passedIcon from '../assets/passed-icon.png'
+import passedIcon from '../assets/edge-compute.png'
 
 
 const Background = () => {
@@ -13,7 +13,7 @@ const Background = () => {
         <div className="bleed-canvas">
           <img className="chopsticks" src={passedIcon} alt="" />
           <img className="bento" src={devIcon} alt="" />
-          <img className="veribear" src={codeIcon} alt="" />
+          {/* <img className="veribear" src={codeIcon} alt="" /> */}
         </div>
       </section>
       <section>
