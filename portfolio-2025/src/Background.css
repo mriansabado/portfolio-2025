@@ -52,8 +52,8 @@ body {
 
 h1 {
 	font-size: clamp(4rem, 6vw + 2rem, 8rem);
-	font-weight: 600;
-	background: linear-gradient(90deg, oklch(0.72 0.17 242.65), oklch(0.77 0.19 51.49));
+	font-weight: 800;
+	background: linear-gradient(90deg, oklch(1 0 0), oklch(1 0 0));
 	color: transparent;
 	-webkit-background-clip: text;
 }
@@ -89,13 +89,25 @@ section {
 	container-type: inline-size;
 }
 
+.normal-description {
+	font-weight: 800;
+	font-size: clamp(2rem, 3vw + 1.5rem, 3rem);
+	text-align: center;
+	max-width: 80%;
+	margin: 25vh auto;
+	background: white;
+	color: transparent;
+	-webkit-background-clip: text;
+	overflow: visible;
+}
+
 .medium-description {
 	font-weight: 800;
 	font-size: clamp(2rem, 3vw + 1.5rem, 3rem);
 	text-align: center;
 	max-width: 80%;
 	margin: 25vh auto;
-	background: linear-gradient(90deg, oklch(0.72 0.17 242.65), oklch(0.77 0.19 51.49));
+	background: linear-gradient(123deg, oklch(0.51 0.29 262.02), oklch(0.65 0.29 30.33));
 	color: transparent;
 	-webkit-background-clip: text;
 	overflow: visible;
@@ -129,7 +141,7 @@ p {
 section:nth-of-type(3) h2 {
 	font-size: clamp(2rem, 8vw + 1rem, 12rem);
 	font-weight: 600;
-	background: linear-gradient(90deg, oklch(0.72 0.17 242.65), oklch(0.77 0.19 51.49));
+	background: linear-gradient(123deg, oklch(0.51 0.29 262.02), oklch(0.65 0.29 30.33));
 	color: transparent;
 	-webkit-background-clip: text;
 /*	translate: 0 20%;*/
@@ -366,7 +378,6 @@ section:nth-of-type(4) .box:nth-of-type(2) {
 	section:nth-of-type(4) .box:nth-of-type(2) p {
 		animation: slide both linear;
 		animation-timeline: view();
-		--opacity: 0;
 		--y: -10%;
 		height: 140px;
         font-weight: bold;

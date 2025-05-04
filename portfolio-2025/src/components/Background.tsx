@@ -18,7 +18,7 @@ const Background = () => {
       </section>
       <section>
         <p className="medium-description">
-        Software Engineer crafting beautiful front-end experiences powered by clean, efficient code
+        <span className="normal-description">I'm a Software Engineer who crafts</span> beautiful front-end experiences <span className='normal-description'> powered by </span> clean, efficient code
         </p>
       </section>
       <section>
@@ -28,7 +28,7 @@ const Background = () => {
         <div className="box">
           <div className="box__content">
             <p className="mobile-description">
-            Crafting web solutions that just work – from React to AWS and everything in between
+            Crafting <span className='medium-description'>web solutions that just work</span> – from React to AWS and everything in between
             </p>
           </div>
         </div>
