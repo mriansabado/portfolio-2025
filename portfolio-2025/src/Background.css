@@ -23,7 +23,7 @@ body {
 }
 
 .chopsticks {
-	height: 30%;
+	height: 50%;
 	position: absolute;
 	right: 100px;
 	top: 10%;
@@ -41,7 +41,7 @@ body {
 	position: absolute;
 	bottom: 0%;
 	left: 10%;
-	height: 50vmin;
+	height: 40vmin;
 }
 
 @media (max-width: 768px) {
@@ -85,6 +85,7 @@ main {
 	translate: -5% 0;
 }
 
+
 section {
 	container-type: inline-size;
 }
@@ -106,7 +107,7 @@ section {
 	font-size: clamp(2rem, 3vw + 1.5rem, 3rem);
 	text-align: center;
 	max-width: 80%;
-	margin: 10vh auto;
+	margin: 30vh auto;
 	background: linear-gradient(90deg, oklch(0.8 0.14 60.1), oklch(0.81 0.18 320.66));
 	color: transparent;
 	-webkit-background-clip: text;
@@ -372,6 +373,32 @@ section:nth-of-type(4) .box:nth-of-type(2) {
 			translate: var(--x, 0) var(--y, 0);
 			opacity: var(--opacity, 1);
 			scale: var(--scale, 1);
+		}
+	}
+
+	.leaf-animation-left {
+		animation: rollLeft both linear;
+		animation-timeline: --section;
+		animation-range: exit -60% exit 0%;
+	}
+
+	.leaf-animation-right {
+		animation: rollRight both linear;
+		animation-timeline: --section;
+		animation-range: exit -60% exit 0%;
+	}
+  
+	@keyframes rollLeft {
+		to {
+			rotate: -96.2649deg;
+			translate: -66.8506% 0;
+		}
+	}
+
+	@keyframes rollRight {
+		to {
+			rotate: 96.2649deg;
+			translate: 66.8506% 0;
 		}
 	}
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
+import projectsBg from '../assets/projects-bg.jpg';
 interface Project {
   title: string;
   description: string;
@@ -80,12 +80,13 @@ const Projects = () => {
 
   return (
     <motion.section 
-      className='py-20 bg-black'
+      className='py-20 bg-black relative'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className='container mx-auto px-4'>
+      <div className='absolute inset-0 bg-[url("/projects-bg.jpg")] bg-cover bg-center bg-no-repeat opacity-20'></div>
+      <div className='container mx-auto px-4 relative z-10'>
         <motion.h2 
           className='text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4 text-center'
           initial={{ opacity: 0, y: -20 }}
