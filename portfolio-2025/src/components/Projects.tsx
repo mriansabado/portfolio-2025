@@ -136,15 +136,15 @@ const Projects = () => {
                 />
               </motion.div>
               
-              <div className='p-6'>
-                <h3 className='text-xl font-bold text-white mb-2'>{project.title}</h3>
-                <p className='text-gray-400 mb-4'>{project.description}</p>
+              <div className='p-4 md:p-6'>
+                <h3 className='text-lg md:text-xl font-bold text-white mb-2'>{project.title}</h3>
+                <p className='text-sm md:text-base text-gray-400 mb-4'>{project.description}</p>
                 
-                <div className='flex flex-wrap gap-2 mb-6'>
+                <div className='flex flex-wrap gap-2 mb-4 md:mb-6'>
                   {project.technologies.map((tech, techIndex) => (
                     <motion.span 
                       key={techIndex}
-                      className='px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm'
+                      className='px-2 md:px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs md:text-sm'
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * techIndex }}

@@ -37,6 +37,17 @@ body {
 	rotate: -20deg;
 }
 
+.hero-bg {
+	background: url(./assets/dark-gradient-bg.jpg);
+	background-size: cover;
+	background-position: center;
+	width: 100vw;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	position: relative;
+	height: 100vh;
+}
+
 .bento {
 	position: absolute;
 	bottom: 0%;

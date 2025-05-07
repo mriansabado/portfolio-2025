@@ -16,25 +16,28 @@ const Background = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100vw",
-        marginLeft: "50%",
-        transform: "translateX(-50%)",
-        position: "relative"
+        minHeight: "100vh",
+        position: "relative",
+        left: "50%",
+        right: "50%",
+        marginLeft: "-50vw",
+        marginRight: "-50vw"
       }}>
         <h1>Ian Sabado</h1>
         <div className="bleed-canvas">
-          <img className="chopsticks" src={passedIcon} alt="" />
-          <img className="bento" src={devIcon} alt="" />
+          {/* <img className="chopsticks" src={passedIcon} alt="" />
+          <img className="bento" src={devIcon} alt="" /> */}
           {/* <img className="veribear" src={codeIcon} alt="" /> */}
         </div>
       </section>
      <section>
         <div className="relative flex items-center justify-center">
-          <p className="medium-description text-center px-16 z-0">
+          <p className="medium-description text-center px-4 md:px-16 z-0">
             <span className="normal-description">I'm a Software Engineer who crafts</span> beautiful front-end experiences <span className='normal-description'> powered by </span> clean, efficient code
           </p>
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <img src={leftLeaf} alt="Left Leaf" className="w-auto h-100 z-10 -mr-32 leaf-animation-left" />
-            <img src={rightLeaf} alt="Right Leaf" className="w-auto h-100 z-10 -ml-32 leaf-animation-right" />
+            <img src={leftLeaf} alt="Left Leaf" className="w-auto h-50 md:h-100 z-10 -mr-16 md:-mr-32 leaf-animation-left" />
+            <img src={rightLeaf} alt="Right Leaf" className="w-auto h-50 md:h-100 z-10 -ml-16 md:-ml-32 leaf-animation-right" />
           </div>
         </div>
       </section> 
