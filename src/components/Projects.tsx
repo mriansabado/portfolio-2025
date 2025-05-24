@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import barblendGuru from '../assets/barblend-guru.png';
 import gamehub from '../assets/gamehub.png';
-import uxImg from '../assets/ux-img.png';
+import pixelBuilder from '../assets/pixel-builder.png';
 
 interface Project {
   title: string;
@@ -30,10 +30,10 @@ const projects: Project[] = [
     liveUrl: "#"
   },
   {
-    title: "UX Design System",
-    description: "A comprehensive design system and component library for building consistent and beautiful user interfaces.",
-    technologies: ["React", "TypeScript", "Storybook", "Styled Components"],
-    imageUrl: uxImg,
+    title: "Pixel Builder",
+    description: "Online tool to make custom tracking pixels for Facebook and Instagram",
+    technologies: ["React", "TypeScript", "Canvas API", "WebGL"],
+    imageUrl: pixelBuilder,
     githubUrl: "#",
     liveUrl: "#"
   }
