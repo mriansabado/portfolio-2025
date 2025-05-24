@@ -212,7 +212,7 @@ section:nth-of-type(4) .box:first-of-type {
 }
 
 .box--two p span {
-	background: linear-gradient(90deg, oklch(0.68 0.2 240.2), oklch(0.62 0.28 28.96));
+	background: linear-gradient(90deg, oklch(0.8 0.14 60.1), oklch(0.81 0.18 320.66));
 	color: transparent;
 	-webkit-background-clip: text;
 }

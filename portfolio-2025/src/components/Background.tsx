@@ -1,10 +1,8 @@
 import '../Background.css'
-import devIcon from '../assets/window.png'
-import codeIcon from '../assets/emoji-bg.png'
 import heroBg from '../assets/dark-gradient-bg.jpg'
-import passedIcon from '../assets/seo-icon-pack.png'
 import leftLeaf from '../assets/3d-left-leaf.png'
 import rightLeaf from '../assets/3d-right-leaf.png'
+import iphone from '../assets/ux-img.png'
 
 
 const Background = () => {
@@ -53,7 +51,7 @@ const Background = () => {
           </div>
         </div>
         <div className="sticky">
-          <img src="https://assets.codepen.io/605876/phone-chat-mockup.png" alt="" />
+          <img src={iphone} alt="" />
         </div>
         <div className="box box--two">
           <div className="box__content">

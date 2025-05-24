@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import projectsBg from '../assets/projects-bg.jpg';
+
 interface Project {
   title: string;
   description: string;
