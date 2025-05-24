@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import barblendGuru from '../assets/barblend-guru.png';
+import gamehub from '../assets/gamehub.png';
+import uxImg from '../assets/ux-img.png';
 
 interface Project {
   title: string;
@@ -11,26 +14,26 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with real-time inventory management and secure payment processing.",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    imageUrl: "https://placehold.co/600x400",
+    title: "GameHub",
+    description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
+    technologies: ["React", "Firebase", "Material-UI", "WebSocket"],
+    imageUrl: gamehub,
     githubUrl: "#",
     liveUrl: "#"
   },
   {
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team features.",
-    technologies: ["React", "Firebase", "Material-UI"],
-    imageUrl: "https://placehold.co/600x400",
+    title: "BarBlend Guru",
+    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+    imageUrl: barblendGuru,
     githubUrl: "#",
     liveUrl: "#"
   },
   {
-    title: "Portfolio Website",
-    description: "A responsive portfolio website showcasing my work and skills.",
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
-    imageUrl: "https://placehold.co/600x400",
+    title: "UX Design System",
+    description: "A comprehensive design system and component library for building consistent and beautiful user interfaces.",
+    technologies: ["React", "TypeScript", "Storybook", "Styled Components"],
+    imageUrl: uxImg,
     githubUrl: "#",
     liveUrl: "#"
   }
