@@ -1,14 +1,9 @@
 import '../Background.css'
 import heroBg from '../assets/dark-gradient-bg.jpg'
-import leftLeaf from '../assets/3d-left-leaf.png'
-import rightLeaf from '../assets/3d-right-leaf.png'
-import iphone from '../assets/ux-img.png'
 import react from '../assets/react.svg'
 import { FaHtml5, FaCss3Alt, FaAws } from "react-icons/fa";
 import { RiJavascriptLine, RiVuejsLine } from "react-icons/ri";
 import { TbBrandPython } from "react-icons/tb";
-
-
 
 const Background = () => {
   return (
@@ -26,79 +21,63 @@ const Background = () => {
         marginLeft: "-50vw",
         marginRight: "-50vw"
       }}>
-        <h1>Ian Sabado</h1>
-        <div className="bleed-canvas">
-          {/* <img className="chopsticks" src={passedIcon} alt="" />
-          <img className="bento" src={devIcon} alt="" /> */}
-          {/* <img className="veribear" src={codeIcon} alt="" /> */}
+        <div style={{
+          display: "grid",
+          placeItems: "center",
+          height: "100vh"
+        }}>
+          <h1>Ian Sabado</h1>
         </div>
       </section>
-     <section>
+      <section>
         <div className="relative flex items-center justify-center">
           <p className="medium-description text-center px-4 md:px-16 z-0">
             <span className="normal-description">I'm a software engineer who loves building</span> beautiful, user-friendly interfaces <span className='normal-description'> with clean code behind the scenes</span>
           </p>
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <img src={leftLeaf} alt="Left Leaf" className="w-auto h-50 md:h-100 z-10 -mr-16 md:-mr-32 leaf-animation-left" />
-            <img src={rightLeaf} alt="Right Leaf" className="w-auto h-50 md:h-100 z-10 -ml-16 md:-ml-32 leaf-animation-right" />
-          </div>
         </div>
       </section> 
-      <section>
-      </section>
-      <section>
-        <div className="spacing-box"></div>
-        <div className="box">
-          <div className="box__content">
-            <p className="mobile-description text-2xl md:text-3xl font-medium">
-            Crafting <span className='medium-description text-3xl md:text-4xl'>modern web solutions</span> with
-            <div className="mt-8 flex flex-wrap justify-center gap-8 items-center">
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <FaHtml5 className="w-10 h-10 mb-3 fill:white text-white group-hover:text-orange-500 transition-colors duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-orange-500 transition-colors duration-300">HTML</span>
-              </span>
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <FaCss3Alt className="w-10 h-10 mb-3 text-white group-hover:text-blue-500 transition-colors duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-blue-500 transition-colors duration-300">CSS</span>
-              </span>
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <RiJavascriptLine className="w-10 h-10 mb-3 text-white group-hover:text-yellow-400 transition-colors duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-yellow-400 transition-colors duration-300">JavaScript</span>
-              </span>
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <img src={react} alt="React" className="w-10 h-10 mb-3 group-hover:scale-110 transition-transform duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-cyan-400 transition-colors duration-300">React</span>
-              </span>
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <RiVuejsLine className="w-10 h-10 mb-3 text-white group-hover:text-green-400 transition-colors duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-green-400 transition-colors duration-300">Vue.js</span>
-              </span>
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <TbBrandPython className="w-10 h-10 mb-3 text-white group-hover:text-blue-500 transition-colors duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-blue-500 transition-colors duration-300">Python</span>
-              </span>
-              <span className="tech-item group flex flex-col items-center hover:scale-105 transition-all duration-300">
-                <FaAws className="w-10 h-10 mb-3 text-white group-hover:text-orange-400 transition-colors duration-300" />
-                <span className="block text-lg font-light tracking-wide text-white group-hover:text-orange-400 transition-colors duration-300">AWS</span>
-              </span>
+      <section className="py-16 bg-gradient-to-b from-gray-900 to-black" style={{
+        width: "100%",
+        position: "relative",
+        margin: "0 -1rem",
+        padding: "0 1rem"
+      }}>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
+            Tech Stack
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <FaHtml5 className="w-12 h-12 mb-4 text-orange-500" />
+              <span className="text-lg font-medium text-white">HTML</span>
             </div>
-            </p>
-          </div>
-        </div>
-        <div className="sticky">
-          <img src={iphone} alt="" />
-        </div>
-        <div className="box box--two">
-          <div className="box__content">
-            <p>
-              <span className="logo"></span>
-              <span>Hey Friend 👋 </span>
-              <span>lets code something amazing together</span>
-            </p>
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <FaCss3Alt className="w-12 h-12 mb-4 text-blue-500" />
+              <span className="text-lg font-medium text-white">CSS</span>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <RiJavascriptLine className="w-12 h-12 mb-4 text-yellow-400" />
+              <span className="text-lg font-medium text-white">JavaScript</span>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <img src={react} alt="React" className="w-12 h-12 mb-4" />
+              <span className="text-lg font-medium text-white">React</span>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <RiVuejsLine className="w-12 h-12 mb-4 text-green-400" />
+              <span className="text-lg font-medium text-white">Vue.js</span>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <TbBrandPython className="w-12 h-12 mb-4 text-blue-500" />
+              <span className="text-lg font-medium text-white">Python</span>
+            </div>
+            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+              <FaAws className="w-12 h-12 mb-4 text-orange-400" />
+              <span className="text-lg font-medium text-white">AWS</span>
+            </div>
           </div>
         </div>
       </section>
-      
     </main>
     </>
   )
