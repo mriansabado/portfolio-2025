@@ -8,7 +8,6 @@ interface Project {
   description: string;
   technologies: string[];
   imageUrl: string;
-  githubUrl: string;
   liveUrl: string;
 }
 
@@ -16,26 +15,23 @@ const projects: Project[] = [
   {
     title: "GameHub",
     description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
-    technologies: ["React", "Firebase", "Material-UI", "WebSocket"],
+    technologies: ["React", "Typescript", "Chakra", "RESTAPI", "Vercel"],
     imageUrl: gamehub,
-    githubUrl: "#",
-    liveUrl: "#"
+    liveUrl: "https://game-hub-beige-omega.vercel.app/"
   },
   {
     title: "BarBlend Guru",
     description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
     imageUrl: barblendGuru,
-    githubUrl: "#",
-    liveUrl: "#"
+    liveUrl: "https://barblend-guru-app.vercel.app/"
   },
   {
     title: "Pixel Builder",
     description: "Online tool to make custom tracking pixels for Facebook and Instagram",
-    technologies: ["React", "TypeScript", "Canvas API", "WebGL"],
+    technologies: ["Vue JS", "Bulma", "Bootstrap", "Vercel"],
     imageUrl: pixelBuilder,
-    githubUrl: "#",
-    liveUrl: "#"
+    liveUrl: "https://tracking-pixel-builder.vercel.app/"
   }
 ];
 
@@ -158,14 +154,6 @@ const Projects = () => {
                 </div>
                 
                 <div className='flex gap-4'>
-                  <motion.a 
-                    href={project.githubUrl}
-                    className='flex-1 text-center bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition'
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    GitHub
-                  </motion.a>
                   <motion.a 
                     href={project.liveUrl}
                     className='flex-1 text-center border border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition'

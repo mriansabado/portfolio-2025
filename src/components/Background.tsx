@@ -24,9 +24,14 @@ const Background = () => {
         <div style={{
           display: "grid",
           placeItems: "center",
-          height: "100vh"
+          height: "100vh",
+          width: "100%",
+          padding: "0 1rem"
         }}>
-          <h1>Ian Sabado</h1>
+          <h1 className="text-left md:text-center">
+            <span className="block md:inline text-8xl md:text-9xl">Ian</span>
+            <span className="block md:inline text-8xl md:text-9xl md:ml-4">Sabado</span>
+          </h1>
         </div>
       </section>
       <section>
