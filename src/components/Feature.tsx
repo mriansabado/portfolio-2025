@@ -1,4 +1,3 @@
-
 const Feature = () => {
   return (
     <section className='py-24 bg-gradient-to-br from-black via-gray-900 to-gray-800'>
@@ -34,12 +33,12 @@ const Feature = () => {
             </div>
           </div>
 
-          <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-800 animate-slide-up delay-200'>
+          <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-800 animate-slide-up delay-200'>
             <div className='flex flex-col h-full'>
-              <h3 className='text-2xl font-semibold text-white mb-4'>
+              <h3 className='text-xl sm:text-2xl font-semibold text-white mb-2 sm:mb-4'>
                 Architecture
               </h3>
-              <p className='text-gray-400 text-lg leading-relaxed'>
+              <p className='text-gray-400 text-base sm:text-lg leading-relaxed'>
                 Designing scalable and maintainable application structures with modern best practices
               </p>
             </div>

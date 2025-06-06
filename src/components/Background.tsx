@@ -4,6 +4,7 @@ import react from '../assets/react.svg'
 import { FaHtml5, FaCss3Alt, FaAws } from "react-icons/fa";
 import { RiJavascriptLine, RiVuejsLine } from "react-icons/ri";
 import { TbBrandPython } from "react-icons/tb";
+import { SiReact } from "react-icons/si";
 
 const Background = () => {
   return (
@@ -47,36 +48,40 @@ const Background = () => {
         margin: "0 -1rem",
         padding: "0 1rem"
       }}>
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-8 max-w-[1400px]">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
             Tech Stack
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+          <div className="grid grid-cols-8 gap-16 justify-items-center">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <FaHtml5 className="w-12 h-12 mb-4 text-orange-500" />
               <span className="text-lg font-medium text-white">HTML</span>
             </div>
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <FaCss3Alt className="w-12 h-12 mb-4 text-blue-500" />
               <span className="text-lg font-medium text-white">CSS</span>
             </div>
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <RiJavascriptLine className="w-12 h-12 mb-4 text-yellow-400" />
               <span className="text-lg font-medium text-white">JavaScript</span>
             </div>
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <img src={react} alt="React" className="w-12 h-12 mb-4" />
               <span className="text-lg font-medium text-white">React</span>
             </div>
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
+              <SiReact className="w-12 h-12 mb-4 text-blue-400" />
+              <span className="text-lg font-medium text-white">React Native</span>
+            </div>
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <RiVuejsLine className="w-12 h-12 mb-4 text-green-400" />
               <span className="text-lg font-medium text-white">Vue.js</span>
             </div>
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <TbBrandPython className="w-12 h-12 mb-4 text-blue-500" />
               <span className="text-lg font-medium text-white">Python</span>
             </div>
-            <div className="flex flex-col items-center p-6 bg-gray-800 rounded-lg">
+            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
               <FaAws className="w-12 h-12 mb-4 text-orange-400" />
               <span className="text-lg font-medium text-white">AWS</span>
             </div>
