@@ -52,38 +52,38 @@ const Background = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
             Tech Stack
           </h2>
-          <div className="grid grid-cols-8 gap-16 justify-items-center">
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <FaHtml5 className="w-12 h-12 mb-4 text-orange-500" />
-              <span className="text-lg font-medium text-white">HTML</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-8 lg:gap-16 justify-items-center">
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <FaHtml5 className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-orange-500" />
+              <span className="text-base md:text-lg font-medium text-white">HTML</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <FaCss3Alt className="w-12 h-12 mb-4 text-blue-500" />
-              <span className="text-lg font-medium text-white">CSS</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <FaCss3Alt className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-blue-500" />
+              <span className="text-base md:text-lg font-medium text-white">CSS</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <RiJavascriptLine className="w-12 h-12 mb-4 text-yellow-400" />
-              <span className="text-lg font-medium text-white">JavaScript</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <RiJavascriptLine className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-yellow-400" />
+              <span className="text-base md:text-lg font-medium text-white">JavaScript</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <img src={react} alt="React" className="w-12 h-12 mb-4" />
-              <span className="text-lg font-medium text-white">React</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <img src={react} alt="React" className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" />
+              <span className="text-base md:text-lg font-medium text-white">React</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <SiReact className="w-12 h-12 mb-4 text-blue-400" />
-              <span className="text-lg font-medium text-white">React Native</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <SiReact className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-blue-400" />
+              <span className="text-base md:text-lg font-medium text-white">React Native</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <RiVuejsLine className="w-12 h-12 mb-4 text-green-400" />
-              <span className="text-lg font-medium text-white">Vue.js</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <RiVuejsLine className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-green-400" />
+              <span className="text-base md:text-lg font-medium text-white">Vue.js</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <TbBrandPython className="w-12 h-12 mb-4 text-blue-500" />
-              <span className="text-lg font-medium text-white">Python</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <TbBrandPython className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-blue-500" />
+              <span className="text-base md:text-lg font-medium text-white">Python</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-6 bg-gray-800 rounded-lg min-w-[140px] text-center">
-              <FaAws className="w-12 h-12 mb-4 text-orange-400" />
-              <span className="text-lg font-medium text-white">AWS</span>
+            <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-gray-800 rounded-lg w-[140px] text-center">
+              <FaAws className="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 text-orange-400" />
+              <span className="text-base md:text-lg font-medium text-white">AWS</span>
             </div>
           </div>
         </div>
