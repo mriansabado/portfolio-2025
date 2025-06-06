@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import barblendGuru from '../assets/barblend-guru.png';
 import gamehub from '../assets/gamehub.png';
 import pixelBuilder from '../assets/pixel-builder.png';
+import fontastic from '../assets/fontastic.png';
 
 interface Project {
   title: string;
@@ -18,6 +19,13 @@ const projects: Project[] = [
     technologies: ["React", "Typescript", "Chakra", "RESTAPI", "Vercel"],
     imageUrl: gamehub,
     liveUrl: "https://game-hub-beige-omega.vercel.app/"
+  },
+  {
+    title: "Fontastic",
+    description: "Fontastic is a React Native app that transforms text into animated displays with customizable themes and animations. To preview it, scan the QR code and follow the instructions",
+    technologies: ["React Native", "Expo", "Lottie Animations", "React Navigation", "iOS/Android/Web"],
+    imageUrl: fontastic,
+    liveUrl: "https://expo.dev/preview/update?message=Publishing%20to%20Expo%20Go&updateRuntimeVersion=1.0.0&createdAt=2025-06-06T01%3A51%3A28.953Z&slug=exp&projectId=46bb1139-8352-4631-b16b-7e1ec8b80edb&group=6f651b28-4c75-4498-82d0-63686fe98a71"
   },
   {
     title: "BarBlend Guru",
@@ -156,6 +164,8 @@ const Projects = () => {
                 <div className='flex gap-4'>
                   <motion.a 
                     href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className='flex-1 text-center border border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition'
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
