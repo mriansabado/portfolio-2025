@@ -86,15 +86,15 @@ const Projects = () => {
 
   return (
     <motion.section 
-      className='py-20 bg-black relative'
+      className='py-12 sm:py-16 md:py-20 bg-black relative'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       <div className='absolute inset-0 bg-[url("/projects-bg.jpg")] bg-cover bg-center bg-no-repeat opacity-20'></div>
-      <div className='container mx-auto px-4 relative z-10'>
+      <div className='container mx-auto px-4 sm:px-6 relative z-10'>
         <motion.h2 
-          className='text-4xl md:text-5xl font-bold text-white tracking-tighter mb-4 text-center'
+          className='text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tighter mb-3 sm:mb-4 text-center'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -102,7 +102,7 @@ const Projects = () => {
           Featured Projects
         </motion.h2>
         <motion.p 
-          className='text-gray-400 text-center mb-12 max-w-2xl mx-auto'
+          className='text-sm sm:text-base text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -111,7 +111,7 @@ const Projects = () => {
         </motion.p>
         
         <motion.div 
-          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8'
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -119,13 +119,13 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div 
               key={index}
-              className='relative bg-gray-900 rounded-xl overflow-hidden'
+              className='relative bg-gray-900 rounded-lg sm:rounded-xl overflow-hidden'
               variants={projectVariants}
               whileHover={hoverVariants.hover}
               whileTap={{ scale: 0.98 }}
             >
               <motion.div 
-                className='relative h-48 overflow-hidden'
+                className='relative h-40 sm:h-48 overflow-hidden'
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.3 }}
               >
@@ -142,15 +142,15 @@ const Projects = () => {
                 />
               </motion.div>
               
-              <div className='p-4 md:p-6'>
-                <h3 className='text-lg md:text-xl font-bold text-white mb-2'>{project.title}</h3>
-                <p className='text-sm md:text-base text-gray-400 mb-4'>{project.description}</p>
+              <div className='p-4 sm:p-6'>
+                <h3 className='text-base sm:text-lg md:text-xl font-bold text-white mb-2'>{project.title}</h3>
+                <p className='text-xs sm:text-sm md:text-base text-gray-400 mb-3 sm:mb-4'>{project.description}</p>
                 
-                <div className='flex flex-wrap gap-2 mb-4 md:mb-6'>
+                <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                   {project.technologies.map((tech, techIndex) => (
                     <motion.span 
                       key={techIndex}
-                      className='px-2 md:px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs md:text-sm'
+                      className='px-2 py-0.5 sm:px-3 sm:py-1 bg-gray-800 text-gray-300 rounded-full text-xs sm:text-sm'
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * techIndex }}
@@ -166,7 +166,7 @@ const Projects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className='flex-1 text-center border border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition'
+                    className='flex-1 text-center border border-white text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold hover:bg-white hover:text-black transition'
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

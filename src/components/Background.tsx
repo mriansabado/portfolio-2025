@@ -50,14 +50,9 @@ const Background = () => {
           </p>
         </div>
       </section> 
-      <section className="py-16 bg-gradient-to-b from-gray-900 to-black" style={{
-        width: "100%",
-        position: "relative",
-        margin: "0 -1rem",
-        padding: "0 1rem"
-      }}>
-        <div className="container mx-auto px-8 max-w-[1400px]">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
+      <section className="py-8 sm:py-12 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4 max-w-[1400px]">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-2 text-white">
             Tech Stack
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-8 lg:gap-16 justify-items-center">
