@@ -30,7 +30,7 @@ const projects: Project[] = [
   {
     title: "BarBlend Guru",
     description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "Vercel"],
     imageUrl: barblendGuru,
     liveUrl: "https://barblend-guru-app.vercel.app/"
   },
