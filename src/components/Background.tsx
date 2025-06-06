@@ -1,5 +1,5 @@
 import '../Background.css'
-import heroBg from '../assets/dark-gradient-bg.jpg'
+import heroBg from '../assets/3d-podium.jpg'
 import react from '../assets/react.svg'
 import { FaHtml5, FaCss3Alt, FaAws } from "react-icons/fa";
 import { RiJavascriptLine, RiVuejsLine } from "react-icons/ri";
@@ -27,18 +27,26 @@ const Background = () => {
           placeItems: "center",
           height: "100vh",
           width: "100%",
-          padding: "0 1rem"
+          padding: "0 1rem",
+          paddingTop: "10vh"
         }}>
-          <h1 className="text-left md:text-center">
-            <span className="block md:inline text-8xl md:text-9xl">Ian</span>
-            <span className="block md:inline text-8xl md:text-9xl md:ml-4">Sabado</span>
-          </h1>
+          <div className="bg-black/30 backdrop-sm p-8 rounded-lg">
+            <h1 className="text-center text-white">
+              <span className="block md:inline text-8xl md:text-9xl">Ian</span>
+              <span className="block md:inline text-8xl md:text-9xl md:ml-4">Sabado</span>
+            </h1>
+            <h2 className="text-3xl md:text-5xl font-medium mt-4 text-center max-w-4xl">
+              <span className="bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent hover:from-pink-300 hover:via-purple-300 hover:to-cyan-300 transition-all duration-300">
+                Full-Stack Developer
+              </span>
+            </h2>
+          </div>
         </div>
       </section>
       <section>
         <div className="relative flex items-center justify-center">
           <p className="medium-description text-center px-4 md:px-16 z-0">
-            <span className="normal-description">I'm a software engineer who loves building</span> beautiful, user-friendly interfaces <span className='normal-description'> with clean code behind the scenes</span>
+            <span className="normal-description">I'm a Full-Stack Engineer who loves building</span> beautiful, user-friendly interfaces <span className='normal-description'> with clean code behind the scenes</span>
           </p>
         </div>
       </section> 
