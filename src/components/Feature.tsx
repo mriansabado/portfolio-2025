@@ -18,19 +18,16 @@ const Feature = () => {
                 Front-end Development
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Creating intuitive user experiences with clean, performant code using React, Vue.js, and TailwindCSS
-              </p>
+                Building responsive, cross-browser compatible interfaces using React, Vue.js, TypeScript, and modern CSS frameworks like TailwindCSS              </p>
             </div>
           </div>
-
           <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-gray-800 animate-slide-up delay-100'>
             <div className='flex flex-col h-full'>
               <h3 className='text-xl sm:text-2xl font-semibold text-white mb-4'>
                 UI/UX Design
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Creating intuitive and beautiful user experiences with a focus on modern design principles and accessibility
-              </p>
+                Creating intuitive and beautiful user experiences with a focus on modern design principles and cross-browser compatibility              </p>
             </div>
           </div>
 
@@ -40,8 +37,7 @@ const Feature = () => {
                 Architecture
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Designing scalable and maintainable application structures with modern best practices
-              </p>
+                Building applications for the cloud using AWS services like Lambda, S3, and Amplify that scale efficiently and stay maintainable              </p>
             </div>
           </div>
 
@@ -51,8 +47,7 @@ const Feature = () => {
                 Full Stack Development
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Implementing end-to-end solutions with modern backend technologies and databases
-              </p>
+                Building full-stack solutions with MVC architecture patterns and database integration for complete web applications              </p>
             </div>
           </div>
         </div>
