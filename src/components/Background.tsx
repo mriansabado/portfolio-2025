@@ -30,7 +30,7 @@ const Background = () => {
           padding: "0 1rem",
           paddingTop: "10vh"
         }}>
-          <div className="bg-black/30 backdrop-sm p-8 rounded-lg">
+          <div className="bg-black/60 backdrop-sm p-5 rounded-lg">
             <h1 className="text-center text-white">
               <span className="block md:inline text-8xl md:text-9xl">Ian</span>
               <span className="block md:inline text-8xl md:text-9xl md:ml-4">Sabado</span>
