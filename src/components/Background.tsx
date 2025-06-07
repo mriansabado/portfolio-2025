@@ -46,7 +46,7 @@ const Background = () => {
       <section>
         <div className="relative flex items-center justify-center">
           <p className="medium-description text-center px-4 md:px-16 z-0">
-            <span className="normal-description">I'm a Full-Stack Engineer who loves building</span> beautiful, user-friendly interfaces <span className='normal-description'> with clean code behind the scenes</span>
+            <span className="normal-description">I'm a Full-Stack Engineer passionate about</span> beautiful interfaces and solid fundamentals<span className='normal-description'>. I love staying current with this evolving industry while creating dependable software.</span>
           </p>
         </div>
       </section> 
