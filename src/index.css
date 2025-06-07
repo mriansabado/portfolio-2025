@@ -4,11 +4,12 @@
 
 @layer base {
     html, body, #root {
-        @apply h-full min-h-screen overflow-x-hidden;
+        @apply h-full min-h-screen;
     }
 
     body {
-        @apply bg-black w-full relative;
+        @apply bg-black;
+        overflow-x: hidden;
     }
 
     .animate-gradient {

@@ -14,9 +14,13 @@ const Background = () => {
         background: `url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "100%",
+        width: "100vw",
         minHeight: "100vh",
-        position: "relative"
+        position: "relative",
+        left: "50%",
+        right: "50%",
+        marginLeft: "-50vw",
+        marginRight: "-50vw"
       }}>
         <div style={{
           display: "grid",
