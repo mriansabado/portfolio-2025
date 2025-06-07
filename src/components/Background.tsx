@@ -43,9 +43,20 @@ const Background = () => {
           </div>
         </div>
       </section>
-      <section>
-        <div className="relative flex items-center justify-center">
-          <p className="medium-description text-center px-4 md:px-16 z-0">
+      <section className="relative overflow-hidden py-12 sm:py-16 md:py-24 bg-black w-screen" style={{
+        width: "100vw",
+        position: "relative",
+        left: "50%",
+        right: "50%",
+        marginLeft: "-50vw",
+        marginRight: "-50vw"
+      }}>
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20" />
+        <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+        <div className="relative flex items-center justify-center z-10">
+          <p className="medium-description text-center px-4 md:px-16">
             <span className="normal-description">I'm a Full-Stack Engineer passionate about</span> beautiful interfaces and solid fundamentals<span className='normal-description'>. I love staying current with this evolving industry while creating dependable software.</span>
           </p>
         </div>

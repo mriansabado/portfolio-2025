@@ -86,12 +86,15 @@ const Projects = () => {
 
   return (
     <motion.section 
-      className='py-12 sm:py-16 md:py-20 bg-black relative'
+      className='py-12 sm:py-16 md:py-20 bg-black relative overflow-hidden'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className='absolute inset-0 bg-[url("/projects-bg.jpg")] bg-cover bg-center bg-no-repeat opacity-20'></div>
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20" />
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
       <div className='container mx-auto px-4 sm:px-6 relative z-10'>
         <motion.h2 
           className='text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tighter mb-3 sm:mb-4 text-center'

@@ -1,7 +1,8 @@
 const Feature = () => {
   return (
-    <section className='py-12 sm:py-16 md:py-24 bg-gradient-to-br from-black via-gray-900 to-gray-800'>
-      <div className='container mx-auto px-2 sm:px-6'>
+    <section className='py-12 sm:py-16 md:py-24 relative'>
+      <div className='absolute inset-0 bg-[url("/src/assets/wavy-bg.jpg")] bg-cover bg-center opacity-40'></div>
+      <div className='container mx-auto px-2 sm:px-6 relative z-10'>
         <div className='text-center mb-12 sm:mb-16 md:mb-20'>
           <h2 className='text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tighter mb-6 sm:mb-8 animate-fade-in'>
             What I Do
@@ -17,7 +18,7 @@ const Feature = () => {
                 Front-end Development
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Building responsive, performant user interfaces with modern frameworks like React, Next.js, and TailwindCSS
+                Creating intuitive user experiences with clean, performant code using React, Vue.js, and TailwindCSS
               </p>
             </div>
           </div>
