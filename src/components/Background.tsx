@@ -43,7 +43,7 @@ const Background = () => {
           </div>
         </div>
       </section>
-      <section className="relative overflow-hidden py-12 sm:py-16 md:py-24 bg-black w-screen" style={{
+      <section className="relative overflow-hidden bg-black w-screen" style={{
         width: "100vw",
         position: "relative",
         left: "50%",
