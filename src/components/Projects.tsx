@@ -33,13 +33,6 @@ const projects: Project[] = [
     technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "Vercel"],
     imageUrl: barblendGuru,
     liveUrl: "https://barblend-guru-app.vercel.app/"
-  },
-  {
-    title: "Pixel Builder",
-    description: "Online tool to make custom tracking pixels for Facebook and Instagram",
-    technologies: ["Vue JS", "Bulma", "Bootstrap", "Vercel"],
-    imageUrl: pixelBuilder,
-    liveUrl: "https://tracking-pixel-builder.vercel.app/"
   }
 ];
 
