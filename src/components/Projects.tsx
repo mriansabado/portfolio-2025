@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-import barblendGuru from '../assets/barblend-guru.png';
 import gamehub from '../assets/gamehub.png';
-import pixelBuilder from '../assets/pixel-builder.png';
 import fontastic from '../assets/fontastic.png';
 
 interface Project {
@@ -26,13 +24,6 @@ const projects: Project[] = [
     technologies: ["React Native", "Expo", "Lottie Animations", "React Navigation", "iOS/Android/Web"],
     imageUrl: fontastic,
     liveUrl: "https://expo.dev/preview/update?message=Publishing%20to%20Expo%20Go&updateRuntimeVersion=1.0.0&createdAt=2025-06-06T01%3A51%3A28.953Z&slug=exp&projectId=46bb1139-8352-4631-b16b-7e1ec8b80edb&group=6f651b28-4c75-4498-82d0-63686fe98a71"
-  },
-  {
-    title: "BarBlend Guru",
-    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "Vercel"],
-    imageUrl: barblendGuru,
-    liveUrl: "https://barblend-guru-app.vercel.app/"
   }
 ];
 
@@ -107,7 +98,7 @@ const Projects = () => {
         </motion.p>
         
         <motion.div 
-          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8'
+          className='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full'
           variants={containerVariants}
           initial="hidden"
           animate="visible"
