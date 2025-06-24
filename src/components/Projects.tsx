@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import gamehub from '../assets/gamehub.png';
 import fontastic from '../assets/fontastic.png';
-import barblendGuru from '../assets/barblend-guru.png';
+import barblendGuru from '../assets/project-shot.png';
 import pixelBuilder from '../assets/pixel-builder.png';
 
 interface Project {
