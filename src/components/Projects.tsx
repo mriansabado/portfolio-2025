@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import gamehub from '../assets/gamehub.png';
 import fontastic from '../assets/fontastic.png';
+import barblendGuru from '../assets/barblend-guru.png';
+import pixelBuilder from '../assets/pixel-builder.png';
 
 interface Project {
   title: string;
@@ -24,6 +26,20 @@ const projects: Project[] = [
     technologies: ["React Native", "Expo", "Lottie Animations", "React Navigation", "iOS/Android/Web"],
     imageUrl: fontastic,
     liveUrl: "https://expo.dev/preview/update?message=Publishing%20to%20Expo%20Go&updateRuntimeVersion=1.0.0&createdAt=2025-06-06T01%3A51%3A28.953Z&slug=exp&projectId=46bb1139-8352-4631-b16b-7e1ec8b80edb&group=6f651b28-4c75-4498-82d0-63686fe98a71"
+  },
+  {
+    title: "BarBlend Guru",
+    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "Vercel"],
+    imageUrl: barblendGuru,
+    liveUrl: "https://barblend-guru-app.vercel.app/"
+  },
+  {
+    title: "Pixel Builder",
+    description: "Online tool to make custom tracking pixels for Facebook and Instagram",
+    technologies: ["Vue JS", "Bulma", "Bootstrap", "Vercel"],
+    imageUrl: pixelBuilder,
+    liveUrl: "https://tracking-pixel-builder.vercel.app/"
   }
 ];
 
@@ -94,7 +110,6 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          Here are some of my recent projects that showcase my skills and experience in web development.
         </motion.p>
         
         <motion.div 
