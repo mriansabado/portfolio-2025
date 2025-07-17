@@ -37,7 +37,7 @@ const Background = () => {
             </h1>
             <h2 className="text-3xl md:text-5xl font-medium mt-4 text-center max-w-4xl">
               <span className="bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent hover:from-pink-300 hover:via-purple-300 hover:to-cyan-300 transition-all duration-300">
-                Full-Stack Developer
+                Software Developer
               </span>
             </h2>
           </div>
@@ -57,7 +57,14 @@ const Background = () => {
         <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
         <div className="relative flex items-center justify-center z-10">
           <p className="medium-description text-center px-4 md:px-16">
-            <span className="normal-description">I'm a Full-Stack Developer passionate about</span> beautiful interfaces and solid fundamentals<span className='normal-description'>. I love staying current with this evolving industry while creating dependable software.</span>
+            <span className="normal-description">I'm a Software Developer passionate about crafting </span> 
+            responsive web applications 
+            <span className="normal-description"> with </span>
+             beautiful interfaces
+             <span className="normal-description"> and </span>
+              solid fundamentals
+            <span className='normal-description'>. I love staying current with this evolving industry while creating </span>
+            dependable software
           </p>
         </div>
       </section> 
