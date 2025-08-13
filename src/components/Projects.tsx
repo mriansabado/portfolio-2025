@@ -3,6 +3,7 @@ import gamehub from '../assets/gamehub.png';
 import fontastic from '../assets/fontastic.png';
 import barblendGuru from '../assets/project-shot.png';
 import pixelBuilder from '../assets/pixel-builder.png';
+import pepTalkAI from '../assets/peptalk.png';
 
 interface Project {
   title: string;
@@ -13,6 +14,13 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    title: "PepTalk AI",
+    description: "An AI-powered motivational companion that provides personalized pep talks, encouragement, and positive reinforcement to help users stay motivated and achieve their goals.",
+    technologies: ["React", "Typescript", "Chakra", "RESTAPI", "AWS"],
+    imageUrl: pepTalkAI,
+    liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
+  },
   {
     title: "GameHub",
     description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
@@ -128,7 +136,7 @@ const Projects = () => {
             >
               <motion.div 
                 className='relative h-40 sm:h-48 overflow-hidden'
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
                 <img 
