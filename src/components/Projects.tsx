@@ -22,11 +22,11 @@ const projects: Project[] = [
     liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
   },
   {
-    title: "GameHub",
-    description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
-    technologies: ["React", "Typescript", "Chakra", "RESTAPI", "Vercel"],
-    imageUrl: gamehub,
-    liveUrl: "https://game-hub-beige-omega.vercel.app/"
+    title: "BarBlend Guru",
+    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "Vercel"],
+    imageUrl: barblendGuru,
+    liveUrl: "https://barblend-guru-app.vercel.app/"
   },
   {
     title: "Fontastic",
@@ -36,12 +36,13 @@ const projects: Project[] = [
     liveUrl: "https://expo.dev/preview/update?message=Publishing%20to%20Expo%20Go&updateRuntimeVersion=1.0.0&createdAt=2025-06-06T01%3A51%3A28.953Z&slug=exp&projectId=46bb1139-8352-4631-b16b-7e1ec8b80edb&group=6f651b28-4c75-4498-82d0-63686fe98a71"
   },
   {
-    title: "BarBlend Guru",
-    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "Vercel"],
-    imageUrl: barblendGuru,
-    liveUrl: "https://barblend-guru-app.vercel.app/"
+    title: "GameHub",
+    description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
+    technologies: ["React", "Typescript", "Chakra", "RESTAPI", "Vercel"],
+    imageUrl: gamehub,
+    liveUrl: "https://game-hub-beige-omega.vercel.app/"
   },
+ 
   {
     title: "Pixel Builder",
     description: "Online tool to make custom tracking pixels for Facebook and Instagram",
