@@ -17,7 +17,7 @@ const projects: Project[] = [
   {
     title: "PepTalk AI",
     description: "An AI-powered motivational companion that provides personalized pep talks, encouragement, and positive reinforcement to help users stay motivated and achieve their goals.",
-    technologies: ["React", "Typescript", "MUI", "RESTAPI", "AWS"],
+    technologies: ["AI", "React", "Typescript", "MUI", "RESTAPI", "AWS"],
     imageUrl: pepTalkAI,
     liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
   },
