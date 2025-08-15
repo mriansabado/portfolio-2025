@@ -37,7 +37,7 @@ const Feature = () => {
                 Architecture
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Building applications for the cloud using AWS services like Lambda, S3, and Amplify that scale efficiently and stay maintainable              </p>
+              Designing efficient serverless systems that automatically optimize resources while delivering fast, reliable user experiences           </p>
             </div>
           </div>
 
