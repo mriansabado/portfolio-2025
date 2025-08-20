@@ -17,8 +17,9 @@ const Feature = () => {
               <h3 className='text-xl sm:text-2xl font-semibold text-white mb-4'>
                 Front-end Development
               </h3>
-              <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Building responsive, cross-browser compatible interfaces using React, Vue.js, TypeScript, and modern CSS frameworks like TailwindCSS              </p>
+                <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
+                  Building responsive, cross-browser compatible interfaces using React, Vue.js, TypeScript, and modern CSS frameworks like TailwindCSS
+                </p>
             </div>
           </div>
           <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-gray-800 animate-slide-up delay-100'>
@@ -27,7 +28,8 @@ const Feature = () => {
                 UI/UX Design
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Creating intuitive and beautiful user experiences with a focus on modern design principles and cross-browser compatibility              </p>
+                Creating intuitive and beautiful user experiences with a focus on modern design principles and cross-device compatibility
+              </p>
             </div>
           </div>
 
@@ -37,7 +39,8 @@ const Feature = () => {
                 Architecture
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-              Designing efficient serverless systems that automatically optimize resources while delivering fast, reliable user experiences           </p>
+                Designing scalable full-stack architectures with intelligent cloud resource management, balancing performance and cost efficiency
+              </p>
             </div>
           </div>
 
@@ -47,7 +50,8 @@ const Feature = () => {
                 Full Stack Development
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Building full-stack solutions with MVC architecture patterns and database integration for complete web applications              </p>
+                Developing end-to-end web applications with a focus on cohesive integration between front-end and back-end technologies
+              </p>
             </div>
           </div>
         </div>

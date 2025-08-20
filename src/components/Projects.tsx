@@ -24,7 +24,7 @@ const projects: Project[] = [
   {
     title: "BarBlend Guru",
     description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "NextJS"],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "NextJS"],
     imageUrl: barblendGuru,
     liveUrl: "https://barblend-guru-app.vercel.app/"
   },
@@ -38,7 +38,7 @@ const projects: Project[] = [
   {
     title: "GameHub",
     description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
-    technologies: ["React", "Typescript", "Chakra", "RESTAPI", "Vercel"],
+    technologies: ["React", "Typescript", "Chakra", "RESTAPI"],
     imageUrl: gamehub,
     liveUrl: "https://game-hub-beige-omega.vercel.app/"
   },
@@ -46,7 +46,7 @@ const projects: Project[] = [
   {
     title: "Pixel Builder",
     description: "Online tool to make custom tracking pixels for Facebook and Instagram",
-    technologies: ["Vue JS", "Bulma", "Bootstrap", "Vercel"],
+    technologies: ["Vue JS", "Bulma", "Bootstrap"],
     imageUrl: pixelBuilder,
     liveUrl: "https://tracking-pixel-builder.vercel.app/"
   }
