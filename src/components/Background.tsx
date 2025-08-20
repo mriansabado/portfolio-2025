@@ -105,6 +105,26 @@ const Background = () => {
             </div>
           </div>
         </div>
+        
+        {/* AWS Certification Section */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center justify-center p-6 md:p-8 bg-gradient-to-r from-orange-500/20 to-orange-600/20 backdrop-blur-sm rounded-2xl border border-orange-400/30">
+            <div className="flex items-center space-x-4 md:space-x-6">
+              <div className="flex-shrink-0">
+                <FaAws className="w-16 h-16 md:w-20 md:h-20 text-orange-400" />
+              </div>
+              <div className="text-left">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                  AWS Cloud Practitioner Certified
+                </h3>
+                <p className="text-orange-200 text-sm md:text-base">
+                  Certified cloud professional with foundational AWS knowledge
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </section>
     </main>
     </>
