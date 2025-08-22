@@ -45,7 +45,7 @@ const Background = () => {
       </section>
       <section className="relative overflow-hidden bg-black w-screen" style={{
         width: "100vw",
-        height: "50vh", // Adjusted height to prevent overlap
+        height: "60vh",
         position: "relative",
         left: "50%",
         right: "50%",
