@@ -4,6 +4,7 @@ import fontastic from '../assets/fontastic.png';
 import barblendGuru from '../assets/project-shot.png';
 import pixelBuilder from '../assets/pixel-builder.png';
 import pepTalkAI from '../assets/peptalk.png';
+import postachio from '../assets/postachio-desktop.png';
 
 interface Project {
   title: string;
@@ -14,6 +15,13 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    title: "Postachio",
+    description: "An AI-powered web app that optimizes text for social media posts. Don't worry about hashtags or algorithms! Our AI will help you create posts that get seen and grow your following.",
+    technologies: ["React", "TypeScript", "Firebase", "REST API", "Stripe", "Tailwind CSS"],
+    imageUrl: postachio,
+    liveUrl: "https://postachio-bdcb5.web.app/"
+  },
   {
     title: "PepTalk AI",
     description: "An AI-powered motivational companion that provides personalized pep talks, encouragement, and positive reinforcement to help users stay motivated and achieve their goals.",
@@ -143,7 +151,9 @@ const Projects = () => {
                 <img 
                   src={project.imageUrl} 
                   alt={project.title}
-                  className='w-full h-full object-cover'
+                  className={`w-full h-full object-cover ${
+                    project.title === 'Postachio' ? 'object-top' : ''
+                  }`}
                 />
                 <motion.div 
                   className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'
