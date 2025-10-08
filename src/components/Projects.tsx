@@ -30,19 +30,20 @@ const projects: Project[] = [
     liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
   },
   {
-    title: "BarBlend Guru",
-    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "NextJS"],
-    imageUrl: barblendGuru,
-    liveUrl: "https://barblend-guru-app.vercel.app/"
-  },
-  {
     title: "Fontastic",
     description: "Fontastic is a React Native app that transforms text into animated displays with customizable themes and animations. To preview it, scan the QR code and follow the instructions",
     technologies: ["React Native", "Expo", "Lottie Animations", "React Navigation", "iOS/Android/Web"],
     imageUrl: fontastic,
     liveUrl: "https://expo.dev/preview/update?message=Updated+to+Expo+SDK+54+and+fixed+Lottie+dependencies&updateRuntimeVersion=1.0.0&createdAt=2025-10-08T19%3A51%3A26.404Z&slug=exp&projectId=46bb1139-8352-4631-b16b-7e1ec8b80edb&group=d1cfbdeb-c225-4703-98ec-da6e2b729750"
   },
+  {
+    title: "BarBlend Guru",
+    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "NextJS"],
+    imageUrl: barblendGuru,
+    liveUrl: "https://barblend-guru-app.vercel.app/"
+  },
+ 
   {
     title: "GameHub",
     description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
