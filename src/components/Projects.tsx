@@ -20,7 +20,7 @@ const projects: Project[] = [
     description: "An AI-powered web app that optimizes text for social media posts. Don't worry about hashtags or algorithms! Our AI will help you create posts that get seen and grow your following.",
     technologies: ["React", "TypeScript", "Firebase", "REST API", "Stripe", "Tailwind CSS"],
     imageUrl: postachio,
-    liveUrl: "https://postachio-bdcb5.web.app/"
+    liveUrl: "https://postachio.app/"
   },
   {
     title: "PepTalk AI",
