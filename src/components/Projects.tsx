@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import gamehub from '../assets/gamehub.png';
-import fontastic from '../assets/fontastic.png';
-import barblendGuru from '../assets/project-shot.png';
-import pixelBuilder from '../assets/pixel-builder.png';
+import intime from '../assets/intime.png';
+import barblendGuru from '../assets/jamscribe.png';
+import zenscan from '../assets/zenscan.png';
 import pepTalkAI from '../assets/peptalk.png';
-import postachio from '../assets/postachio-desktop.png';
+import postachio from '../assets/postachio.png';
+import pocketsay from '../assets/pocketsay.png';
 
 interface Project {
   title: string;
@@ -17,47 +17,45 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Postachio",
-    description: "An AI-powered web app that optimizes text for social media posts. Don't worry about hashtags or algorithms! Our AI will help you create posts that get seen and grow your following.",
-    technologies: ["React", "TypeScript", "Firebase", "REST API", "Stripe", "Tailwind CSS"],
+    description: "AI-powered social media content creation platform solving content creator challenges with writer's block and algorithm optimization. Features real-time AI content generation using Anthropic Claude API.",
+    technologies: ["React", "TypeScript", "Firebase", "Anthropic Claude API", "Stripe", "Tailwind CSS"],
     imageUrl: postachio,
     liveUrl: "https://postachio.app/"
   },
   {
+    title: "PocketSay",
+    description: "React Native communication app built to solve a real need: silent communication during baby's sleep. Features theme-adaptive Lottie animations and demonstrates single-codebase native app delivery.",
+    technologies: ["React Native", "TypeScript", "Lottie Animations", "iOS", "Android"],
+    imageUrl: pocketsay,
+    liveUrl: "https://pocket-say-support.vercel.app/"
+  },
+  {
     title: "PepTalk AI",
-    description: "An AI-powered motivational companion that provides personalized pep talks, encouragement, and positive reinforcement to help users stay motivated and achieve their goals.",
-    technologies: ["AI", "React", "Typescript", "MUI", "RESTAPI", "AWS"],
+    description: "Serverless AI application delivering personalized encouragement and motivation. Architecture optimizes cost efficiency while maintaining fast response times through AWS Lambda and API Gateway.",
+    technologies: ["AWS Lambda", "API Gateway", "Anthropic Claude API", "React", "TypeScript", "Material-UI"],
     imageUrl: pepTalkAI,
-    liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
+    liveUrl: "https://peptalk-ai.netlify.app/"
   },
   {
-    title: "Fontastic",
-    description: "Fontastic is a React Native app that transforms text into animated displays with customizable themes and animations. To preview it, scan the QR code and follow the instructions",
-    technologies: ["React Native", "Expo", "Lottie Animations", "React Navigation", "iOS/Android/Web"],
-    imageUrl: fontastic,
-    liveUrl: "https://expo.dev/preview/update?message=Updated+to+Expo+SDK+54+and+fixed+Lottie+dependencies&updateRuntimeVersion=1.0.0&createdAt=2025-10-08T19%3A51%3A26.404Z&slug=exp&projectId=46bb1139-8352-4631-b16b-7e1ec8b80edb&group=d1cfbdeb-c225-4703-98ec-da6e2b729750"
-  },
-  {
-    title: "BarBlend Guru",
-    description: "A modern cocktail recipe app that helps users discover and create amazing drinks with detailed instructions and ingredient tracking.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "RESTAPI", "NextJS"],
+    title: "JamScribe",
+    description: "Web app that transcribes YouTube videos into synchronized guitar chords and lyrics using OpenAI Whisper API and Essentia.js for chord detection. Addressing gaps in existing music transcription tools.",
+    technologies: ["React", "TypeScript", "OpenAI Whisper API", "Essentia.js", "YouTube API"],
     imageUrl: barblendGuru,
-    liveUrl: "https://barblend-guru-app.vercel.app/"
+    liveUrl: "#"
   },
- 
   {
-    title: "GameHub",
-    description: "An interactive gaming platform that connects players and provides real-time game statistics and social features.",
-    technologies: ["React", "Typescript", "Chakra", "RESTAPI"],
-    imageUrl: gamehub,
-    liveUrl: "https://game-hub-beige-omega.vercel.app/"
+    title: "InTime",
+    description: "Musician-focused metronome built for Apple Watch. Features intuitive tap-to-set tempo functionality, allowing musicians to set their beat by tapping rather than scrolling through values.",
+    technologies: ["Swift", "SwiftUI", "watchOS"],
+    imageUrl: intime,
+    liveUrl: "#"
   },
- 
   {
-    title: "Pixel Builder",
-    description: "Online tool to make custom tracking pixels for Facebook and Instagram",
-    technologies: ["Vue JS", "Bulma", "Bootstrap"],
-    imageUrl: pixelBuilder,
-    liveUrl: "https://tracking-pixel-builder.vercel.app/"
+    title: "ZenScan",
+    description: "Mobile app streamlining e-commerce inventory management across Wix, Shopify, and WordPress. Users capture product photos, input details and SKUs, then export platform-specific CSV files for bulk upload.",
+    technologies: ["React Native", "Camera API", "CSV Generation", "Platform Integration"],
+    imageUrl: zenscan,
+    liveUrl: "#"
   }
 ];
 
@@ -184,16 +182,24 @@ const Projects = () => {
                 </div>
                 
                 <div className='flex gap-4'>
-                  <motion.a 
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className='flex-1 text-center border border-white text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold hover:bg-white hover:text-black transition'
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Live Demo
-                  </motion.a>
+                  {project.liveUrl !== "#" ? (
+                    <motion.a 
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className='flex-1 text-center border border-white text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold hover:bg-white hover:text-black transition'
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Live Demo
+                    </motion.a>
+                  ) : (
+                    <motion.div 
+                      className='flex-1 text-center border border-gray-600 text-gray-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold cursor-not-allowed'
+                    >
+                      In Development
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </motion.div>

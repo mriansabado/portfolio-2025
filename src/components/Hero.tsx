@@ -9,7 +9,7 @@ const Hero = () => {
         Ian Sabado
       </h1>
         <h2 className='text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto mb-8'>
-          Software Engineer crafting beautiful front-end experiences powered by clean, efficient code
+          Software Developer with 5+ years building production applications, specializing in AI integration and automation. Expert in implementing AI-powered features and architecting full-stack solutions.
         </h2>
         <div className='flex gap-4 justify-center'>
           <button className='bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition'>

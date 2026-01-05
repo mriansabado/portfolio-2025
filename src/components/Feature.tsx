@@ -15,20 +15,20 @@ const Feature = () => {
           <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-gray-800 animate-slide-up'>
             <div className='flex flex-col h-full'>
               <h3 className='text-xl sm:text-2xl font-semibold text-white mb-4'>
-                Front-end Development
+                AI Integration & Automation
               </h3>
                 <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                  Building responsive, cross-browser compatible interfaces using React, Vue.js, TypeScript, and modern CSS frameworks like TailwindCSS
+                  Implementing AI-powered features using OpenAI and Anthropic APIs, building intelligent workflows that automate processes and reduce manual effort
                 </p>
             </div>
           </div>
           <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-gray-800 animate-slide-up delay-100'>
             <div className='flex flex-col h-full'>
               <h3 className='text-xl sm:text-2xl font-semibold text-white mb-4'>
-                UI/UX Design
+                Full-Stack Development
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Creating intuitive and beautiful user experiences with a focus on modern design principles and cross-device compatibility
+                Building production applications with React, TypeScript, Python, Django, and Node.js, creating seamless integrations from frontend to backend
               </p>
             </div>
           </div>
@@ -36,10 +36,10 @@ const Feature = () => {
           <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-gray-800 animate-slide-up delay-200'>
             <div className='flex flex-col h-full'>
               <h3 className='text-xl sm:text-2xl font-semibold text-white mb-4'>
-                Architecture
+                Cloud & Serverless Architecture
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Designing scalable full-stack architectures with intelligent cloud resource management, balancing performance and cost efficiency
+                Deploying scalable, serverless solutions on AWS (Lambda, S3, API Gateway, CloudFront) that deliver measurable business value while optimizing costs
               </p>
             </div>
           </div>
@@ -47,10 +47,10 @@ const Feature = () => {
           <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-5 sm:p-8 border border-gray-800 animate-slide-up delay-300'>
             <div className='flex flex-col h-full'>
               <h3 className='text-xl sm:text-2xl font-semibold text-white mb-4'>
-                Full Stack Development
+                Mobile & Cross-Platform
               </h3>
               <p className='text-base sm:text-lg text-gray-400 leading-relaxed'>
-                Developing end-to-end web applications with a focus on cohesive integration between front-end and back-end technologies
+                Developing native and cross-platform mobile applications with React Native, Swift, and SwiftUI, delivering seamless experiences across iOS and Android
               </p>
             </div>
           </div>
