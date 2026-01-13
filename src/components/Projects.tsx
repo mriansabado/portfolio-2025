@@ -34,7 +34,7 @@ const projects: Project[] = [
     description: "Serverless AI application delivering personalized encouragement and motivation. Architecture optimizes cost efficiency while maintaining fast response times through AWS Lambda and API Gateway.",
     technologies: ["AWS Lambda", "API Gateway", "Anthropic Claude API", "React", "TypeScript", "Material-UI"],
     imageUrl: pepTalkAI,
-    liveUrl: "https://peptalk-ai.netlify.app/"
+    liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
   },
   {
     title: "JamScribe",
