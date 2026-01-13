@@ -1,8 +1,7 @@
 import '../Background.css'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import heroDesktop from '../assets/updated-desktop.png'
-import heroMobile from '../assets/updated-mobile.png'
+import heroMobile from '../assets/portfolio2-mobile.png'
 import heroDesktopNight from '../assets/night-desktop.png'
 import heroMobileNight from '../assets/night-mobile.png'
 import react from '../assets/react.svg'
@@ -16,22 +15,11 @@ interface BackgroundProps {
 }
 
 const Background = ({ isNightMode = false }: BackgroundProps) => {
-  const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  })
-
-  // Parallax effects
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95])
 
   return (
     <>
     <main>
-      <motion.section 
-        ref={heroRef}
+      <section 
         className="hero-section relative overflow-hidden"
         style={{
           width: "100vw",
@@ -43,23 +31,20 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
           marginRight: "-50vw"
         }}
       >
-        {/* Hero Image with parallax */}
-        <motion.div
-          style={{ y, opacity, scale }}
-          className="absolute inset-0 w-full h-full"
-        >
+        {/* Hero Image */}
+        <div className="absolute inset-0 w-full h-full">
           <picture>
             <source media="(min-width: 768px)" srcSet={isNightMode ? heroDesktopNight : heroDesktop} />
             <img 
               src={isNightMode ? heroMobileNight : heroMobile} 
               alt="Ian Sabado Software Developer"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover mobile-hero-scale"
               style={{
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))'
               }}
             />
           </picture>
-        </motion.div>
+        </div>
 
         {/* Decorative floating elements with 3D effect */}
         <motion.div
@@ -102,7 +87,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
         >
           <div className="w-full h-full bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-xl" />
         </motion.div>
-      </motion.section>
+      </section>
       <motion.section 
         className="relative overflow-hidden w-screen"
         style={{

@@ -1,5 +1,12 @@
 @import "normalize.css/normalize.css";
 
+@media (max-width: 767px) {
+  .mobile-hero-scale {
+    transform: scale(.93);
+    transform-origin: center;
+  }
+}
+
 *,
 *:after,
 *:before {
