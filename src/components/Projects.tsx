@@ -6,32 +6,39 @@ import pepTalkAI from '../assets/peptalk.png';
 import postachio from '../assets/postachio.png';
 import pocketsay from '../assets/pocketsay.png';
 
+
+interface ProjectsProps {
+  isNightMode?: boolean;
+}
+
 interface Project {
   title: string;
   description: string;
   technologies: string[];
   imageUrl: string;
   liveUrl: string;
-}
-
-interface ProjectsProps {
-  isNightMode?: boolean;
+  isMonetized?: boolean;
+  monetizationType?: 'subscription' | 'sales';
 }
 
 const projects: Project[] = [
   {
     title: "Postachio",
-    description: "AI-powered social media content creation platform solving content creator challenges with writer's block and algorithm optimization. Features real-time AI content generation using Anthropic Claude API.",
+    description: "AI-powered social media content creation platform solving content creator challenges with writer's block and algorithm optimization. Features real-time AI content generation using Anthropic Claude API. Currently serving paying customers with a subscription model.",
     technologies: ["React", "TypeScript", "Firebase", "Anthropic Claude API", "Stripe", "Tailwind CSS"],
     imageUrl: postachio,
-    liveUrl: "https://postachio.app/"
+    liveUrl: "https://postachio.app/",
+    isMonetized: true,
+    monetizationType: 'subscription'
   },
   {
     title: "PocketSay",
-    description: "React Native communication app built to solve a real need: silent communication during baby's sleep. Features theme-adaptive Lottie animations and demonstrates single-codebase native app delivery.",
+    description: "React Native communication app built to solve a real need: silent communication during baby's sleep. Features theme-adaptive Lottie animations and demonstrates single-codebase native app delivery. Available on the App Store with sales to customers.",
     technologies: ["React Native", "TypeScript", "Lottie Animations", "iOS", "Android"],
     imageUrl: pocketsay,
-    liveUrl: "https://pocket-say-support.vercel.app/"
+    liveUrl: "https://pocket-say-support.vercel.app/",
+    isMonetized: true,
+    monetizationType: 'sales'
   },
   {
     title: "PepTalk AI",
@@ -133,7 +140,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Featured Projects
+          Products & Projects
         </motion.h2>
         <motion.p 
           className='text-sm sm:text-base text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4'
@@ -197,7 +204,26 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
               </motion.div>
               
               <div className='p-4 sm:p-6'>
-                <h3 className='text-base sm:text-lg md:text-xl font-bold mb-2' style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}>{project.title}</h3>
+                <div className='flex items-center gap-2 mb-2'>
+                  <h3 className='text-base sm:text-lg md:text-xl font-bold' style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}>{project.title}</h3>
+                  {project.isMonetized && (
+                    <motion.span
+                      className='px-2 py-0.5 rounded-full text-xs font-semibold'
+                      style={{
+                        background: isNightMode
+                          ? 'linear-gradient(135deg, #22c55e, #16a34a)'
+                          : 'linear-gradient(135deg, #22c55e, #16a34a)',
+                        color: 'white',
+                        boxShadow: '0 2px 4px rgba(34, 197, 94, 0.3)'
+                      }}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.3, type: "spring" }}
+                    >
+                      💰 Revenue
+                    </motion.span>
+                  )}
+                </div>
                 <p className='text-xs sm:text-sm md:text-base mb-3 sm:mb-4' style={{ color: isNightMode ? '#cbd5e1' : '#4a4a4a' }}>{project.description}</p>
                 
                 <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
