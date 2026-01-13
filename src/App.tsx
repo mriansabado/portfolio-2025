@@ -6,7 +6,7 @@ import './App.css'
 import Background from './components/Background'
 function App() {
   return (
-    <div className='bg-black min-h-screen'>
+    <div className='min-h-screen' style={{ background: '#fff9f0' }}>
       <Background />
       <Feature />
       <Projects />

@@ -88,32 +88,28 @@ const Projects = () => {
     }
   };
 
-  // Hover animation for project cards
-  const hoverVariants = {
-    hover: {
-      scale: 1.05,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20
-      }
-    }
-  };
 
   return (
     <motion.section 
-      className='py-12 sm:py-16 md:py-20 bg-black relative overflow-hidden'
+      className='py-12 sm:py-16 md:py-20 relative overflow-hidden'
+      style={{
+        background: 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20" />
-      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+      {/* Bright colorful decorative background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-yellow-100/15 to-pink-200/20" />
+      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-orange-300/15 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-300/15 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
       <div className='container mx-auto px-4 sm:px-6 relative z-10'>
         <motion.h2 
-          className='text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tighter mb-3 sm:mb-4 text-center'
+          className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter mb-3 sm:mb-4 text-center'
+          style={{ 
+            color: '#1a1a1a',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+          }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -137,9 +133,25 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div 
               key={index}
-              className='relative bg-gray-900 rounded-lg sm:rounded-xl overflow-hidden'
+              className='relative rounded-lg sm:rounded-xl overflow-hidden'
+              style={{
+                background: 'white',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
+                transformStyle: 'preserve-3d'
+              }}
               variants={projectVariants}
-              whileHover={hoverVariants.hover}
+              whileHover={{
+                scale: 1.05,
+                rotateY: 5,
+                rotateX: 2,
+                z: 30,
+                boxShadow: '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)',
+                transition: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
+                }
+              }}
               whileTap={{ scale: 0.98 }}
             >
               <motion.div 
@@ -155,7 +167,7 @@ const Projects = () => {
                   }`}
                 />
                 <motion.div 
-                  className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'
+                  className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent'
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
@@ -163,18 +175,28 @@ const Projects = () => {
               </motion.div>
               
               <div className='p-4 sm:p-6'>
-                <h3 className='text-base sm:text-lg md:text-xl font-bold text-white mb-2'>{project.title}</h3>
-                <p className='text-xs sm:text-sm md:text-base text-gray-400 mb-3 sm:mb-4'>{project.description}</p>
+                <h3 className='text-base sm:text-lg md:text-xl font-bold mb-2' style={{ color: '#1a1a1a' }}>{project.title}</h3>
+                <p className='text-xs sm:text-sm md:text-base mb-3 sm:mb-4' style={{ color: '#4a4a4a' }}>{project.description}</p>
                 
                 <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                   {project.technologies.map((tech, techIndex) => (
                     <motion.span 
                       key={techIndex}
-                      className='px-2 py-0.5 sm:px-3 sm:py-1 bg-gray-800 text-gray-300 rounded-full text-xs sm:text-sm'
+                      className='px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium'
+                      style={{
+                        background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                        color: '#ea580c',
+                        border: '1px solid rgba(234, 88, 12, 0.2)',
+                        boxShadow: '0 2px 4px rgba(234, 88, 12, 0.1)'
+                      }}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * techIndex }}
-                      whileHover={{ scale: 1.1, backgroundColor: "#374151" }}
+                      whileHover={{ 
+                        scale: 1.1, 
+                        background: 'linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%)',
+                        boxShadow: '0 4px 8px rgba(234, 88, 12, 0.2)'
+                      }}
                     >
                       {tech}
                     </motion.span>
@@ -187,15 +209,29 @@ const Projects = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className='flex-1 text-center border border-white text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold hover:bg-white hover:text-black transition'
-                      whileHover={{ scale: 1.05 }}
+                      className='flex-1 text-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold transition'
+                      style={{
+                        background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
+                        color: 'white',
+                        boxShadow: '0 4px 12px rgba(234, 88, 12, 0.3)',
+                        border: 'none'
+                      }}
+                      whileHover={{ 
+                        scale: 1.05,
+                        boxShadow: '0 6px 20px rgba(234, 88, 12, 0.4)'
+                      }}
                       whileTap={{ scale: 0.95 }}
                     >
                       Live Demo
                     </motion.a>
                   ) : (
                     <motion.div 
-                      className='flex-1 text-center border border-gray-600 text-gray-500 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold cursor-not-allowed'
+                      className='flex-1 text-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base font-semibold cursor-not-allowed'
+                      style={{
+                        background: '#f3f4f6',
+                        color: '#9ca3af',
+                        border: '1px solid #e5e7eb'
+                      }}
                     >
                       In Development
                     </motion.div>
