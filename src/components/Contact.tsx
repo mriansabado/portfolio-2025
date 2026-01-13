@@ -1,17 +1,33 @@
 import { motion } from 'framer-motion';
 
-const Contact = () => {
+interface ContactProps {
+  isNightMode?: boolean;
+}
+
+const Contact = ({ isNightMode = false }: ContactProps) => {
   return (
     <section 
       className="py-12 sm:py-16 md:py-24 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
+        background: isNightMode
+          ? 'linear-gradient(to bottom, #0f172a, #1e293b)'
+          : 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
       }}
     >
-      {/* Bright colorful decorative background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-yellow-100/15 to-pink-200/20" />
-      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-orange-300/15 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-300/15 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+      {/* Decorative background elements */}
+      {isNightMode ? (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-indigo-900/10" />
+          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-800/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-800/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-yellow-100/15 to-pink-200/20" />
+          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-orange-300/15 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-300/15 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+        </>
+      )}
       
       <motion.div
         initial={{ opacity: 0 }}
@@ -25,8 +41,10 @@ const Contact = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16"
           style={{ 
-            color: '#1a1a1a',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+            color: isNightMode ? '#f1f5f9' : '#1a1a1a',
+            textShadow: isNightMode 
+              ? '2px 2px 4px rgba(0,0,0,0.5)' 
+              : '2px 2px 4px rgba(0,0,0,0.1)'
           }}
         >
           Let's Connect
@@ -39,20 +57,26 @@ const Contact = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 mb-8 sm:mb-12"
             style={{
-              background: 'white',
-              boxShadow: '0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)',
-              border: '2px solid rgba(234, 88, 12, 0.2)',
+              background: isNightMode ? '#1e293b' : 'white',
+              boxShadow: isNightMode
+                ? '0 12px 32px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2)'
+                : '0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)',
+              border: isNightMode 
+                ? '2px solid rgba(148, 163, 184, 0.2)'
+                : '2px solid rgba(234, 88, 12, 0.2)',
               transformStyle: 'preserve-3d'
             }}
             whileHover={{
               scale: 1.02,
               rotateY: 2,
-              boxShadow: '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)'
+              boxShadow: isNightMode
+                ? '0 20px 48px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3)'
+                : '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)'
             }}
           >
             <h3 
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-center"
-              style={{ color: '#1a1a1a' }}
+              style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
             >
               Contact Information
             </h3>
@@ -61,9 +85,15 @@ const Contact = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
                 style={{
-                  background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
                 }}
               >
                 <div 
@@ -90,7 +120,7 @@ const Contact = () => {
                 <a 
                   href="mailto:mriansabado@gmail.com" 
                   className="text-base sm:text-lg md:text-xl font-medium"
-                  style={{ color: '#1a1a1a' }}
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
                   mriansabado@gmail.com
                 </a>
@@ -99,9 +129,15 @@ const Contact = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
                 style={{
-                  background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
                 }}
               >
                 <div 
@@ -128,7 +164,7 @@ const Contact = () => {
                 <a 
                   href="tel:4159716114" 
                   className="text-base sm:text-lg md:text-xl font-medium"
-                  style={{ color: '#1a1a1a' }}
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
                   415-971-6114
                 </a>
@@ -137,9 +173,15 @@ const Contact = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
                 style={{
-                  background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
                 }}
               >
                 <div 
@@ -171,7 +213,7 @@ const Contact = () => {
                 </div>
                 <span 
                   className="text-base sm:text-lg md:text-xl font-medium"
-                  style={{ color: '#1a1a1a' }}
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
                   San Francisco, Bay Area, CA
                 </span>
@@ -185,20 +227,26 @@ const Contact = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12"
             style={{
-              background: 'white',
-              boxShadow: '0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)',
-              border: '2px solid rgba(234, 88, 12, 0.2)',
+              background: isNightMode ? '#1e293b' : 'white',
+              boxShadow: isNightMode
+                ? '0 12px 32px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2)'
+                : '0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)',
+              border: isNightMode 
+                ? '2px solid rgba(148, 163, 184, 0.2)'
+                : '2px solid rgba(234, 88, 12, 0.2)',
               transformStyle: 'preserve-3d'
             }}
             whileHover={{
               scale: 1.02,
               rotateY: 2,
-              boxShadow: '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)'
+              boxShadow: isNightMode
+                ? '0 20px 48px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3)'
+                : '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)'
             }}
           >
             <h3 
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-center"
-              style={{ color: '#1a1a1a' }}
+              style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
             >
               Connect With Me
             </h3>
@@ -210,9 +258,15 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
                 style={{
-                  background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
                 }}
               >
                 <div 
@@ -232,7 +286,7 @@ const Contact = () => {
                 </div>
                 <span 
                   className="text-base sm:text-lg font-medium"
-                  style={{ color: '#1a1a1a' }}
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
                   GitHub
                 </span>
@@ -244,9 +298,15 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
                 style={{
-                  background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
                 }}
               >
                 <div 
@@ -269,7 +329,7 @@ const Contact = () => {
                 </div>
                 <span 
                   className="text-base sm:text-lg font-medium"
-                  style={{ color: '#1a1a1a' }}
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
                   LeetCode
                 </span>
@@ -281,9 +341,15 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
                 style={{
-                  background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
                 }}
               >
                 <div 
@@ -303,7 +369,7 @@ const Contact = () => {
                 </div>
                 <span 
                   className="text-base sm:text-lg font-medium"
-                  style={{ color: '#1a1a1a' }}
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
                   LinkedIn
                 </span>

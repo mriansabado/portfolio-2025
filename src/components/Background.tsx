@@ -1,15 +1,21 @@
 import '../Background.css'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import heroDesktop from '../assets/portfolio-desktop.png'
-import heroMobile from '../assets/portfolio-mobile.png'
+import heroDesktop from '../assets/updated-desktop.png'
+import heroMobile from '../assets/updated-mobile.png'
+import heroDesktopNight from '../assets/night-desktop.png'
+import heroMobileNight from '../assets/night-mobile.png'
 import react from '../assets/react.svg'
 import { FaHtml5, FaCss3Alt, FaAws } from "react-icons/fa";
 import { RiJavascriptLine, RiVuejsLine } from "react-icons/ri";
 import { TbBrandPython } from "react-icons/tb";
 import { SiReact } from "react-icons/si";
 
-const Background = () => {
+interface BackgroundProps {
+  isNightMode?: boolean;
+}
+
+const Background = ({ isNightMode = false }: BackgroundProps) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -43,9 +49,9 @@ const Background = () => {
           className="absolute inset-0 w-full h-full"
         >
           <picture>
-            <source media="(min-width: 768px)" srcSet={heroDesktop} />
+            <source media="(min-width: 768px)" srcSet={isNightMode ? heroDesktopNight : heroDesktop} />
             <img 
-              src={heroMobile} 
+              src={isNightMode ? heroMobileNight : heroMobile} 
               alt="Ian Sabado Software Developer"
               className="w-full h-full object-cover"
               style={{
@@ -107,7 +113,9 @@ const Background = () => {
           right: "50%",
           marginLeft: "-50vw",
           marginRight: "-50vw",
-          background: 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
+          background: isNightMode
+            ? 'linear-gradient(to bottom, #1e293b, #0f172a)'
+            : 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
         }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -128,15 +136,17 @@ const Background = () => {
             style={{
               fontSize: 'clamp(1.5rem, 3vw + 1rem, 2.5rem)',
               fontWeight: 600,
-              color: '#1a1a1a',
+              color: isNightMode ? '#f1f5f9' : '#1a1a1a',
               lineHeight: 1.6
             }}
           >
             <span>I'm a Software Developer who specializes in </span> 
             <span style={{ 
-              color: '#ea580c',
+              color: isNightMode ? '#60a5fa' : '#ea580c',
               fontWeight: 700,
-              textShadow: '2px 2px 4px rgba(234, 88, 12, 0.2)'
+              textShadow: isNightMode 
+                ? '2px 2px 4px rgba(96, 165, 250, 0.3)'
+                : '2px 2px 4px rgba(234, 88, 12, 0.2)'
             }}>AI integration</span>
             <span> and building AI-powered applications. I keep up with the latest tools and have shipped AI features that automate workflows and reduce manual effort.</span>
           </motion.p>
@@ -145,7 +155,9 @@ const Background = () => {
       <motion.section 
         className="py-1 sm:py-8 min-h-[400px] sm:min-h-[500px] relative"
         style={{
-          background: 'linear-gradient(to bottom, #fff9f0, #fef3e2)'
+          background: isNightMode
+            ? 'linear-gradient(to bottom, #0f172a, #1e293b)'
+            : 'linear-gradient(to bottom, #fff9f0, #fef3e2)'
         }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -156,8 +168,10 @@ const Background = () => {
           <motion.h2 
             className="text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12"
             style={{ 
-              color: '#1a1a1a',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+              color: isNightMode ? '#f1f5f9' : '#1a1a1a',
+              textShadow: isNightMode 
+                ? '2px 2px 4px rgba(0,0,0,0.5)' 
+                : '2px 2px 4px rgba(0,0,0,0.1)'
             }}
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -180,12 +194,15 @@ const Background = () => {
               <motion.div
                 key={tech.name}
                 className="flex flex-col items-center justify-center p-4 md:p-6 rounded-xl w-[140px] text-center"
-                style={{
-                  background: 'white',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
-                  transformStyle: 'preserve-3d',
-                  transition: 'all 0.3s ease'
-                }}
+                  style={{
+                    background: isNightMode ? '#1e293b' : 'white',
+                    boxShadow: isNightMode
+                      ? '0 8px 24px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2)'
+                      : '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
+                    transformStyle: 'preserve-3d',
+                    transition: 'all 0.3s ease',
+                    border: isNightMode ? '1px solid rgba(148, 163, 184, 0.2)' : 'none'
+                  }}
                 initial={{ opacity: 0, y: 30, rotateX: -15 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
@@ -203,7 +220,7 @@ const Background = () => {
                 ) : !tech.isImg && tech.Icon ? (
                   <tech.Icon className={`w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 ${tech.color}`} />
                 ) : null}
-                <span className="text-base md:text-lg font-semibold" style={{ color: '#1a1a1a' }}>{tech.name}</span>
+                <span className="text-base md:text-lg font-semibold" style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}>{tech.name}</span>
               </motion.div>
             ))}
           </div>
@@ -220,9 +237,15 @@ const Background = () => {
           <motion.div 
             className="inline-flex items-center justify-center p-6 md:p-8 rounded-2xl"
             style={{
-              background: 'linear-gradient(135deg, #fff 0%, #fff5e6 100%)',
-              boxShadow: '0 12px 32px rgba(234, 88, 12, 0.25), 0 4px 12px rgba(0,0,0,0.1)',
-              border: '2px solid rgba(234, 88, 12, 0.2)',
+              background: isNightMode
+                ? 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
+                : 'linear-gradient(135deg, #fff 0%, #fff5e6 100%)',
+              boxShadow: isNightMode
+                ? '0 12px 32px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2)'
+                : '0 12px 32px rgba(234, 88, 12, 0.25), 0 4px 12px rgba(0,0,0,0.1)',
+              border: isNightMode
+                ? '2px solid rgba(148, 163, 184, 0.2)'
+                : '2px solid rgba(234, 88, 12, 0.2)',
               transformStyle: 'preserve-3d'
             }}
             whileHover={{
@@ -236,10 +259,10 @@ const Background = () => {
                 <FaAws className="w-16 h-16 md:w-20 md:h-20 text-orange-500" />
               </div>
               <div className="text-left">
-                <h3 className="text-xl md:text-2xl font-bold mb-2" style={{ color: '#1a1a1a' }}>
+                <h3 className="text-xl md:text-2xl font-bold mb-2" style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}>
                   AWS Cloud Practitioner Certified
                 </h3>
-                <p className="text-sm md:text-base" style={{ color: '#ea580c' }}>
+                <p className="text-sm md:text-base" style={{ color: isNightMode ? '#60a5fa' : '#ea580c' }}>
                   Certified cloud professional with foundational AWS knowledge
                 </p>
               </div>

@@ -14,6 +14,10 @@ interface Project {
   liveUrl: string;
 }
 
+interface ProjectsProps {
+  isNightMode?: boolean;
+}
+
 const projects: Project[] = [
   {
     title: "Postachio",
@@ -59,7 +63,7 @@ const projects: Project[] = [
   }
 ];
 
-const Projects = () => {
+const Projects = ({ isNightMode = false }: ProjectsProps) => {
   // Animation variants for container
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -93,22 +97,37 @@ const Projects = () => {
     <motion.section 
       className='py-12 sm:py-16 md:py-20 relative overflow-hidden'
       style={{
-        background: 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
+        background: isNightMode
+          ? 'linear-gradient(to bottom, #0f172a, #1e293b)'
+          : 'linear-gradient(to bottom, #fef3e2, #fff9f0)',
+        paddingTop: '2rem'
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Bright colorful decorative background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-yellow-100/15 to-pink-200/20" />
-      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-orange-300/15 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-300/15 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+      {/* Decorative background elements */}
+      {isNightMode ? (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-indigo-900/10" />
+          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-800/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-800/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-yellow-100/15 to-pink-200/20" />
+          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-orange-300/15 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-300/15 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
+        </>
+      )}
       <div className='container mx-auto px-4 sm:px-6 relative z-10'>
         <motion.h2 
           className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter mb-3 sm:mb-4 text-center'
           style={{ 
-            color: '#1a1a1a',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+            color: isNightMode ? '#f1f5f9' : '#1a1a1a',
+            textShadow: isNightMode 
+              ? '2px 2px 4px rgba(0,0,0,0.5)' 
+              : '2px 2px 4px rgba(0,0,0,0.1)'
           }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -135,9 +154,12 @@ const Projects = () => {
               key={index}
               className='relative rounded-lg sm:rounded-xl overflow-hidden'
               style={{
-                background: 'white',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
-                transformStyle: 'preserve-3d'
+                background: isNightMode ? '#1e293b' : 'white',
+                boxShadow: isNightMode
+                  ? '0 8px 24px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2)'
+                  : '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
+                transformStyle: 'preserve-3d',
+                border: isNightMode ? '1px solid rgba(148, 163, 184, 0.2)' : 'none'
               }}
               variants={projectVariants}
               whileHover={{
@@ -175,8 +197,8 @@ const Projects = () => {
               </motion.div>
               
               <div className='p-4 sm:p-6'>
-                <h3 className='text-base sm:text-lg md:text-xl font-bold mb-2' style={{ color: '#1a1a1a' }}>{project.title}</h3>
-                <p className='text-xs sm:text-sm md:text-base mb-3 sm:mb-4' style={{ color: '#4a4a4a' }}>{project.description}</p>
+                <h3 className='text-base sm:text-lg md:text-xl font-bold mb-2' style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}>{project.title}</h3>
+                <p className='text-xs sm:text-sm md:text-base mb-3 sm:mb-4' style={{ color: isNightMode ? '#cbd5e1' : '#4a4a4a' }}>{project.description}</p>
                 
                 <div className='flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4'>
                   {project.technologies.map((tech, techIndex) => (
@@ -184,18 +206,28 @@ const Projects = () => {
                       key={techIndex}
                       className='px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium'
                       style={{
-                        background: 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                        color: '#ea580c',
-                        border: '1px solid rgba(234, 88, 12, 0.2)',
-                        boxShadow: '0 2px 4px rgba(234, 88, 12, 0.1)'
+                        background: isNightMode
+                          ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                          : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                        color: isNightMode ? '#94a3b8' : '#ea580c',
+                        border: isNightMode
+                          ? '1px solid rgba(148, 163, 184, 0.3)'
+                          : '1px solid rgba(234, 88, 12, 0.2)',
+                        boxShadow: isNightMode
+                          ? '0 2px 4px rgba(0,0,0,0.3)'
+                          : '0 2px 4px rgba(234, 88, 12, 0.1)'
                       }}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * techIndex }}
                       whileHover={{ 
                         scale: 1.1, 
-                        background: 'linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%)',
-                        boxShadow: '0 4px 8px rgba(234, 88, 12, 0.2)'
+                        background: isNightMode
+                          ? 'linear-gradient(135deg, #475569 0%, #64748b 100%)'
+                          : 'linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%)',
+                        boxShadow: isNightMode
+                          ? '0 4px 8px rgba(0,0,0,0.4)'
+                          : '0 4px 8px rgba(234, 88, 12, 0.2)'
                       }}
                     >
                       {tech}
