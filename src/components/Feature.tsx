@@ -7,8 +7,8 @@ interface FeatureProps {
 const Feature = ({ isNightMode = false }: FeatureProps) => {
   const features = [
     {
-      title: "AI Integration & Automation",
-      description: "Implementing AI-powered features using OpenAI and Anthropic APIs, building intelligent workflows that automate processes and reduce manual effort",
+      title: "Ad-hoc fixes & ongoing help",
+      description: "Weird site behavior, broken forms, checkout issues, slow pages — I troubleshoot and fix it. Same-day quotes on small jobs; bigger work gets a flat quote up front. Shopify, WordPress, Wix, custom code, and most platforms.",
       gradient: "from-orange-300 via-yellow-200 to-orange-200",
       borderColor: "rgba(234, 88, 12, 0.4)",
       accentColor: "#ea580c",
@@ -16,8 +16,8 @@ const Feature = ({ isNightMode = false }: FeatureProps) => {
       nightAccent: "#fb923c"
     },
     {
-      title: "Full-Stack Development",
-      description: "Building production applications with React, TypeScript, Python, Django, and Node.js, creating seamless integrations from frontend to backend",
+      title: "SEO & local listings",
+      description: "Google Business Profile, listings that match across Yelp and Apple Maps, on-page basics, and tracking so you can see what's working — explained in plain English, not agency jargon.",
       gradient: "from-pink-300 via-rose-200 to-pink-200",
       borderColor: "rgba(236, 72, 153, 0.4)",
       accentColor: "#ec4899",
@@ -25,8 +25,8 @@ const Feature = ({ isNightMode = false }: FeatureProps) => {
       nightAccent: "#f472b6"
     },
     {
-      title: "Cloud & Serverless Architecture",
-      description: "Deploying scalable, serverless solutions on AWS (Lambda, S3, API Gateway, CloudFront) that deliver measurable business value while optimizing costs",
+      title: "Sites & rebuilds",
+      description: "Clean, mobile-friendly sites that don't feel like a template — from a focused multi-page build to custom Shopify or WordPress when you need more. I train you so you can update content without living in my inbox.",
       gradient: "from-blue-300 via-cyan-200 to-blue-200",
       borderColor: "rgba(59, 130, 246, 0.4)",
       accentColor: "#3b82f6",
@@ -34,8 +34,8 @@ const Feature = ({ isNightMode = false }: FeatureProps) => {
       nightAccent: "#60a5fa"
     },
     {
-      title: "Mobile & Cross-Platform",
-      description: "Developing native and cross-platform mobile applications with React Native, Swift, and SwiftUI, delivering seamless experiences across iOS and Android",
+      title: "Mobile apps (iOS & Android)",
+      description: "React Native / Expo builds for focused ideas — ordering, menus, internal tools, events. App Store and Play setup included. Not the fit for the next Instagram; great when you need something specific shipped.",
       gradient: "from-green-300 via-emerald-200 to-green-200",
       borderColor: "rgba(34, 197, 94, 0.4)",
       accentColor: "#22c55e",
@@ -57,14 +57,20 @@ const Feature = ({ isNightMode = false }: FeatureProps) => {
       <div className='absolute inset-0 bg-gradient-to-br from-orange-200/10 via-yellow-100/5 to-pink-200/10'></div>
       <div className='container mx-auto px-2 sm:px-6 relative z-10'>
         <motion.div 
-          className='text-center mb-8 sm:mb-12'
+          className='text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-2'
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <p
+            className="text-sm sm:text-base font-semibold tracking-wide uppercase mb-2"
+            style={{ color: isNightMode ? '#94a3b8' : '#64748b' }}
+          >
+            Mauna Digital
+          </p>
           <h2 
-            className='text-3xl sm:text-4xl md:text-6xl font-bold tracking-tighter mb-6 sm:mb-8'
+            className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter mb-3 sm:mb-4'
             style={{ 
               color: isNightMode ? '#f1f5f9' : '#1a1a1a',
               textShadow: isNightMode 
@@ -72,8 +78,34 @@ const Feature = ({ isNightMode = false }: FeatureProps) => {
                 : '2px 2px 4px rgba(0,0,0,0.1)'
             }}
           >
-            What I Do
+            Small business tech, handled
           </h2>
+          <p
+            className="text-sm sm:text-base md:text-lg mb-6 leading-relaxed"
+            style={{ color: isNightMode ? '#cbd5e1' : '#4a4a4a' }}
+          >
+            If something's broken, your site feels stuck, or Google isn't sending people your way, I'll explain it in plain English and fix what needs fixing — local in San Diego or fully remote.
+          </p>
+          <motion.a
+            href="https://maunadigital.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-5 py-2.5 rounded-lg text-sm sm:text-base font-semibold text-white mb-6 sm:mb-8"
+            style={{
+              background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
+              boxShadow: '0 4px 12px rgba(234, 88, 12, 0.35)'
+            }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Visit Mauna Digital
+          </motion.a>
+          <h3
+            className="text-xl sm:text-2xl font-bold mb-4"
+            style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+          >
+            How I help
+          </h3>
           <div 
             className='h-1 w-24 sm:w-32 mx-auto rounded-full'
             style={{

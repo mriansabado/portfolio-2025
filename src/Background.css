@@ -45,7 +45,7 @@ body {
 }
 
 .hero-bg {
-	background: url(./assets/dark-gradient-bg.jpg);
+	background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #334155 100%);
 	background-size: cover;
 	background-position: center;
 	width: 100vw;

@@ -35,21 +35,30 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
         transition={{ duration: 0.6 }}
         className="container mx-auto px-4 sm:px-6 relative z-10"
       >
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-8 sm:mb-12 md:mb-16"
-          style={{ 
-            color: isNightMode ? '#f1f5f9' : '#1a1a1a',
-            textShadow: isNightMode 
-              ? '2px 2px 4px rgba(0,0,0,0.5)' 
-              : '2px 2px 4px rgba(0,0,0,0.1)'
-          }}
+          className="text-center mb-8 sm:mb-12 md:mb-14 max-w-3xl mx-auto px-2"
         >
-          Let's Connect
-        </motion.h2>
-
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            style={{ 
+              color: isNightMode ? '#f1f5f9' : '#1a1a1a',
+              textShadow: isNightMode 
+                ? '2px 2px 4px rgba(0,0,0,0.5)' 
+                : '2px 2px 4px rgba(0,0,0,0.1)'
+            }}
+          >
+            Need a hand? Let&apos;s talk
+          </h2>
+          <p
+            className="text-base sm:text-lg leading-relaxed"
+            style={{ color: isNightMode ? '#cbd5e1' : '#4a4a4a' }}
+          >
+            Send your site or describe what&apos;s going on — I&apos;ll give honest feedback on what to fix first, what can wait, and what it might cost. No pressure. I usually reply within 24 hours.
+          </p>
+        </motion.div>
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -78,7 +87,7 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-center"
               style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
             >
-              Contact Information
+              Contact
             </h3>
             <div className="space-y-4 sm:space-y-6 flex flex-col items-center">
               <motion.div 
@@ -118,13 +127,21 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                   </svg>
                 </div>
                 <a 
-                  href="mailto:mriansabado@gmail.com" 
+                  href="mailto:ian@maunadigital.com" 
                   className="text-base sm:text-lg md:text-xl font-medium"
                   style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
-                  mriansabado@gmail.com
+                  ian@maunadigital.com
                 </a>
               </motion.div>
+              <motion.a
+                href="mailto:ian@maunadigital.com?subject=Free%20website%20check"
+                whileHover={{ scale: 1.02, y: -2 }}
+                className="text-center text-sm sm:text-base font-medium underline underline-offset-4"
+                style={{ color: isNightMode ? '#94a3b8' : '#64748b' }}
+              >
+                Free website check — email me your URL
+              </motion.a>
               <motion.div 
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
@@ -215,7 +232,7 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                   className="text-base sm:text-lg md:text-xl font-medium"
                   style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
                 >
-                  San Francisco, Bay Area, CA
+                  San Diego, CA — local or remote
                 </span>
               </motion.div>
             </div>
@@ -248,9 +265,55 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-center"
               style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
             >
-              Connect With Me
+              Connect
             </h3>
             <div className="flex flex-wrap gap-3 sm:gap-6 justify-center">
+              <motion.a
+                whileHover={{ scale: 1.1, y: -2 }}
+                href="https://maunadigital.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
+                style={{
+                  background: isNightMode
+                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
+                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
+                  border: isNightMode
+                    ? '1px solid rgba(148, 163, 184, 0.3)'
+                    : '1px solid rgba(234, 88, 12, 0.2)',
+                  boxShadow: isNightMode
+                    ? '0 4px 12px rgba(0,0,0,0.3)'
+                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                }}
+              >
+                <div 
+                  className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
+                  style={{
+                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
+                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                  }}
+                >
+                  <svg
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
+                  </svg>
+                </div>
+                <span 
+                  className="text-base sm:text-lg font-medium"
+                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                >
+                  Mauna Digital
+                </span>
+              </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1, y: -2 }}
                 href="https://github.com/mriansabado"
@@ -377,6 +440,13 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
             </div>
           </motion.div>
         </div>
+
+        <p
+          className="text-center text-xs sm:text-sm mt-10 sm:mt-14"
+          style={{ color: isNightMode ? '#64748b' : '#94a3b8' }}
+        >
+          © {new Date().getFullYear()} Mauna Digital LLC. All rights reserved.
+        </p>
       </motion.div>
     </section>
   );

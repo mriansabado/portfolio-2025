@@ -37,7 +37,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
             <source media="(min-width: 768px)" srcSet={isNightMode ? heroDesktopNight : heroDesktop} />
             <img 
               src={isNightMode ? heroMobileNight : heroMobile} 
-              alt="Ian Sabado Software Developer"
+              alt="Ian Sabado — Mauna Digital"
               className="w-full h-full object-cover mobile-hero-scale"
               style={{
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))'
@@ -125,15 +125,19 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
               lineHeight: 1.6
             }}
           >
-            <span>I'm a Software Developer who specializes in </span> 
-            <span style={{ 
-              color: isNightMode ? '#60a5fa' : '#ea580c',
-              fontWeight: 700,
-              textShadow: isNightMode 
-                ? '2px 2px 4px rgba(96, 165, 250, 0.3)'
-                : '2px 2px 4px rgba(234, 88, 12, 0.2)'
-            }}>AI integration</span>
-            <span> and building AI-powered applications. I keep up with the latest tools and have shipped AI features that automate workflows and reduce manual effort.</span>
+            <span>
+              Hey, I'm Ian — I run{' '}
+              <a
+                href="https://maunadigital.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-2 underline-offset-4 hover:opacity-90"
+                style={{ color: isNightMode ? '#fb923c' : '#c2410c' }}
+              >
+                Mauna Digital
+              </a>
+              . I help small businesses with websites, SEO, and the tech messes that show up during a normal week. I also build web and mobile apps when someone needs a real product, not a slide deck. Based in San Diego — happy to meet in person or work remote.
+            </span>
           </motion.p>
         </div>
       </motion.section> 

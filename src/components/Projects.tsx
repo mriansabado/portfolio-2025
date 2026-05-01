@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import intime from '../assets/intime.png';
 import barblendGuru from '../assets/jamscribe.png';
 import zenscan from '../assets/zenscan.png';
-import pepTalkAI from '../assets/peptalk.png';
 import postachio from '../assets/postachio.png';
 import pocketsay from '../assets/pocketsay.png';
 
@@ -15,55 +14,59 @@ interface Project {
   title: string;
   description: string;
   technologies: string[];
-  imageUrl: string;
+  imageUrl?: string;
   liveUrl: string;
   isMonetized?: boolean;
   monetizationType?: 'subscription' | 'sales';
+  ctaLabel?: string;
+  placeholderTint?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "Postachio",
-    description: "AI-powered social media content creation platform solving content creator challenges with writer's block and algorithm optimization. Features real-time AI content generation using Anthropic Claude API. Currently serving paying customers with a subscription model.",
-    technologies: ["React", "TypeScript", "Firebase", "Anthropic Claude API", "Stripe", "Tailwind CSS"],
-    imageUrl: postachio,
-    liveUrl: "https://postachio.app/",
-    isMonetized: true,
-    monetizationType: 'subscription'
+    title: "Tasqly",
+    description: "Planner-first workflow for freelancers and service pros. Tasqly helps independent professionals manage clients, schedule sessions, and stay on top of weekly work — calendar-based planning, client context, quick notes, recurring sessions, and light/dark mode with layouts tuned for iPhone and iPad.",
+    technologies: ["Expo", "React Native", "Productivity", "iOS"],
+    liveUrl: "#",
+    placeholderTint: "#0f766e"
   },
   {
     title: "PocketSay",
-    description: "React Native communication app built to solve a real need: silent communication during baby's sleep. Features theme-adaptive Lottie animations and demonstrates single-codebase native app delivery. Available on the App Store with sales to customers.",
-    technologies: ["React Native", "TypeScript", "Lottie Animations", "iOS", "Android"],
+    description: "Say it BIG when you can't say it loud. PocketSay shows large, customizable text when you need to be seen instead of heard — noisy places, distance, or quick non-verbal communication. Private and works offline. Live on the App Store with strong reviews.",
+    technologies: ["React Native", "TypeScript", "iOS", "Communication"],
     imageUrl: pocketsay,
     liveUrl: "https://pocket-say-support.vercel.app/",
     isMonetized: true,
-    monetizationType: 'sales'
+    monetizationType: 'sales',
+    ctaLabel: "Download PocketSay"
   },
   {
-    title: "PepTalk AI",
-    description: "Serverless AI application delivering personalized encouragement and motivation. Architecture optimizes cost efficiency while maintaining fast response times through AWS Lambda and API Gateway.",
-    technologies: ["AWS Lambda", "API Gateway", "Anthropic Claude API", "React", "TypeScript", "Material-UI"],
-    imageUrl: pepTalkAI,
-    liveUrl: "https://main.d138p9067mvylk.amplifyapp.com/"
+    title: "Postachio",
+    description: "AI-powered social posts with SEO in mind. Postachio helps you write social content faster while keeping search visibility in mind — built for consistency, clear structure, and less time staring at a blank caption box.",
+    technologies: ["AI", "SEO", "Content", "React", "TypeScript"],
+    imageUrl: postachio,
+    liveUrl: "https://postachio.app/",
+    isMonetized: true,
+    monetizationType: 'subscription',
+    ctaLabel: "Try Postachio"
   },
   {
     title: "JamScribe",
-    description: "Web app that transcribes YouTube videos into synchronized guitar chords and lyrics using OpenAI Whisper API and Essentia.js for chord detection. Addressing gaps in existing music transcription tools.",
+    description: "I play guitar, and I've always been frustrated that there's no great tool for transcribing YouTube videos into chords and lyrics. So I started building one. It uses OpenAI Whisper for transcription and Essentia.js for chord detection. Still in progress, but it's a problem I actually care about solving.",
     technologies: ["React", "TypeScript", "OpenAI Whisper API", "Essentia.js", "YouTube API"],
     imageUrl: barblendGuru,
     liveUrl: "#"
   },
   {
     title: "InTime",
-    description: "Musician-focused metronome built for Apple Watch. Features intuitive tap-to-set tempo functionality, allowing musicians to set their beat by tapping rather than scrolling through values.",
+    description: "Every metronome app makes you scroll through a number to set your tempo. InTime is a watchOS metronome where you just tap the beat you want. Built in SwiftUI for Apple Watch.",
     technologies: ["Swift", "SwiftUI", "watchOS"],
     imageUrl: intime,
     liveUrl: "#"
   },
   {
     title: "ZenScan",
-    description: "Mobile app streamlining e-commerce inventory management across Wix, Shopify, and WordPress. Users capture product photos, input details and SKUs, then export platform-specific CSV files for bulk upload.",
+    description: "Inventory management across Shopify, Wix, and WordPress is a mess. ZenScan lets you capture product photos, fill in the details, and export a ready-to-upload CSV for whatever platform you're on. Built for small business owners who don't want to deal with complex software.",
     technologies: ["React Native", "Camera API", "CSV Generation", "Platform Integration"],
     imageUrl: zenscan,
     liveUrl: "#"
@@ -140,14 +143,16 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Products & Projects
+          Apps I've built
         </motion.h2>
         <motion.p 
-          className='text-sm sm:text-base text-gray-400 text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4'
+          className='text-sm sm:text-base text-center mb-8 sm:mb-12 max-w-2xl mx-auto px-4 leading-relaxed'
+          style={{ color: isNightMode ? '#94a3b8' : '#64748b' }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
+          Product work alongside client sites — shipping real software people use every week.
         </motion.p>
         
         <motion.div 
@@ -188,6 +193,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
+                {project.imageUrl ? (
                 <img 
                   src={project.imageUrl} 
                   alt={project.title}
@@ -195,6 +201,19 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                     project.title === 'Postachio' ? 'object-top' : ''
                   }`}
                 />
+                ) : (
+                  <div
+                    className="w-full h-full flex items-center justify-center text-white text-4xl sm:text-5xl font-bold tracking-tight"
+                    style={{
+                      background: project.placeholderTint
+                        ? `linear-gradient(135deg, ${project.placeholderTint}, #134e4a)`
+                        : 'linear-gradient(135deg, #334155, #1e293b)'
+                    }}
+                    aria-hidden
+                  >
+                    {project.title.slice(0, 1)}
+                  </div>
+                )}
                 <motion.div 
                   className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent'
                   initial={{ opacity: 0 }}
@@ -280,7 +299,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                       }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Live Demo
+                      {project.ctaLabel ?? 'Live Demo'}
                     </motion.a>
                   ) : (
                     <motion.div 
