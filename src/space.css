@@ -562,6 +562,11 @@ body,
   padding: 0.95rem;
 }
 
+.space-resume-focus-list strong {
+  color: #f8fafc;
+  line-height: 1.45;
+}
+
 .space-classic-wrapper {
   position: relative;
 }

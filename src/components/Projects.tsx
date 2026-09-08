@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { ReactElement } from 'react';
+import postachioLogo from '../assets/postachio-logo.png';
 import postachio from '../assets/postachio.png';
 import pocketsay from '../assets/pocketsay.png';
 import pocketsayLogo from '../assets/pocketsay-logo.png';
@@ -40,6 +41,7 @@ const techIconMap: Record<string, ReactElement> = {
 };
 
 const projectLogoMap: Record<string, string> = {
+  Postachio: postachioLogo,
   PocketSay: pocketsayLogo,
   Tasqly: tasqlyLogo
 };

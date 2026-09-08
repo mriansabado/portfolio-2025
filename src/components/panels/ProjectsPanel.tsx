@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { ReactElement } from 'react';
 import { FaAws, FaReact } from 'react-icons/fa';
 import { SiExpo, SiVercel, SiVuedotjs } from 'react-icons/si';
+import postachioLogo from '../../assets/postachio-logo.png';
 import pocketsayLogo from '../../assets/pocketsay-logo.png';
 import tasqlyLogo from '../../assets/tasqly-logo.png';
 import { projects } from '../../data/content';
@@ -21,6 +22,7 @@ const ProjectsPanel = ({ isNightMode }: ProjectsPanelProps) => {
   };
 
   const projectLogoMap: Record<string, string> = {
+    Postachio: postachioLogo,
     PocketSay: pocketsayLogo,
     Tasqly: tasqlyLogo
   };
