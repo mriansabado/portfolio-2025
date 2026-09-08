@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import type { ReactElement } from 'react';
 import { FaAws, FaReact } from 'react-icons/fa';
 import { SiExpo, SiVercel, SiVuedotjs } from 'react-icons/si';
+import pocketsayLogo from '../../assets/pocketsay-logo.png';
+import tasqlyLogo from '../../assets/tasqly-logo.png';
 import { projects } from '../../data/content';
 
 interface ProjectsPanelProps {
@@ -16,6 +18,11 @@ const ProjectsPanel = ({ isNightMode }: ProjectsPanelProps) => {
     Vercel: <SiVercel />,
     'React Native': <FaReact />,
     Expo: <SiExpo />
+  };
+
+  const projectLogoMap: Record<string, string> = {
+    PocketSay: pocketsayLogo,
+    Tasqly: tasqlyLogo
   };
 
   return (
@@ -37,7 +44,12 @@ const ProjectsPanel = ({ isNightMode }: ProjectsPanelProps) => {
             <span>{project.type}</span>
             <span>{project.status}</span>
           </div>
-          <h3>{project.title}</h3>
+          <div className="space-project-heading">
+            {projectLogoMap[project.title] ? (
+              <img src={projectLogoMap[project.title]} alt={`${project.title} logo`} className="space-project-logo" />
+            ) : null}
+            <h3>{project.title}</h3>
+          </div>
           <p>{project.description}</p>
           <div className="space-tech-list">
             {project.technologies.map((tech) => (

@@ -394,6 +394,23 @@ body,
   margin: 0.3rem 0 0.75rem;
 }
 
+.space-project-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.space-project-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.9rem;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 0.25rem;
+  flex-shrink: 0;
+}
+
 .space-panel-content,
 .space-panel-grid,
 .space-contact-layout,

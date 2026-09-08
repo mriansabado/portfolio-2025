@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import type { ReactElement } from 'react';
 import postachio from '../assets/postachio.png';
 import pocketsay from '../assets/pocketsay.png';
+import pocketsayLogo from '../assets/pocketsay-logo.png';
+import tasqlyLogo from '../assets/tasqly-logo.png';
 import { FaAws, FaReact } from 'react-icons/fa';
 import { SiExpo, SiVercel, SiVuedotjs } from 'react-icons/si';
 import { projects as sharedProjects } from '../data/content';
@@ -35,6 +37,11 @@ const techIconMap: Record<string, ReactElement> = {
   Vercel: <SiVercel className="h-4 w-4" />,
   'React Native': <FaReact className="h-4 w-4" />,
   Expo: <SiExpo className="h-4 w-4" />
+};
+
+const projectLogoMap: Record<string, string> = {
+  PocketSay: pocketsayLogo,
+  Tasqly: tasqlyLogo
 };
 
 const Projects = ({ isNightMode = false }: ProjectsProps) => {
@@ -175,7 +182,16 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                     <p className='text-xs uppercase tracking-[0.16em] mb-2' style={{ color: '#94a3b8' }}>
                       {index === 0 ? 'Built for independent workers' : index === 1 ? 'Live on the App Store' : 'Built from the product side'}
                     </p>
-                    <h3 className='text-xl sm:text-2xl font-bold' style={{ color: '#f8fafc' }}>{project.title}</h3>
+                    <div className="flex items-center gap-3">
+                      {projectLogoMap[project.title] ? (
+                        <img
+                          src={projectLogoMap[project.title]}
+                          alt={`${project.title} logo`}
+                          className="h-10 w-10 rounded-2xl border border-slate-400/15 bg-white/5 object-cover p-1"
+                        />
+                      ) : null}
+                      <h3 className='text-xl sm:text-2xl font-bold' style={{ color: '#f8fafc' }}>{project.title}</h3>
+                    </div>
                   </div>
                   <div
                     className="rounded-2xl px-3 py-2 text-xs font-semibold"
