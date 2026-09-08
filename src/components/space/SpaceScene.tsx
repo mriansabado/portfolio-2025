@@ -21,7 +21,6 @@ interface SpaceSceneProps {
   panelOpen: boolean;
   selectedPlanetId: PlanetId | null;
   touchControls: RocketControlsState;
-  onTouchCruiseChange: (direction: 'forward' | 'backward' | 'idle') => void;
   onNearestPlanetChange: (planetId: PlanetId | null) => void;
   onPlanetSelect: (planetId: PlanetId) => void;
 }
@@ -56,7 +55,6 @@ const SpaceWorld = ({
   const directionalLightRef = useRef<DirectionalLight>(null);
   const accentLightRef = useRef<PointLight>(null);
   const sunLightRef = useRef<PointLight>(null);
-  const floorMaterialRef = useRef<MeshStandardMaterial>(null);
   const sunMaterialRef = useRef<MeshStandardMaterial>(null);
   const sunGlowMaterialRef = useRef<MeshBasicMaterial>(null);
   const touchLockRef = useRef<PlanetId | null>(null);
@@ -79,9 +77,7 @@ const SpaceWorld = ({
       nightAmbient: new Color('#b8c7ff'),
       dayAmbient: new Color('#dbeafe'),
       nightDirectional: new Color('#ffffff'),
-      dayDirectional: new Color('#f8fafc'),
-      nightFloor: new Color('#081224'),
-      dayFloor: new Color('#13213e')
+      dayDirectional: new Color('#f8fafc')
     }),
     []
   );
@@ -200,10 +196,6 @@ const SpaceWorld = ({
       sunLightRef.current.intensity = MathUtils.lerp(0, 68, mix);
     }
 
-    if (floorMaterialRef.current) {
-      floorMaterialRef.current.color.copy(palette.nightFloor.clone().lerp(palette.dayFloor, mix));
-    }
-
     if (sunMaterialRef.current) {
       sunMaterialRef.current.opacity = MathUtils.lerp(0.02, 1, mix);
       sunMaterialRef.current.emissiveIntensity = MathUtils.lerp(0.05, 0.95, mix);
@@ -240,12 +232,7 @@ const SpaceWorld = ({
       </mesh>
 
       <Stars radius={120} depth={45} count={6000} factor={4} fade speed={0.8} />
-      <Sparkles count={90} speed={0.24} opacity={0.75} color={isNightMode ? '#e0e7ff' : '#ffffff'} scale={[28, 10, 28]} size={2.3} />
-
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.2, 0]}>
-        <circleGeometry args={[26, 96]} />
-        <meshStandardMaterial ref={floorMaterialRef} color="#081224" transparent opacity={0.92} />
-      </mesh>
+      <Sparkles count={90} speed={0.24} opacity={0.75} color="#eef2ff" scale={[28, 10, 28]} size={2.3} />
 
       {planets.map((planet) => (
         <Planet
@@ -266,7 +253,7 @@ const SpaceWorld = ({
         isNightMode={isNightMode}
       />
 
-      <Environment preset={isNightMode ? 'night' : 'sunset'} />
+      <Environment preset="sunset" />
     </>
   );
 };
@@ -279,7 +266,6 @@ const SpaceScene = (props: SpaceSceneProps) => {
   const isDragging = useRef(false);
   const canSelect = useRef(true);
   const activePointerType = useRef<string | null>(null);
-  const swipeMode = useRef<'none' | 'look' | 'thrust'>('none');
   const dragStart = useRef({ x: 0, y: 0 });
 
   return (
@@ -291,7 +277,6 @@ const SpaceScene = (props: SpaceSceneProps) => {
         isDragging.current = false;
         canSelect.current = true;
         activePointerType.current = event.pointerType;
-        swipeMode.current = 'none';
         dragStart.current = { x: event.clientX, y: event.clientY };
       }}
       onPointerMove={(event) => {
@@ -304,22 +289,6 @@ const SpaceScene = (props: SpaceSceneProps) => {
         const dragDistance = Math.hypot(deltaX, deltaY);
 
         if (activePointerType.current === 'touch') {
-          if (Math.abs(deltaY) > 42 && Math.abs(deltaY) > Math.abs(deltaX) + 10) {
-            swipeMode.current = 'thrust';
-            canSelect.current = false;
-            props.onTouchCruiseChange(deltaY < 0 ? 'forward' : 'backward');
-            lookX.current = 0;
-            lookY.current = 0;
-            return;
-          }
-
-          if (Math.abs(deltaX) > 12) {
-            swipeMode.current = 'look';
-            isDragging.current = true;
-            canSelect.current = false;
-            lookX.current = MathUtils.clamp(deltaX / window.innerWidth, -0.45, 0.45) * 2;
-            lookY.current = 0;
-          }
           return;
         }
 
@@ -340,7 +309,6 @@ const SpaceScene = (props: SpaceSceneProps) => {
         isDragging.current = false;
         canSelect.current = true;
         activePointerType.current = null;
-        swipeMode.current = 'none';
         lookX.current = 0;
         lookY.current = 0;
       }}
@@ -349,7 +317,6 @@ const SpaceScene = (props: SpaceSceneProps) => {
         isDragging.current = false;
         canSelect.current = true;
         activePointerType.current = null;
-        swipeMode.current = 'none';
         lookX.current = 0;
         lookY.current = 0;
       }}
