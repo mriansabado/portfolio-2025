@@ -386,6 +386,22 @@ body,
   gap: 1rem;
   align-items: flex-start;
   margin-bottom: 1.4rem;
+  position: relative;
+  padding-right: 6rem;
+}
+
+.space-panel-heading-copy {
+  max-width: 100%;
+}
+
+.space-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 4.8rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.18), rgba(244, 114, 182, 0.18));
+  border-color: rgba(251, 191, 36, 0.32);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.22);
 }
 
 .space-panel-header h2,
@@ -631,7 +647,7 @@ body,
     box-shadow: 0 14px 30px rgba(124, 45, 18, 0.3);
   }
 
-  .space-touch-button,
+  .space-touch-button:not(.space-fire-button),
   .space-mobile-dpad-empty,
   .space-mobile-dpad-center {
     width: var(--space-mobile-control-size);
@@ -657,8 +673,7 @@ body,
     text-align: left;
   }
 
-  .space-hud-top,
-  .space-panel-header {
+  .space-hud-top {
     flex-direction: column;
   }
 

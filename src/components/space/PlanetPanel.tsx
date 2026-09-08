@@ -35,7 +35,7 @@ const PlanetPanel = ({ planetId, isNightMode, onClose, children }: PlanetPanelPr
             transition={{ duration: 0.25 }}
           >
             <div className="space-panel-header">
-              <div>
+              <div className="space-panel-heading-copy">
                 <p className="space-panel-kicker" style={{ color: planet.accent }}>
                   {planet.subtitle}
                 </p>

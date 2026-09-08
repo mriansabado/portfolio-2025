@@ -52,7 +52,7 @@ export const projects: ProjectEntry[] = [
     type: 'Web App',
     description:
       'A content-writing product built to make publishing easier when the blank page is the bottleneck, with a stronger focus on speed, consistency, and usable output.',
-    technologies: ['React', 'TypeScript', 'Firebase', 'AI'],
+    technologies: ['React', 'Vercel', 'Firebase', 'AI'],
     liveUrl: 'https://postachio.app/',
     ctaLabel: 'Try Postachio',
     status: 'Built from the product side'
@@ -112,7 +112,7 @@ export const personalSummary = {
   greeting: 'Aloha, I’m Ian.',
   locationLine: 'Born and raised in Hawaii, now building from San Diego.',
   intro:
-    'I am a frontend developer building warm, polished web and mobile products with strong React, Vue, React Native, and product UI experience.',
+    'I am a frontend developer building warm, polished web and mobile products with strong React, Vue, React Native, AWS, and Vercel experience.',
   voiceLine:
     'The goal is simple: make useful software feel clear, human, and thoughtfully put together.'
 };

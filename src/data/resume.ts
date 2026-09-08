@@ -2,7 +2,7 @@ export const resumeHitSnippets = [
   'Aloha-friendly builder',
   'WordPress dev',
   'Vue.js builder',
-  'React + TypeScript',
+  'React builder',
   'Python workflows',
   '30+ sites managed',
   'Headless CMS work',
@@ -38,7 +38,7 @@ export const resumeSummary = {
   highlights: [
     {
       label: 'What I build',
-      value: 'React, Vue, TypeScript, React Native, CMS-driven sites, and product UI'
+      value: 'React, Vue, React Native, CMS-driven sites, and product UI'
     },
     {
       label: 'Shipped work',
@@ -65,13 +65,13 @@ export const resumeSummary = {
 
 export const resumeQuickFacts = [
   'Open to frontend, product-focused, and contract work',
-  'Strongest in React, Vue, TypeScript, and React Native',
+  'Strongest in React, Vue, and React Native',
   'Shipped App Store products and 30+ production sites',
   'Comfortable owning UI, delivery, and production polish'
 ] as const;
 
 export const resumeFocusAreas = [
-  'Frontend engineering with React, Vue, TypeScript, and design-aware UI work',
+  'Frontend engineering with React, Vue, and design-aware UI work',
   'Mobile product development with React Native, App Store shipping, and cross-device polish',
   'Cloud and delivery experience across AWS, Vercel, Firebase, CI/CD, and production support',
   'Product-minded collaboration with clients, teams, and founders from discovery to launch'
