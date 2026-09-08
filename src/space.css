@@ -1,0 +1,347 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.space-experience-shell {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.space-canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+}
+
+.space-hud {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  padding: 5.4rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.space-hud-top {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.space-status-card,
+.space-controls-hint,
+.space-return-bar {
+  background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.28);
+}
+
+.space-status-card {
+  max-width: 26rem;
+  border-radius: 1.5rem;
+  padding: 1rem 1.15rem;
+  display: grid;
+  gap: 0.3rem;
+  color: #e2e8f0;
+}
+
+.space-status-card p,
+.space-controls-hint strong,
+.space-panel-eyebrow,
+.space-panel-kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fcd34d;
+  font-weight: 700;
+}
+
+.space-status-card strong,
+.space-panel-shell h2,
+.space-panel-card h3,
+.space-intro-panel h3 {
+  color: #f8fafc;
+}
+
+.space-status-card span,
+.space-panel-shell p,
+.space-panel-card p,
+.space-panel-card a,
+.space-panel-card span,
+.space-intro-panel p,
+.space-intro-panel strong {
+  color: #cbd5e1;
+}
+
+.space-hud-actions,
+.space-planet-strip {
+  pointer-events: auto;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.space-ghost-button,
+.space-planet-chip,
+.space-close-button,
+.space-panel-link,
+.space-panel-disabled {
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.62);
+  color: #f8fafc;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.space-ghost-button:hover,
+.space-planet-chip:hover,
+.space-close-button:hover,
+.space-panel-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(251, 191, 36, 0.34);
+}
+
+.space-controls-hint {
+  align-self: flex-start;
+  border-radius: 1.35rem;
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  color: #e2e8f0;
+}
+
+.space-planet-strip {
+  justify-content: center;
+}
+
+.space-planet-chip {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.space-planet-chip.is-active {
+  border-color: rgba(251, 191, 36, 0.36);
+  background: rgba(30, 41, 59, 0.78);
+}
+
+.space-planet-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.planet-label {
+  min-width: 8rem;
+  border-radius: 1rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  text-align: center;
+  backdrop-filter: blur(14px);
+}
+
+.planet-label strong,
+.planet-label span {
+  display: block;
+}
+
+.planet-label strong {
+  color: #f8fafc;
+  font-size: 0.9rem;
+}
+
+.planet-label span {
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.planet-label.is-nearest {
+  border-color: rgba(251, 191, 36, 0.36);
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.12);
+}
+
+.space-panel-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  padding: 5.25rem 0.8rem 1rem;
+}
+
+.space-panel-shell {
+  width: min(72rem, 100%);
+  max-height: calc(100vh - 8rem);
+  overflow: auto;
+  border-radius: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 30px 80px rgba(2, 6, 23, 0.42);
+  padding: 1.5rem;
+}
+
+.space-panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.4rem;
+}
+
+.space-panel-header h2,
+.space-panel-card h3,
+.space-intro-panel h3 {
+  margin: 0.3rem 0 0.75rem;
+}
+
+.space-panel-content,
+.space-panel-grid,
+.space-contact-layout,
+.space-intro-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.space-panel-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.space-panel-card,
+.space-intro-panel {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 1.2rem;
+}
+
+.space-panel-meta,
+.space-tech-list,
+.space-social-list,
+.space-contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.space-panel-meta span,
+.space-tech-list span,
+.space-contact-list span,
+.space-contact-list a {
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  padding: 0.45rem 0.7rem;
+  text-decoration: none;
+}
+
+.space-tech-list span {
+  color: #e2e8f0;
+  font-size: 0.85rem;
+}
+
+.space-panel-note {
+  opacity: 0.88;
+}
+
+.space-panel-icon {
+  color: #fde68a;
+  font-size: 1.15rem;
+}
+
+.space-contact-layout {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.space-social-list .space-panel-link,
+.space-panel-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.space-panel-disabled {
+  color: #94a3b8;
+  cursor: not-allowed;
+  text-align: center;
+}
+
+.space-resume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.85rem;
+}
+
+.space-resume-grid div {
+  border-radius: 1.2rem;
+  background: rgba(15, 23, 42, 0.42);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  padding: 0.95rem;
+}
+
+.space-resume-grid span {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  margin-bottom: 0.35rem;
+}
+
+.space-resume-grid strong {
+  color: #f8fafc;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.space-classic-wrapper {
+  position: relative;
+}
+
+.space-return-bar {
+  position: fixed;
+  top: 5.75rem;
+  left: 1rem;
+  z-index: 45;
+  border-radius: 9999px;
+  padding: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .space-hud {
+    padding-top: 5rem;
+  }
+
+  .space-hud-top,
+  .space-panel-header {
+    flex-direction: column;
+  }
+
+  .space-status-card {
+    max-width: none;
+  }
+
+  .space-panel-shell {
+    padding: 1rem;
+    max-height: calc(100vh - 7rem);
+  }
+}
