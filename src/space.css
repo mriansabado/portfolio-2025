@@ -455,8 +455,9 @@ body,
 
   .space-mobile-controls {
     display: grid;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 0.75rem;
+    left: auto;
+    transform: none;
     bottom: 0.75rem;
   }
 
@@ -471,7 +472,8 @@ body,
 
   .space-planet-strip {
     position: absolute;
-    right: 0.75rem;
+    left: 0.75rem;
+    right: auto;
     bottom: 0.9rem;
     flex-direction: column;
     align-items: stretch;
@@ -493,8 +495,9 @@ body,
 @media (min-width: 769px) and (max-width: 1180px) and (hover: none), (min-width: 769px) and (max-width: 1180px) and (pointer: coarse) {
   .space-mobile-controls {
     display: grid;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 1rem;
+    left: auto;
+    transform: none;
   }
 
   .space-status-card {
@@ -503,7 +506,8 @@ body,
 
   .space-planet-strip {
     position: absolute;
-    right: 1rem;
+    left: 1rem;
+    right: auto;
     bottom: 1rem;
     flex-direction: column;
     align-items: stretch;
