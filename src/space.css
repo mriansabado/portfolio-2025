@@ -49,6 +49,9 @@ body,
 }
 
 .space-status-card {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
   max-width: 26rem;
   border-radius: 1.5rem;
   padding: 1rem 1.15rem;
@@ -117,14 +120,124 @@ body,
   border-color: rgba(251, 191, 36, 0.34);
 }
 
-.space-controls-hint {
-  align-self: flex-start;
-  border-radius: 1.35rem;
-  padding: 0.75rem 0.9rem;
+.space-status-keys {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+}
+
+.space-keycap {
+  min-width: 3.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: inset 0 -2px 0 rgba(148, 163, 184, 0.12);
+  color: #f8fafc;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.space-key-cross-wrap {
+  width: 100%;
+}
+
+.space-key-cross {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, auto));
+  gap: 0.45rem 0.55rem;
+  justify-content: start;
+  align-items: center;
+}
+
+.space-key-cross-cell {
   display: flex;
-  gap: 0.7rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.space-key-cross-empty,
+.space-key-cross-center {
+  width: 3.4rem;
+  height: 3rem;
+}
+
+.space-key-action {
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+.space-mobile-controls {
+  display: none;
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  border-radius: 1.35rem;
+  padding: 0.9rem;
+  gap: 0.65rem;
   color: #e2e8f0;
+  pointer-events: auto;
+  background: rgba(2, 6, 23, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.28);
+  touch-action: none;
+}
+
+.space-mobile-controls strong {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fcd34d;
+  font-weight: 700;
+}
+
+.space-mobile-controls span {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.space-mobile-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 4rem));
+  gap: 0.5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.space-mobile-dpad-empty,
+.space-mobile-dpad-center {
+  width: 4rem;
+  height: 3.6rem;
+}
+
+.space-touch-button {
+  width: 4rem;
+  height: 3.6rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.82);
+  box-shadow: inset 0 -2px 0 rgba(148, 163, 184, 0.12);
+  color: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.space-touch-button:active {
+  transform: translateY(1px);
+  border-color: rgba(251, 191, 36, 0.45);
+  background: rgba(30, 41, 59, 0.92);
 }
 
 .space-planet-strip {
@@ -331,17 +444,32 @@ body,
     padding-top: 5rem;
   }
 
+  .space-mobile-controls {
+    display: grid;
+    left: 0.75rem;
+    bottom: 0.75rem;
+  }
+
   .space-hud-top,
   .space-panel-header {
     flex-direction: column;
   }
 
   .space-status-card {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 5.75rem;
     max-width: none;
   }
 
   .space-panel-shell {
     padding: 1rem;
     max-height: calc(100vh - 7rem);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1180px) and (hover: none), (min-width: 769px) and (max-width: 1180px) and (pointer: coarse) {
+  .space-mobile-controls {
+    display: grid;
   }
 }

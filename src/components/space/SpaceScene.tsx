@@ -1,18 +1,26 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment, Sparkles, Stars } from '@react-three/drei';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { MathUtils, Vector3 } from 'three';
 import Planet from './Planet';
 import RocketShip from './RocketShip';
-import useRocketControls from './useRocketControls';
+import useRocketControls, { type RocketControlsState } from './useRocketControls';
 import { planets, type PlanetId } from '../../data/planets';
 
 interface SpaceSceneProps {
   isNightMode: boolean;
   panelOpen: boolean;
   selectedPlanetId: PlanetId | null;
+  touchControls: RocketControlsState;
   onNearestPlanetChange: (planetId: PlanetId | null) => void;
   onPlanetSelect: (planetId: PlanetId) => void;
+}
+
+interface CameraInputRefs {
+  lookX: MutableRefObject<number>;
+  lookY: MutableRefObject<number>;
+  isDragging: MutableRefObject<boolean>;
+  canSelect: MutableRefObject<boolean>;
 }
 
 const PLAY_BOUNDS = 14;
@@ -23,10 +31,12 @@ const SpaceWorld = ({
   isNightMode,
   panelOpen,
   selectedPlanetId,
+  touchControls,
   onNearestPlanetChange,
-  onPlanetSelect
-}: SpaceSceneProps) => {
-  const controls = useRocketControls(panelOpen);
+  onPlanetSelect,
+  cameraInput
+}: SpaceSceneProps & { cameraInput: CameraInputRefs }) => {
+  const controls = useRocketControls(panelOpen, touchControls);
   const shipPosition = useRef(new Vector3(0, 0.35, 0));
   const velocity = useRef(0);
   const yaw = useRef(Math.PI);
@@ -44,7 +54,7 @@ const SpaceWorld = ({
     const turnSpeed = 2.05;
     const baseAcceleration = 11.8;
     const damping = panelOpen ? 0.86 : 0.95;
-    const steerInput = panelOpen ? 0 : (controls.left ? 1 : 0) - (controls.right ? 1 : 0);
+    let steerInput = panelOpen ? 0 : (controls.left ? 1 : 0) - (controls.right ? 1 : 0);
     steer.current = steerInput;
 
     if (!panelOpen) {
@@ -102,10 +112,17 @@ const SpaceWorld = ({
       touchLockRef.current = null;
     }
 
-    const cameraOffset = new Vector3(0, 4.7, 9.6).applyAxisAngle(new Vector3(0, 1, 0), yaw.current);
+    const lookYaw = yaw.current + cameraInput.lookX.current * 0.55;
+    const lookLift = 4.7 + cameraInput.lookY.current * -1.4;
+    const lookDistance = 9.6;
+    const cameraOffset = new Vector3(0, lookLift, lookDistance).applyAxisAngle(new Vector3(0, 1, 0), lookYaw);
     cameraTarget.current.copy(shipPosition.current).add(cameraOffset);
     camera.position.lerp(cameraTarget.current, 1 - Math.pow(0.001, delta));
-    camera.lookAt(shipPosition.current.x, shipPosition.current.y + 0.3, shipPosition.current.z - 2.4);
+    camera.lookAt(
+      shipPosition.current.x + cameraInput.lookX.current * 1.8,
+      shipPosition.current.y + 0.35 + cameraInput.lookY.current * 0.55,
+      shipPosition.current.z - 0.4
+    );
   });
 
   const ambientColor = isNightMode ? '#b8c7ff' : '#dbeafe';
@@ -132,6 +149,7 @@ const SpaceWorld = ({
           planet={planet}
           isNearest={nearestPlanetId === planet.id || selectedPlanetId === planet.id}
           showLabel={!panelOpen}
+          canSelect={cameraInput.canSelect.current}
           onSelect={onPlanetSelect}
         />
       ))}
@@ -151,10 +169,60 @@ const SpaceWorld = ({
 
 const SpaceScene = (props: SpaceSceneProps) => {
   const camera = useMemo(() => ({ position: [0, 4.5, 12] as [number, number, number], fov: 50 }), []);
+  const lookX = useRef(0);
+  const lookY = useRef(0);
+  const isPointerDown = useRef(false);
+  const isDragging = useRef(false);
+  const canSelect = useRef(true);
+  const dragStart = useRef({ x: 0, y: 0 });
 
   return (
-    <Canvas className="space-canvas" camera={camera}>
-      <SpaceWorld {...props} />
+    <Canvas
+      className="space-canvas"
+      camera={camera}
+      onPointerDown={(event) => {
+        isPointerDown.current = true;
+        isDragging.current = false;
+        canSelect.current = true;
+        dragStart.current = { x: event.clientX, y: event.clientY };
+      }}
+      onPointerMove={(event) => {
+        if (!isPointerDown.current) {
+          return;
+        }
+
+        const deltaX = event.clientX - dragStart.current.x;
+        const deltaY = event.clientY - dragStart.current.y;
+        const dragDistance = Math.hypot(deltaX, deltaY);
+
+        if (dragDistance > 8) {
+          isDragging.current = true;
+          canSelect.current = false;
+        }
+
+        if (!isDragging.current) {
+          return;
+        }
+
+        lookX.current = MathUtils.clamp(deltaX / window.innerWidth, -0.5, 0.5) * 2;
+        lookY.current = MathUtils.clamp(deltaY / window.innerHeight, -0.35, 0.35) * 2;
+      }}
+      onPointerUp={() => {
+        isPointerDown.current = false;
+        isDragging.current = false;
+        canSelect.current = true;
+        lookX.current = 0;
+        lookY.current = 0;
+      }}
+      onPointerLeave={() => {
+        isPointerDown.current = false;
+        isDragging.current = false;
+        canSelect.current = true;
+        lookX.current = 0;
+        lookY.current = 0;
+      }}
+    >
+      <SpaceWorld {...props} cameraInput={{ lookX, lookY, isDragging, canSelect }} />
     </Canvas>
   );
 };

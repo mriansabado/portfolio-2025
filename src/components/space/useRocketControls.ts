@@ -21,7 +21,7 @@ const keyMap: Record<string, keyof RocketControlsState> = {
   ArrowRight: 'right'
 };
 
-const useRocketControls = (disabled: boolean) => {
+const useRocketControls = (disabled: boolean, touchControls?: RocketControlsState) => {
   const [controls, setControls] = useState<RocketControlsState>(initialState);
 
   useEffect(() => {
@@ -57,7 +57,12 @@ const useRocketControls = (disabled: boolean) => {
     };
   }, [disabled]);
 
-  return controls;
+  return {
+    forward: controls.forward || touchControls?.forward || false,
+    backward: controls.backward || touchControls?.backward || false,
+    left: controls.left || touchControls?.left || false,
+    right: controls.right || touchControls?.right || false
+  };
 };
 
 export default useRocketControls;

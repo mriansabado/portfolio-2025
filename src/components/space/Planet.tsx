@@ -6,14 +6,18 @@ interface PlanetProps {
   planet: PlanetDefinition;
   isNearest: boolean;
   showLabel: boolean;
+  canSelect: boolean;
   onSelect: (id: PlanetDefinition['id']) => void;
 }
 
-const Planet = ({ planet, isNearest, showLabel, onSelect }: PlanetProps) => {
+const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetProps) => {
   const glowScale = planet.radius * (isNearest ? 1.8 : 1.45);
 
   const handleClick = (event: ThreeEvent<MouseEvent>) => {
     event.stopPropagation();
+    if (!canSelect) {
+      return;
+    }
     onSelect(planet.id);
   };
 

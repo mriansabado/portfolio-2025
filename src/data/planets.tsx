@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { FaEnvelope, FaFolderOpen, FaIdBadge, FaUserAstronaut } from 'react-icons/fa';
 
-export type PlanetId = 'intro' | 'projects' | 'about' | 'resume' | 'contact';
+export type PlanetId = 'projects' | 'about' | 'resume' | 'contact';
 
 export interface PlanetDefinition {
   id: PlanetId;
@@ -16,17 +16,6 @@ export interface PlanetDefinition {
 }
 
 export const planets: PlanetDefinition[] = [
-  {
-    id: 'intro',
-    title: 'Launch Bay',
-    subtitle: 'Get oriented',
-    description: 'A quick intro to the world and what each destination covers.',
-    position: [0, 0.35, -4.6],
-    radius: 1.35,
-    color: '#f59e0b',
-    accent: '#fcd34d',
-    icon: <FaUserAstronaut />
-  },
   {
     id: 'projects',
     title: 'Projects',
