@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type PointerEvent, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import AboutPanel from '../panels/AboutPanel';
 import ContactPanel from '../panels/ContactPanel';
 import ProjectsPanel from '../panels/ProjectsPanel';
@@ -89,16 +89,6 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
 
   const nearestPlanet = planets.find((planet) => planet.id === nearestPlanetId) ?? null;
 
-  const bindTouchControl = (control: keyof RocketControlsState) => ({
-    onPointerDown: (event: PointerEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-      setTouchControls((current) => ({ ...current, [control]: true }));
-    },
-    onPointerUp: () => setTouchControls((current) => ({ ...current, [control]: false })),
-    onPointerLeave: () => setTouchControls((current) => ({ ...current, [control]: false })),
-    onPointerCancel: () => setTouchControls((current) => ({ ...current, [control]: false }))
-  });
-
   if (showClassicView) {
     return (
       <div className="space-classic-wrapper">
@@ -119,6 +109,19 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
         panelOpen={selectedPlanetId !== null}
         selectedPlanetId={selectedPlanetId}
         touchControls={touchControls}
+        onTouchCruiseChange={(direction) => {
+          if (direction === 'forward') {
+            setTouchControls({ forward: true, backward: false, left: false, right: false });
+            return;
+          }
+
+          if (direction === 'backward') {
+            setTouchControls({ forward: false, backward: true, left: false, right: false });
+            return;
+          }
+
+          setTouchControls(initialTouchControls);
+        }}
         onNearestPlanetChange={setNearestPlanetId}
         onPlanetSelect={setSelectedPlanetId}
       />
@@ -132,6 +135,11 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
             <div className="space-status-keys">
               <DirectionalKeyDisplay />
             </div>
+            <div className="space-mobile-gesture-guide">
+              <span>Swipe left or right to look around</span>
+              <span>Swipe up to cruise forward</span>
+              <span>Swipe down to reverse slowly</span>
+            </div>
           </div>
           <div className="space-hud-actions">
             <button type="button" className="space-ghost-button" onClick={() => setShowClassicView(true)}>
@@ -142,29 +150,16 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
 
         <div className="space-mobile-controls" aria-label="Touch flight controls">
           <strong>Touch controls</strong>
-          <div className="space-mobile-dpad">
-            <span className="space-mobile-dpad-empty" />
-            <button type="button" className="space-touch-button" {...bindTouchControl('backward')}>
-              Up
-            </button>
-            <span className="space-mobile-dpad-empty" />
-
-            <button type="button" className="space-touch-button" {...bindTouchControl('left')}>
-              Left
-            </button>
-            <span className="space-mobile-dpad-center" />
-            <button type="button" className="space-touch-button" {...bindTouchControl('right')}>
-              Right
-            </button>
-
-            <span className="space-mobile-dpad-empty" />
-            <button type="button" className="space-touch-button" {...bindTouchControl('forward')}>
-              Down
-            </button>
-            <span className="space-mobile-dpad-empty" />
-          </div>
-          <span>Tap planets to open them</span>
-          <span>Drag empty space to look around</span>
+          <span>Swipe left or right to look around</span>
+          <span>Swipe up to cruise forward</span>
+          <span>Swipe down to reverse slowly</span>
+          <button
+            type="button"
+            className="space-touch-button"
+            onClick={() => setTouchControls(initialTouchControls)}
+          >
+            Stop drift
+          </button>
         </div>
 
         <div className="space-planet-strip">

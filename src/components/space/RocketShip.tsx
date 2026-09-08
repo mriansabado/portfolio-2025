@@ -1,6 +1,6 @@
 import { useMemo, useRef, type MutableRefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Group, MathUtils } from 'three';
+import { Group, MathUtils, Mesh, MeshBasicMaterial } from 'three';
 
 interface RocketShipProps {
   positionRef: MutableRefObject<{ x: number; y: number; z: number }>;
@@ -15,6 +15,8 @@ const RocketShip = ({ positionRef, yawRef, velocityRef, steerRef, isNightMode }:
   const groupRef = useRef<Group>(null);
   const bankRef = useRef(0);
   const pitchRef = useRef(0);
+  const thrusterRef = useRef<Mesh>(null);
+  const thrusterMaterialRef = useRef<MeshBasicMaterial>(null);
 
   useFrame((_, delta) => {
     if (!groupRef.current) {
@@ -29,6 +31,27 @@ const RocketShip = ({ positionRef, yawRef, velocityRef, steerRef, isNightMode }:
 
     groupRef.current.position.set(positionRef.current.x, positionRef.current.y, positionRef.current.z);
     groupRef.current.rotation.set(pitchRef.current, yawRef.current, bankRef.current);
+
+    const speed = Math.abs(velocityRef.current);
+    const thrusterActive = speed > 0.35;
+    const targetOpacity = thrusterActive ? 0.92 : 0.08;
+    const targetScaleY = thrusterActive ? Math.min(1.9, 1 + speed * 0.055) : 0.45;
+
+    if (thrusterMaterialRef.current) {
+      thrusterMaterialRef.current.opacity = MathUtils.lerp(
+        thrusterMaterialRef.current.opacity,
+        targetOpacity,
+        1 - Math.pow(0.02, delta)
+      );
+    }
+
+    if (thrusterRef.current) {
+      thrusterRef.current.scale.y = MathUtils.lerp(
+        thrusterRef.current.scale.y,
+        targetScaleY,
+        1 - Math.pow(0.02, delta)
+      );
+    }
   });
 
   return (
@@ -57,9 +80,9 @@ const RocketShip = ({ positionRef, yawRef, velocityRef, steerRef, isNightMode }:
         </group>
       ))}
 
-      <mesh position={[0, 0, 1.35]} rotation={[Math.PI / 2, 0, 0]}>
+      <mesh ref={thrusterRef} position={[0, 0, 1.35]} rotation={[Math.PI / 2, 0, 0]}>
         <coneGeometry args={[0.14, 0.62, 18]} />
-        <meshBasicMaterial color="#fb923c" transparent opacity={0.9} />
+        <meshBasicMaterial ref={thrusterMaterialRef} color="#fb923c" transparent opacity={0.08} />
       </mesh>
     </group>
   );
