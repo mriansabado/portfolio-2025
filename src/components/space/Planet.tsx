@@ -212,7 +212,7 @@ const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetPro
       </group>
 
       {showLabel ? (
-        <Html position={[0, planet.radius + 1.1, 0]} center distanceFactor={13}>
+        <Html position={[0, planet.radius + 1.1, 0]} center distanceFactor={13} zIndexRange={[12, 0]}>
           <div className={`planet-label ${isNearest ? 'is-nearest' : ''}`}>
             <strong>{planet.title}</strong>
             <span>{planet.subtitle}</span>

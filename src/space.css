@@ -43,6 +43,7 @@ body,
 }
 
 .space-status-card,
+.space-welcome-card,
 .space-controls-hint,
 .space-return-bar {
   background: rgba(2, 6, 23, 0.72);
@@ -55,6 +56,7 @@ body,
   position: absolute;
   right: 1rem;
   bottom: 1rem;
+  z-index: 55;
   width: min(22rem, calc(100vw - 2rem));
   border-radius: 1.5rem;
   padding: 1rem 1.15rem;
@@ -63,7 +65,22 @@ body,
   color: #e2e8f0;
 }
 
+.space-welcome-card {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(34rem, calc(100vw - 11rem));
+  border-radius: 1.5rem;
+  padding: 0.95rem 1.15rem;
+  display: grid;
+  gap: 0.3rem;
+  text-align: center;
+  color: #e2e8f0;
+}
+
 .space-status-card p,
+.space-welcome-card p,
 .space-controls-hint strong,
 .space-panel-eyebrow,
 .space-panel-kicker {
@@ -76,6 +93,7 @@ body,
 }
 
 .space-status-card strong,
+.space-welcome-card strong,
 .space-panel-shell h2,
 .space-panel-card h3,
 .space-intro-panel h3 {
@@ -83,6 +101,7 @@ body,
 }
 
 .space-status-card span,
+.space-welcome-card span,
 .space-panel-shell p,
 .space-panel-card p,
 .space-panel-card a,
@@ -206,6 +225,7 @@ body,
   position: absolute;
   left: 1rem;
   bottom: 1rem;
+  z-index: 55;
   border-radius: 1.15rem;
   padding: 0.55rem;
   pointer-events: auto;
@@ -455,7 +475,7 @@ body,
 
 @media (max-width: 768px) {
   .space-hud {
-    padding-top: 5rem;
+    padding-top: 5.75rem;
   }
 
   .space-mobile-controls {
@@ -470,6 +490,14 @@ body,
   .space-return-bar {
     top: 1rem;
     left: 1rem;
+  }
+
+  .space-welcome-card {
+    top: 4.75rem;
+    width: min(26rem, calc(100vw - 1.5rem));
+    left: 0.75rem;
+    transform: none;
+    text-align: left;
   }
 
   .space-hud-top,
@@ -515,6 +543,10 @@ body,
   .space-return-bar {
     top: 1.15rem;
     left: 1rem;
+  }
+
+  .space-welcome-card {
+    width: min(31rem, calc(100vw - 11rem));
   }
 
   .space-status-card {

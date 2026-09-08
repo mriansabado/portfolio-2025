@@ -18,8 +18,11 @@ import { planets, type PlanetId } from '../../data/planets';
 
 interface SpaceSceneProps {
   isNightMode: boolean;
+  introActive: boolean;
   panelOpen: boolean;
   selectedPlanetId: PlanetId | null;
+  lastClosedPlanetKey: number;
+  lastClosedPlanetId: PlanetId | null;
   touchControls: RocketControlsState;
   onNearestPlanetChange: (planetId: PlanetId | null) => void;
   onPlanetSelect: (planetId: PlanetId) => void;
@@ -38,8 +41,11 @@ const SHIP_CONTACT_RADIUS = 0.8;
 
 const SpaceWorld = ({
   isNightMode,
+  introActive,
   panelOpen,
   selectedPlanetId,
+  lastClosedPlanetKey,
+  lastClosedPlanetId,
   touchControls,
   onNearestPlanetChange,
   onPlanetSelect,
@@ -88,15 +94,40 @@ const SpaceWorld = ({
     transitionProgressRef.current = 0;
   }, [isNightMode]);
 
+  useEffect(() => {
+    if (!lastClosedPlanetId) {
+      return;
+    }
+
+    const planetCenter = planetPositions[lastClosedPlanetId];
+    const releaseDirection = shipPosition.current.clone().sub(planetCenter);
+
+    if (releaseDirection.lengthSq() < 0.001) {
+      releaseDirection.set(0, 0, 1);
+    }
+
+    const closedPlanet = planets.find((planet) => planet.id === lastClosedPlanetId);
+    if (!closedPlanet) {
+      return;
+    }
+
+    shipPosition.current.copy(
+      planetCenter.clone().add(releaseDirection.normalize().multiplyScalar(closedPlanet.radius + 2.2))
+    );
+    velocity.current = 0;
+    touchLockRef.current = lastClosedPlanetId;
+  }, [lastClosedPlanetId, lastClosedPlanetKey, planetPositions]);
+
   useFrame(({ camera, scene }, delta) => {
     const turnSpeed = 2.05;
     const baseAcceleration = 11.8;
-    const damping = panelOpen ? 0.86 : 0.95;
+    const movementLocked = panelOpen || introActive;
+    const damping = movementLocked ? 0.86 : 0.95;
     const isTouchCruising = touchControls.forward || touchControls.backward;
-    let steerInput = panelOpen ? 0 : (controls.left ? 1 : 0) - (controls.right ? 1 : 0);
+    let steerInput = movementLocked ? 0 : (controls.left ? 1 : 0) - (controls.right ? 1 : 0);
     steer.current = steerInput;
 
-    if (!panelOpen) {
+    if (!movementLocked) {
       yaw.current += steerInput * turnSpeed * delta;
 
       if (isTouchCruising) {
@@ -111,11 +142,18 @@ const SpaceWorld = ({
     velocity.current = MathUtils.clamp(velocity.current * damping, -8.2, 18.5);
 
     const movement = new Vector3(Math.sin(yaw.current), 0, Math.cos(yaw.current)).multiplyScalar(velocity.current * delta);
-    shipPosition.current.add(movement);
+    if (!introActive) {
+      shipPosition.current.add(movement);
+    }
 
     shipPosition.current.x = MathUtils.clamp(shipPosition.current.x, -PLAY_BOUNDS, PLAY_BOUNDS);
     shipPosition.current.z = MathUtils.clamp(shipPosition.current.z, -PLAY_BOUNDS, PLAY_BOUNDS);
     shipPosition.current.y = 0.35 + Math.sin(performance.now() * 0.0018) * 0.07;
+
+    if (introActive) {
+      velocity.current = MathUtils.lerp(velocity.current, 0, 1 - Math.pow(0.02, delta));
+      yaw.current = MathUtils.lerp(yaw.current, Math.PI, 1 - Math.pow(0.02, delta));
+    }
 
     let closestPlanet: PlanetId | null = null;
     let closestDistance = Number.POSITIVE_INFINITY;
@@ -152,21 +190,31 @@ const SpaceWorld = ({
         touchLockRef.current = closestPlanet;
         onPlanetSelect(closestPlanet);
       }
-    } else if (touchLockRef.current) {
+    } else if (
+      touchLockRef.current &&
+      shipPosition.current.distanceTo(planetPositions[touchLockRef.current]) >
+        (planets.find((planet) => planet.id === touchLockRef.current)?.radius ?? 0) + SHIP_CONTACT_RADIUS + 1.2
+    ) {
       touchLockRef.current = null;
     }
 
-    const lookYaw = yaw.current + cameraInput.lookX.current * 0.55;
-    const lookLift = 4.7 + cameraInput.lookY.current * -1.4;
-    const lookDistance = 9.6;
-    const cameraOffset = new Vector3(0, lookLift, lookDistance).applyAxisAngle(new Vector3(0, 1, 0), lookYaw);
-    cameraTarget.current.copy(shipPosition.current).add(cameraOffset);
-    camera.position.lerp(cameraTarget.current, 1 - Math.pow(0.001, delta));
-    camera.lookAt(
-      shipPosition.current.x + cameraInput.lookX.current * 1.8,
-      shipPosition.current.y + 0.35 + cameraInput.lookY.current * 0.55,
-      shipPosition.current.z - 0.4
-    );
+    if (introActive) {
+      cameraTarget.current.set(0, 12.5, 15.5);
+      camera.position.lerp(cameraTarget.current, 1 - Math.pow(0.001, delta));
+      camera.lookAt(0, 0.55, 0);
+    } else {
+      const lookYaw = yaw.current + cameraInput.lookX.current * 0.55;
+      const lookLift = 4.7 + cameraInput.lookY.current * -1.4;
+      const lookDistance = 9.6;
+      const cameraOffset = new Vector3(0, lookLift, lookDistance).applyAxisAngle(new Vector3(0, 1, 0), lookYaw);
+      cameraTarget.current.copy(shipPosition.current).add(cameraOffset);
+      camera.position.lerp(cameraTarget.current, 1 - Math.pow(0.001, delta));
+      camera.lookAt(
+        shipPosition.current.x + cameraInput.lookX.current * 1.8,
+        shipPosition.current.y + 0.35 + cameraInput.lookY.current * 0.55,
+        shipPosition.current.z - 0.4
+      );
+    }
 
     transitionProgressRef.current = Math.min(1, transitionProgressRef.current + delta / 2);
     const easedMix = MathUtils.smootherstep(transitionProgressRef.current, 0, 1);

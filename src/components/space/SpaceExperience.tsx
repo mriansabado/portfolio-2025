@@ -58,18 +58,37 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
   const [nearestPlanetId, setNearestPlanetId] = useState<PlanetId | null>(null);
   const [showClassicView, setShowClassicView] = useState(false);
   const [touchControls, setTouchControls] = useState<RocketControlsState>(initialTouchControls);
+  const [lastClosedPlanetId, setLastClosedPlanetId] = useState<PlanetId | null>(null);
+  const [lastClosedPlanetKey, setLastClosedPlanetKey] = useState(0);
+  const [introActive, setIntroActive] = useState(true);
+  const [showWelcomeCard, setShowWelcomeCard] = useState(true);
+
+  const dismissIntro = () => {
+    setIntroActive(false);
+    setShowWelcomeCard(false);
+  };
 
   useEffect(() => {
+    const welcomeTimer = window.setTimeout(() => {
+      setShowWelcomeCard(false);
+    }, 10000);
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setSelectedPlanetId(null);
         return;
       }
 
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+        dismissIntro();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.clearTimeout(welcomeTimer);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const panelContent = useMemo(() => {
@@ -91,6 +110,7 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
   const bindTouchControl = (control: keyof RocketControlsState) => ({
     onPointerDown: (event: PointerEvent<HTMLButtonElement>) => {
       event.preventDefault();
+      dismissIntro();
       setTouchControls((current) => ({ ...current, [control]: true }));
     },
     onPointerUp: () => setTouchControls((current) => ({ ...current, [control]: false })),
@@ -116,8 +136,11 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
     <section className="space-experience-shell">
       <SpaceScene
         isNightMode={isNightMode}
+        introActive={introActive}
         panelOpen={selectedPlanetId !== null}
         selectedPlanetId={selectedPlanetId}
+        lastClosedPlanetId={lastClosedPlanetId}
+        lastClosedPlanetKey={lastClosedPlanetKey}
         touchControls={touchControls}
         onNearestPlanetChange={setNearestPlanetId}
         onPlanetSelect={setSelectedPlanetId}
@@ -125,6 +148,13 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
 
       <div className="space-hud">
         <div className="space-hud-top">
+          {showWelcomeCard ? (
+            <div className="space-welcome-card">
+              <p>Welcome aboard</p>
+              <strong>Explore Ian&apos;s portfolio in flight mode</strong>
+              <span>Fly around to different planets to explore the site, or click classic view to see the normal website layout.</span>
+            </div>
+          ) : null}
           <div className="space-status-card">
             <p>Flight status</p>
             <strong>{nearestPlanet ? `Near ${nearestPlanet.title}` : 'Exploring deep space'}</strong>
@@ -187,6 +217,10 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
         planetId={selectedPlanetId}
         isNightMode={isNightMode}
         onClose={() => {
+          if (selectedPlanetId) {
+            setLastClosedPlanetId(selectedPlanetId);
+            setLastClosedPlanetKey((current) => current + 1);
+          }
           setSelectedPlanetId(null);
           setTouchControls(initialTouchControls);
         }}
