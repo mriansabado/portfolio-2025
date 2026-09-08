@@ -158,6 +158,16 @@ body,
   justify-items: start;
 }
 
+.space-fire-hint {
+  margin-top: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
 .space-keycap {
   min-width: 3.4rem;
   display: inline-flex;
@@ -240,6 +250,10 @@ body,
   -webkit-tap-highlight-color: transparent;
 }
 
+.space-mobile-fire-wrap {
+  display: none;
+}
+
 .space-touch-button {
   width: 3.4rem;
   height: 3.4rem;
@@ -299,6 +313,19 @@ body,
   height: 0.7rem;
   border-radius: 9999px;
   display: inline-block;
+}
+
+.space-hit-snippet {
+  border-radius: 9999px;
+  padding: 0.35rem 0.65rem;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  color: #f8fafc;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.28);
 }
 
 .planet-label {
@@ -486,6 +513,24 @@ body,
     bottom: 0.75rem;
   }
 
+  .space-mobile-fire-wrap {
+    position: absolute;
+    left: 50%;
+    bottom: 1.1rem;
+    transform: translateX(-50%);
+    z-index: 55;
+    display: grid;
+    pointer-events: auto;
+  }
+
+  .space-fire-button {
+    width: 4.25rem;
+    height: 4.25rem;
+    border-radius: 9999px;
+    background: rgba(124, 45, 18, 0.86);
+    border-color: rgba(251, 146, 60, 0.55);
+  }
+
   .space-hud-actions,
   .space-return-bar {
     top: 1rem;
@@ -537,6 +582,24 @@ body,
     right: 1rem;
     left: auto;
     transform: none;
+  }
+
+  .space-mobile-fire-wrap {
+    position: absolute;
+    left: 50%;
+    bottom: 1.2rem;
+    transform: translateX(-50%);
+    z-index: 55;
+    display: grid;
+    pointer-events: auto;
+  }
+
+  .space-fire-button {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 9999px;
+    background: rgba(124, 45, 18, 0.86);
+    border-color: rgba(251, 146, 60, 0.55);
   }
 
   .space-hud-actions,

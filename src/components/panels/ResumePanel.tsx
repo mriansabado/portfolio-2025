@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { resumeSummary } from '../../data/resume';
 
 interface ResumePanelProps {
   isNightMode: boolean;
@@ -17,27 +18,15 @@ const ResumePanel = ({ isNightMode }: ResumePanelProps) => {
       animate={{ opacity: 1, y: 0 }}
     >
       <p className="space-panel-eyebrow">Resume snapshot</p>
-      <h3>Frontend-focused builder with product instincts</h3>
-      <p>
-        I ship polished interfaces, mobile experiences, and product-minded web work with a bias toward clarity, execution, and finishing details.
-      </p>
+      <h3>{resumeSummary.headline}</h3>
+      <p>{resumeSummary.intro}</p>
       <div className="space-resume-grid">
-        <div>
-          <span>Core focus</span>
-          <strong>React, React Native, TypeScript, product UI</strong>
-        </div>
-        <div>
-          <span>Strengths</span>
-          <strong>Frontend craft, mobile UX, shipping mindset</strong>
-        </div>
-        <div>
-          <span>Environment</span>
-          <strong>Agency, product, founder-mode, and solo builds</strong>
-        </div>
-        <div>
-          <span>Best fit</span>
-          <strong>Teams that want polish, ownership, and practical engineering</strong>
-        </div>
+        {resumeSummary.highlights.map((item) => (
+          <div key={item.label}>
+            <span>{item.label}</span>
+            <strong>{item.value}</strong>
+          </div>
+        ))}
       </div>
       <a href="mailto:mriansabado@gmail.com?subject=Resume%20Request" className="space-panel-link">
         Request full resume

@@ -58,6 +58,7 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
   const [nearestPlanetId, setNearestPlanetId] = useState<PlanetId | null>(null);
   const [showClassicView, setShowClassicView] = useState(false);
   const [touchControls, setTouchControls] = useState<RocketControlsState>(initialTouchControls);
+  const [fireSignal, setFireSignal] = useState(0);
   const [lastClosedPlanetId, setLastClosedPlanetId] = useState<PlanetId | null>(null);
   const [lastClosedPlanetKey, setLastClosedPlanetKey] = useState(0);
   const [introActive, setIntroActive] = useState(true);
@@ -68,6 +69,11 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
     setShowWelcomeCard(false);
   };
 
+  const triggerFire = () => {
+    dismissIntro();
+    setFireSignal((current) => current + 1);
+  };
+
   useEffect(() => {
     const welcomeTimer = window.setTimeout(() => {
       setShowWelcomeCard(false);
@@ -76,6 +82,14 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setSelectedPlanetId(null);
+        return;
+      }
+
+      if (event.key === ' ') {
+        event.preventDefault();
+        if (!event.repeat) {
+          triggerFire();
+        }
         return;
       }
 
@@ -141,6 +155,7 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
         selectedPlanetId={selectedPlanetId}
         lastClosedPlanetId={lastClosedPlanetId}
         lastClosedPlanetKey={lastClosedPlanetKey}
+        fireSignal={fireSignal}
         touchControls={touchControls}
         onNearestPlanetChange={setNearestPlanetId}
         onPlanetSelect={setSelectedPlanetId}
@@ -161,6 +176,10 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
             <span>{nearestPlanet ? 'Fly into the planet to open its destination panel' : 'Hold and drag to look around, or single click a planet to open it'}</span>
             <div className="space-status-keys">
               <DirectionalKeyDisplay />
+            </div>
+            <div className="space-fire-hint">
+              <span>Fire</span>
+              <kbd className="space-keycap">Space</kbd>
             </div>
             <div className="space-mobile-gesture-guide">
               <span>Use the D-pad below to move</span>
@@ -196,6 +215,20 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
             </button>
             <span className="space-mobile-dpad-empty" />
           </div>
+        </div>
+
+        <div className="space-mobile-fire-wrap">
+          <button
+            type="button"
+            className="space-touch-button space-fire-button"
+            onPointerDown={(event) => {
+              event.preventDefault();
+              triggerFire();
+            }}
+            onContextMenu={(event) => event.preventDefault()}
+          >
+            Fire
+          </button>
         </div>
 
         <div className="space-planet-strip">
