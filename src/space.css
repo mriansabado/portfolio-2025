@@ -455,7 +455,8 @@ body,
 
   .space-mobile-controls {
     display: grid;
-    left: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0.75rem;
   }
 
@@ -465,18 +466,22 @@ body,
   }
 
   .space-status-card {
-    left: 0.75rem;
-    right: 0.75rem;
-    bottom: 5.75rem;
-    width: auto;
-  }
-
-  .space-status-keys {
     display: none;
   }
 
-  .space-mobile-gesture-guide {
-    display: grid;
+  .space-planet-strip {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.9rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .space-planet-chip {
+    justify-content: center;
+    min-width: 8.25rem;
+    padding: 0.75rem 0.9rem;
   }
 
   .space-panel-shell {
@@ -488,13 +493,25 @@ body,
 @media (min-width: 769px) and (max-width: 1180px) and (hover: none), (min-width: 769px) and (max-width: 1180px) and (pointer: coarse) {
   .space-mobile-controls {
     display: grid;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .space-status-keys {
+  .space-status-card {
     display: none;
   }
 
-  .space-mobile-gesture-guide {
-    display: grid;
+  .space-planet-strip {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .space-planet-chip {
+    justify-content: center;
+    min-width: 9rem;
   }
 }
