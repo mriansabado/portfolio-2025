@@ -506,7 +506,7 @@ body,
     --space-mobile-bottom-gap: 1rem;
     --space-mobile-control-size: 2.8rem;
     --space-mobile-control-grid-width: calc((var(--space-mobile-control-size) * 3) + 0.7rem);
-    --space-mobile-fire-size: 3.5rem;
+    --space-mobile-fire-size: 4.25rem;
     --space-mobile-chip-width: 6.8rem;
   }
 
