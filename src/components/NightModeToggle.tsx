@@ -11,15 +11,16 @@ const NightModeToggle = () => {
       className="fixed top-6 right-6 z-50 p-3 rounded-full shadow-lg"
       style={{
         background: isNightMode 
-          ? 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)'
-          : 'linear-gradient(135deg, #fff 0%, #fff5e6 100%)',
-        border: `2px solid ${isNightMode ? 'rgba(148, 163, 184, 0.3)' : 'rgba(234, 88, 12, 0.3)'}`,
+          ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.94) 0%, rgba(2, 6, 23, 0.96) 100%)'
+          : 'linear-gradient(135deg, rgba(67, 56, 202, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%)',
+        border: `1px solid ${isNightMode ? 'rgba(251, 191, 36, 0.22)' : 'rgba(251, 191, 36, 0.3)'}`,
         boxShadow: isNightMode
-          ? '0 8px 24px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2)'
-          : '0 8px 24px rgba(234, 88, 12, 0.25), 0 4px 8px rgba(0,0,0,0.1)',
-        color: isNightMode ? '#f1f5f9' : '#1a1a1a'
+          ? '0 10px 24px rgba(0,0,0,0.35)'
+          : '0 10px 24px rgba(0,0,0,0.35)',
+        color: '#f8fafc',
+        backdropFilter: 'blur(14px)'
       }}
-      whileHover={{ scale: 1.1, rotate: 15 }}
+      whileHover={{ scale: 1.06, rotate: 8 }}
       whileTap={{ scale: 0.9 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
       aria-label="Toggle night mode"

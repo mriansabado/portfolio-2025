@@ -1,190 +1,172 @@
+import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { FaAws, FaPenNib, FaReact } from 'react-icons/fa';
+import { MdOutlinePhoneIphone } from 'react-icons/md';
+import { RiSparkling2Line } from 'react-icons/ri';
 
 interface FeatureProps {
   isNightMode?: boolean;
 }
 
-const Feature = ({ isNightMode = false }: FeatureProps) => {
-  const features = [
-    {
-      title: "Ad-hoc fixes & ongoing help",
-      description: "Weird site behavior, broken forms, checkout issues, slow pages — I troubleshoot and fix it. Same-day quotes on small jobs; bigger work gets a flat quote up front. Shopify, WordPress, Wix, custom code, and most platforms.",
-      gradient: "from-orange-300 via-yellow-200 to-orange-200",
-      borderColor: "rgba(234, 88, 12, 0.4)",
-      accentColor: "#ea580c",
-      nightGradient: "from-orange-900/40 via-orange-800/30 to-yellow-900/20",
-      nightAccent: "#fb923c"
-    },
-    {
-      title: "SEO & local listings",
-      description: "Google Business Profile, listings that match across Yelp and Apple Maps, on-page basics, and tracking so you can see what's working — explained in plain English, not agency jargon.",
-      gradient: "from-pink-300 via-rose-200 to-pink-200",
-      borderColor: "rgba(236, 72, 153, 0.4)",
-      accentColor: "#ec4899",
-      nightGradient: "from-pink-900/40 via-rose-800/30 to-fuchsia-900/20",
-      nightAccent: "#f472b6"
-    },
-    {
-      title: "Sites & rebuilds",
-      description: "Clean, mobile-friendly sites that don't feel like a template — from a focused multi-page build to custom Shopify or WordPress when you need more. I train you so you can update content without living in my inbox.",
-      gradient: "from-blue-300 via-cyan-200 to-blue-200",
-      borderColor: "rgba(59, 130, 246, 0.4)",
-      accentColor: "#3b82f6",
-      nightGradient: "from-blue-900/40 via-cyan-800/30 to-indigo-900/20",
-      nightAccent: "#60a5fa"
-    },
-    {
-      title: "Mobile apps (iOS & Android)",
-      description: "React Native / Expo builds for focused ideas — ordering, menus, internal tools, events. App Store and Play setup included. Not the fit for the next Instagram; great when you need something specific shipped.",
-      gradient: "from-green-300 via-emerald-200 to-green-200",
-      borderColor: "rgba(34, 197, 94, 0.4)",
-      accentColor: "#22c55e",
-      nightGradient: "from-green-900/40 via-emerald-800/30 to-teal-900/20",
-      nightAccent: "#4ade80"
-    }
-  ];
+interface Strength {
+  title: string;
+  eyebrow: string;
+  description: string;
+  note: string;
+  icon: ReactNode;
+}
 
+const strengths: Strength[] = [
+  {
+    title: 'Frontend craft',
+    eyebrow: 'Production UI',
+    description: 'I like interfaces that feel crisp, readable, and confidently put together across real screen sizes, not just Dribbble-sized ones.',
+    note: 'React, Vue, CMS work, reusable components, and the unglamorous cleanup work that makes a product feel stable.',
+    icon: <FaReact className="h-5 w-5" />
+  },
+  {
+    title: 'Mobile product instinct',
+    eyebrow: 'React Native + iOS',
+    description: 'I enjoy the constraint of small screens. It forces better hierarchy, clearer UX decisions, and fewer lazy interface choices.',
+    note: 'PocketSay is live today, and Tasqly leans into workflow design for people juggling clients, sessions, and admin work.',
+    icon: <MdOutlinePhoneIphone className="h-5 w-5" />
+  },
+  {
+    title: 'Automation with taste',
+    eyebrow: 'Useful > flashy',
+    description: 'I care about tools that save people time while still feeling clear, helpful, and easy to use.',
+    note: 'The good version of automation is boring in the best way: fewer repetitive steps, clearer output, and less friction for the team.',
+    icon: <RiSparkling2Line className="h-5 w-5" />
+  },
+  {
+    title: 'Shipping mindset',
+    eyebrow: 'Get it live',
+    description: 'I’m comfortable following the work past the UI layer into deployment, content systems, production issues, and the last-mile details.',
+    note: 'AWS, Firebase, Vercel, app submission, and the “someone has to own this” parts of product work.',
+    icon: <FaAws className="h-5 w-5" />
+  },
+  {
+    title: 'Taste and storytelling',
+    eyebrow: 'Design-aware',
+    description: 'I pay attention to spacing, language, motion, and visual rhythm because users notice when a product feels assembled versus designed.',
+    note: 'Good frontend is part engineering, part editing. The details either support the idea or quietly fight it.',
+    icon: <FaPenNib className="h-5 w-5" />
+  }
+];
+
+const Feature = ({ isNightMode = false }: FeatureProps) => {
   return (
-    <section 
-      className='py-12 sm:py-16 md:py-20 relative overflow-hidden'
+    <section
+      className="py-12 sm:py-16 md:py-20 relative overflow-hidden"
       style={{
         background: isNightMode
-          ? 'linear-gradient(to bottom, #1e293b, #0f172a)'
-          : 'linear-gradient(to bottom, #fff9f0, #fef3e2)',
+          ? 'linear-gradient(to bottom, rgba(17,24,39,0.9), rgba(2,6,23,0.95))'
+          : 'linear-gradient(to bottom, rgba(15,23,42,0.88), rgba(2,6,23,0.95))',
         paddingBottom: '6rem'
       }}
     >
-      <div className='absolute inset-0 bg-gradient-to-br from-orange-200/10 via-yellow-100/5 to-pink-200/10'></div>
-      <div className='container mx-auto px-2 sm:px-6 relative z-10'>
-        <motion.div 
-          className='text-center mb-8 sm:mb-12 max-w-3xl mx-auto px-2'
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(251,191,36,0.08),_transparent_26%),radial-gradient(circle_at_bottom_right,_rgba(244,114,182,0.08),_transparent_24%)]"></div>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <motion.div
+          className="text-center mb-8 sm:mb-12 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <p
-            className="text-sm sm:text-base font-semibold tracking-wide uppercase mb-2"
-            style={{ color: isNightMode ? '#94a3b8' : '#64748b' }}
+            className="text-sm sm:text-base font-semibold tracking-[0.2em] uppercase mb-3"
+            style={{ color: '#fcd34d' }}
           >
-            Mauna Digital
+            What it&apos;s like to work with me
           </p>
-          <h2 
-            className='text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter mb-3 sm:mb-4'
-            style={{ 
-              color: isNightMode ? '#f1f5f9' : '#1a1a1a',
-              textShadow: isNightMode 
-                ? '2px 2px 4px rgba(0,0,0,0.5)' 
-                : '2px 2px 4px rgba(0,0,0,0.1)'
-            }}
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter mb-3 sm:mb-4"
+            style={{ color: '#f8fafc' }}
           >
-            Small business tech, handled
+            Thoughtful product sense, careful execution, and polished UI
           </h2>
           <p
-            className="text-sm sm:text-base md:text-lg mb-6 leading-relaxed"
-            style={{ color: isNightMode ? '#cbd5e1' : '#4a4a4a' }}
+            className="text-sm sm:text-base md:text-lg mb-4 leading-relaxed"
+            style={{ color: '#e2e8f0' }}
           >
-            If something's broken, your site feels stuck, or Google isn't sending people your way, I'll explain it in plain English and fix what needs fixing — local in San Diego or fully remote.
+            I do my best work where product thinking and frontend craft overlap: shaping the interaction, building it cleanly, and making sure the final result is smooth to use.
           </p>
-          <motion.a
-            href="https://maunadigital.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-5 py-2.5 rounded-lg text-sm sm:text-base font-semibold text-white mb-6 sm:mb-8"
-            style={{
-              background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-              boxShadow: '0 4px 12px rgba(234, 88, 12, 0.35)'
-            }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
+          <p
+            className="text-sm sm:text-base md:text-lg mb-6 leading-relaxed font-medium"
+            style={{ color: '#94a3b8' }}
           >
-            Visit Mauna Digital
-          </motion.a>
+            The through-line in my work is simple: thoughtful UX, clear hierarchy, and products that feel intentional instead of assembled.
+          </p>
           <h3
             className="text-xl sm:text-2xl font-bold mb-4"
-            style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+            style={{ color: '#f8fafc' }}
           >
-            How I help
+            A few patterns in how I build
           </h3>
-          <div 
-            className='h-1 w-24 sm:w-32 mx-auto rounded-full'
+          <div
+            className="h-1 w-24 sm:w-32 mx-auto rounded-full"
             style={{
-              background: 'linear-gradient(to right, #ea580c, #f97316, #fb923c)',
-              boxShadow: '0 2px 8px rgba(234, 88, 12, 0.3)'
+              background: 'linear-gradient(to right, #fcd34d, #fb7185, #c4b5fd)'
             }}
           ></div>
         </motion.div>
-        
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-3xl mx-auto pb-8'>
-          {features.map((feature, index) => (
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-6xl mx-auto pb-8">
+          {strengths.map((service, index) => (
             <motion.div
-              key={index}
-              className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 ${isNightMode ? '' : `bg-gradient-to-br ${feature.gradient}`}`}
+              key={service.title}
+              className="stack-card p-5 sm:p-6"
               style={{
-                border: `3px solid ${isNightMode ? feature.nightAccent + '40' : feature.borderColor}`,
-                boxShadow: isNightMode
-                  ? `0 8px 24px ${feature.nightAccent}30, 0 4px 8px rgba(0,0,0,0.3)`
-                  : `0 8px 24px ${feature.accentColor}25, 0 4px 8px rgba(0,0,0,0.08)`,
-                transformStyle: 'preserve-3d',
                 background: isNightMode
-                  ? `linear-gradient(135deg, ${feature.nightGradient})`
-                  : undefined,
-                position: 'relative',
-                overflow: 'hidden'
+                  ? `linear-gradient(180deg, rgba(15,23,42,0.88), rgba(30,41,59,0.72))`
+                  : `linear-gradient(180deg, rgba(30,27,75,0.88), rgba(30,41,59,0.72))`
               }}
               initial={{ opacity: 0, y: 30, rotateX: -10 }}
               whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               whileHover={{
-                scale: 1.03,
-                rotateY: 2,
-                rotateX: 1,
-                z: 20,
-                boxShadow: isNightMode
-                  ? `0 16px 48px ${feature.nightAccent}40, 0 8px 16px rgba(0,0,0,0.3)`
-                  : `0 16px 48px ${feature.accentColor}35, 0 8px 16px rgba(0,0,0,0.15)`
+                y: -5,
+                rotate: index % 2 === 0 ? -0.4 : 0.4
               }}
             >
-              {/* Decorative accent line */}
-              <div 
-                className="absolute top-0 left-0 right-0 h-1.5"
-                style={{
-                  background: isNightMode
-                    ? `linear-gradient(to right, ${feature.nightAccent}, ${feature.nightAccent}80)`
-                    : `linear-gradient(to right, ${feature.accentColor}, ${feature.accentColor}80)`,
-                  boxShadow: isNightMode
-                    ? `0 2px 8px ${feature.nightAccent}50`
-                    : `0 2px 8px ${feature.accentColor}40`
-                }}
-              />
-              {/* Colorful corner accent for night mode */}
-              {isNightMode && (
-                <div 
-                  className="absolute top-0 right-0 w-20 h-20 opacity-20 blur-xl"
-                  style={{
-                    background: `radial-gradient(circle, ${feature.nightAccent}, transparent)`
-                  }}
-                />
-              )}
-              <div className='flex flex-col h-full relative z-10'>
-                <h3 
-                  className='text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3'
-                  style={{ 
-                    color: isNightMode ? '#f1f5f9' : '#1a1a1a',
-                    textShadow: !isNightMode ? '0 1px 2px rgba(0,0,0,0.05)' : `0 1px 3px ${feature.nightAccent}30`
-                  }}
+              <div className="flex flex-col h-full relative z-10">
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <p
+                    className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em]"
+                    style={{ color: '#fcd34d' }}
+                  >
+                    {service.eyebrow}
+                  </p>
+                  <div
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl"
+                    style={{
+                      background: 'rgba(251, 191, 36, 0.08)',
+                      color: '#fde68a',
+                      border: '1px solid rgba(251, 191, 36, 0.18)'
+                    }}
+                  >
+                    {service.icon}
+                  </div>
+                </div>
+                <h3
+                  className="text-xl sm:text-2xl font-semibold mb-3"
+                  style={{ color: '#f8fafc' }}
                 >
-                  {feature.title}
+                  {service.title}
                 </h3>
-                <p 
-                  className='text-xs sm:text-sm md:text-base leading-relaxed'
-                  style={{ 
-                    color: isNightMode ? '#cbd5e1' : '#4a4a4a',
-                    lineHeight: '1.5'
-                  }}
+                <p
+                  className="text-sm sm:text-base leading-relaxed mb-4"
+                  style={{ color: '#e2e8f0' }}
                 >
-                  {feature.description}
+                  {service.description}
+                </p>
+                <p
+                  className="text-sm leading-relaxed mt-auto"
+                  style={{ color: '#94a3b8' }}
+                >
+                  {service.note}
                 </p>
               </div>
             </motion.div>

@@ -15,14 +15,14 @@ const AppContent = () => {
       className='min-h-screen transition-colors duration-500' 
       style={{ 
         background: isNightMode 
-          ? 'linear-gradient(to bottom, #0f172a, #1e293b)' 
-          : '#fff9f0' 
+          ? 'radial-gradient(circle at top, #1e1b4b 0%, #0f172a 45%, #020617 100%)'
+          : 'radial-gradient(circle at top, #312e81 0%, #1e293b 35%, #0f172a 100%)'
       }}
     >
       <NightModeToggle />
       <Background isNightMode={isNightMode} />
-      <Feature isNightMode={isNightMode} />
       <Projects isNightMode={isNightMode} />
+      <Feature isNightMode={isNightMode} />
       <Contact isNightMode={isNightMode} />
     </div>
   )

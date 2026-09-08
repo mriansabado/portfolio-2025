@@ -10,24 +10,11 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
       className="py-12 sm:py-16 md:py-24 relative overflow-hidden"
       style={{
         background: isNightMode
-          ? 'linear-gradient(to bottom, #0f172a, #1e293b)'
-          : 'linear-gradient(to bottom, #fef3e2, #fff9f0)'
+          ? 'linear-gradient(to bottom, rgba(2,6,23,0.92), rgba(15,23,42,0.98))'
+          : 'linear-gradient(to bottom, rgba(15,23,42,0.92), rgba(30,27,75,0.98))'
       }}
     >
-      {/* Decorative background elements */}
-      {isNightMode ? (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-indigo-900/10" />
-          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-blue-800/10 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-800/10 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
-        </>
-      ) : (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-200/20 via-yellow-100/15 to-pink-200/20" />
-          <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-orange-300/15 rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-pink-300/15 rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2" />
-        </>
-      )}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.05)_1px,transparent_1px)] bg-[size:58px_58px] opacity-15" />
       
       <motion.div
         initial={{ opacity: 0 }}
@@ -41,22 +28,23 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-center mb-8 sm:mb-12 md:mb-14 max-w-3xl mx-auto px-2"
         >
+          <p
+            className="text-sm font-semibold uppercase tracking-[0.2em] mb-3"
+            style={{ color: '#fcd34d' }}
+          >
+            Let&apos;s connect
+          </p>
           <h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ 
-              color: isNightMode ? '#f1f5f9' : '#1a1a1a',
-              textShadow: isNightMode 
-                ? '2px 2px 4px rgba(0,0,0,0.5)' 
-                : '2px 2px 4px rgba(0,0,0,0.1)'
-            }}
+            style={{ color: '#f8fafc' }}
           >
-            Need a hand? Let&apos;s talk
+            The polished version of “feel free to reach out”
           </h2>
           <p
             className="text-base sm:text-lg leading-relaxed"
-            style={{ color: isNightMode ? '#cbd5e1' : '#4a4a4a' }}
+            style={{ color: '#cbd5e1' }}
           >
-            Send your site or describe what&apos;s going on — I&apos;ll give honest feedback on what to fix first, what can wait, and what it might cost. No pressure. I usually reply within 24 hours.
+            If you&apos;re hiring, building, or just want to swap notes about product work, frontend craft, or shipping side projects, I&apos;d be happy to talk.
           </p>
         </motion.div>
         <div className="max-w-4xl mx-auto">
@@ -64,52 +52,56 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 mb-8 sm:mb-12"
+            className="stack-card p-6 sm:p-8 md:p-12 mb-8 sm:mb-12"
             style={{
-              background: isNightMode ? '#1e293b' : 'white',
-              boxShadow: isNightMode
-                ? '0 12px 32px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2)'
-                : '0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)',
-              border: isNightMode 
-                ? '2px solid rgba(148, 163, 184, 0.2)'
-                : '2px solid rgba(234, 88, 12, 0.2)',
-              transformStyle: 'preserve-3d'
+              background: isNightMode
+                ? 'linear-gradient(180deg, rgba(15,23,42,0.9), rgba(30,41,59,0.72))'
+                : 'linear-gradient(180deg, rgba(30,27,75,0.9), rgba(30,41,59,0.72))'
             }}
             whileHover={{
-              scale: 1.02,
-              rotateY: 2,
-              boxShadow: isNightMode
-                ? '0 20px 48px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3)'
-                : '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)'
+              y: -4
             }}
           >
             <h3 
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-center"
-              style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+              style={{ color: '#f8fafc' }}
             >
-              Contact
+              Reach me directly
             </h3>
             <div className="space-y-4 sm:space-y-6 flex flex-col items-center">
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
+              <motion.div
+                whileHover={{ y: -2 }}
+                className="text-center p-4 sm:p-5 rounded-3xl w-full max-w-2xl"
                 style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
+                }}
+              >
+                <p
+                  className="text-base sm:text-lg md:text-xl font-semibold mb-2"
+                  style={{ color: '#f8fafc' }}
+                >
+                  Open to frontend, mobile, and product-focused roles
+                </p>
+                <p
+                  className="text-sm sm:text-base leading-relaxed"
+                  style={{ color: '#cbd5e1' }}
+                >
+                  Best fit: teams that care about polished UX, practical engineering, and building software with a high level of care.
+                </p>
+              </motion.div>
+              <motion.div 
+                whileHover={{ y: -2 }}
+                className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-2xl w-full sm:w-auto"
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
                 }}
               >
                 <div 
                   className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
                   style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                    background: 'linear-gradient(135deg, #fcd34d 0%, #fb7185 52%, #c4b5fd 100%)'
                   }}
                 >
                   <svg
@@ -127,41 +119,33 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                   </svg>
                 </div>
                 <a 
-                  href="mailto:ian@maunadigital.com" 
+                  href="mailto:mriansabado@gmail.com" 
                   className="text-base sm:text-lg md:text-xl font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                  style={{ color: '#f8fafc' }}
                 >
-                  ian@maunadigital.com
+                  mriansabado@gmail.com
                 </a>
               </motion.div>
               <motion.a
-                href="mailto:ian@maunadigital.com?subject=Free%20website%20check"
-                whileHover={{ scale: 1.02, y: -2 }}
+                href="mailto:mriansabado@gmail.com?subject=Portfolio%20Inquiry"
+                whileHover={{ y: -2 }}
                 className="text-center text-sm sm:text-base font-medium underline underline-offset-4"
-                style={{ color: isNightMode ? '#94a3b8' : '#64748b' }}
+                style={{ color: '#fde68a' }}
               >
-                Free website check — email me your URL
+                Send me a quick email
               </motion.a>
               <motion.div 
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
+                whileHover={{ y: -2 }}
+                className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-2xl w-full sm:w-auto"
                 style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
                 }}
               >
                 <div 
                   className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
                   style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                    background: 'linear-gradient(135deg, #fcd34d 0%, #fb7185 52%, #c4b5fd 100%)'
                   }}
                 >
                   <svg
@@ -181,31 +165,23 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                 <a 
                   href="tel:4159716114" 
                   className="text-base sm:text-lg md:text-xl font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                  style={{ color: '#f8fafc' }}
                 >
                   415-971-6114
                 </a>
               </motion.div>
               <motion.div 
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl w-full sm:w-auto"
+                whileHover={{ y: -2 }}
+                className="flex items-center space-x-3 sm:space-x-4 transition-colors group p-3 sm:p-4 rounded-2xl w-full sm:w-auto"
                 style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
                 }}
               >
                 <div 
                   className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
                   style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                    background: 'linear-gradient(135deg, #fcd34d 0%, #fb7185 52%, #c4b5fd 100%)'
                   }}
                 >
                   <svg
@@ -230,9 +206,9 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                 </div>
                 <span 
                   className="text-base sm:text-lg md:text-xl font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                  style={{ color: '#f8fafc' }}
                 >
-                  San Diego, CA — local or remote
+                  San Diego, CA
                 </span>
               </motion.div>
             </div>
@@ -242,101 +218,38 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12"
+            className="stack-card p-6 sm:p-8 md:p-12"
             style={{
-              background: isNightMode ? '#1e293b' : 'white',
-              boxShadow: isNightMode
-                ? '0 12px 32px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.2)'
-                : '0 12px 32px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.08)',
-              border: isNightMode 
-                ? '2px solid rgba(148, 163, 184, 0.2)'
-                : '2px solid rgba(234, 88, 12, 0.2)',
-              transformStyle: 'preserve-3d'
+              background: isNightMode
+                ? 'linear-gradient(180deg, rgba(15,23,42,0.9), rgba(30,41,59,0.72))'
+                : 'linear-gradient(180deg, rgba(30,27,75,0.9), rgba(30,41,59,0.72))'
             }}
             whileHover={{
-              scale: 1.02,
-              rotateY: 2,
-              boxShadow: isNightMode
-                ? '0 20px 48px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3)'
-                : '0 20px 48px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.15)'
+              y: -4
             }}
           >
             <h3 
               className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 sm:mb-8 text-center"
-              style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+              style={{ color: '#f8fafc' }}
             >
-              Connect
+              Elsewhere on the internet
             </h3>
             <div className="flex flex-wrap gap-3 sm:gap-6 justify-center">
               <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
-                href="https://maunadigital.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
-                style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
-                }}
-              >
-                <div 
-                  className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
-                  style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
-                  }}
-                >
-                  <svg
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                    />
-                  </svg>
-                </div>
-                <span 
-                  className="text-base sm:text-lg font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
-                >
-                  Mauna Digital
-                </span>
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ y: -2 }}
                 href="https://github.com/mriansabado"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
+                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-2xl"
                 style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
                 }}
               >
                 <div 
                   className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
                   style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                    background: 'linear-gradient(135deg, #fcd34d 0%, #fb7185 52%, #c4b5fd 100%)'
                   }}
                 >
                   <svg
@@ -349,34 +262,26 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                 </div>
                 <span 
                   className="text-base sm:text-lg font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                  style={{ color: '#f8fafc' }}
                 >
                   GitHub
                 </span>
               </motion.a>
               <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ y: -2 }}
                 href="https://leetcode.com/u/mriansabado/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
+                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-2xl"
                 style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
                 }}
               >
                 <div 
                   className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
                   style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                    background: 'linear-gradient(135deg, #fcd34d 0%, #fb7185 52%, #c4b5fd 100%)'
                   }}
                 >
                   <svg
@@ -392,34 +297,26 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                 </div>
                 <span 
                   className="text-base sm:text-lg font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                  style={{ color: '#f8fafc' }}
                 >
                   LeetCode
                 </span>
               </motion.a>
               <motion.a
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ y: -2 }}
                 href="https://www.linkedin.com/in/ian-sabado-658828b2/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-lg sm:rounded-xl"
+                className="flex items-center space-x-2 sm:space-x-3 transition-colors group p-3 sm:p-4 rounded-2xl"
                 style={{
-                  background: isNightMode
-                    ? 'linear-gradient(135deg, #334155 0%, #475569 100%)'
-                    : 'linear-gradient(135deg, #fff5e6 0%, #ffe4cc 100%)',
-                  border: isNightMode
-                    ? '1px solid rgba(148, 163, 184, 0.3)'
-                    : '1px solid rgba(234, 88, 12, 0.2)',
-                  boxShadow: isNightMode
-                    ? '0 4px 12px rgba(0,0,0,0.3)'
-                    : '0 4px 12px rgba(234, 88, 12, 0.15)'
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(148, 163, 184, 0.16)'
                 }}
               >
                 <div 
                   className="p-2 sm:p-3 rounded-lg group-hover:scale-110 transition-transform"
                   style={{
-                    background: 'linear-gradient(135deg, #ea580c 0%, #c2410c 100%)',
-                    boxShadow: '0 4px 8px rgba(234, 88, 12, 0.3)'
+                    background: 'linear-gradient(135deg, #fcd34d 0%, #fb7185 52%, #c4b5fd 100%)'
                   }}
                 >
                   <svg
@@ -432,7 +329,7 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                 </div>
                 <span 
                   className="text-base sm:text-lg font-medium"
-                  style={{ color: isNightMode ? '#f1f5f9' : '#1a1a1a' }}
+                  style={{ color: '#f8fafc' }}
                 >
                   LinkedIn
                 </span>
@@ -443,9 +340,9 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
 
         <p
           className="text-center text-xs sm:text-sm mt-10 sm:mt-14"
-          style={{ color: isNightMode ? '#64748b' : '#94a3b8' }}
+          style={{ color: '#94a3b8' }}
         >
-          © {new Date().getFullYear()} Mauna Digital LLC. All rights reserved.
+          © {new Date().getFullYear()} Ian Sabado · San Diego, CA · mriansabado@gmail.com
         </p>
       </motion.div>
     </section>
