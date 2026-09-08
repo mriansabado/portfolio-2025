@@ -1,18 +1,19 @@
 import { Html } from '@react-three/drei';
 import { useFrame, type ThreeEvent } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Color, Group, Mesh, ShaderMaterial } from 'three';
 import type { PlanetDefinition } from '../../data/planets';
 
 interface PlanetProps {
   planet: PlanetDefinition;
   isNearest: boolean;
+  shotPulse: number;
   showLabel: boolean;
   canSelect: boolean;
   onSelect: (id: PlanetDefinition['id']) => void;
 }
 
-const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetProps) => {
+const Planet = ({ planet, isNearest, shotPulse, showLabel, canSelect, onSelect }: PlanetProps) => {
   const glowScale = planet.radius * (isNearest ? 1.8 : 1.45);
   const bodyRef = useRef<Mesh>(null);
   const bodyMaterialRef = useRef<ShaderMaterial>(null);
@@ -28,9 +29,19 @@ const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetPro
   const baseColor = useMemo(() => new Color(planet.color), [planet.color]);
   const accentColor = useMemo(() => new Color(planet.accent), [planet.accent]);
   const darkColor = useMemo(() => new Color(planet.color).offsetHSL(0, -0.08, -0.28), [planet.color]);
+  const shotBaseColor = useMemo(() => new Color(planet.accent).offsetHSL(0.08, 0.18, 0.05), [planet.accent]);
+  const shotAccentColor = useMemo(() => new Color(planet.color).offsetHSL(-0.08, 0.18, 0.18), [planet.color]);
+  const shotEnergyRef = useRef(0);
+
+  useEffect(() => {
+    if (shotPulse > 0) {
+      shotEnergyRef.current = 1;
+    }
+  }, [shotPulse]);
 
   useFrame((state, delta) => {
     const elapsed = state.clock.getElapsedTime();
+    shotEnergyRef.current = Math.max(0, shotEnergyRef.current - delta * 1.6);
 
     if (bodyRef.current) {
       bodyRef.current.rotation.y += delta * 0.18;
@@ -40,6 +51,7 @@ const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetPro
     if (bodyMaterialRef.current) {
       bodyMaterialRef.current.uniforms.uTime.value = elapsed;
       bodyMaterialRef.current.uniforms.uActive.value = isNearest ? 1 : 0;
+      bodyMaterialRef.current.uniforms.uShot.value = shotEnergyRef.current;
     }
 
     if (ringRef.current) {
@@ -91,6 +103,9 @@ const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetPro
             uBase: { value: baseColor },
             uAccent: { value: accentColor },
             uDark: { value: darkColor },
+            uShotBase: { value: shotBaseColor },
+            uShotAccent: { value: shotAccentColor },
+            uShot: { value: 0 },
             uActive: { value: isNearest ? 1 : 0 }
           }}
           vertexShader={`
@@ -109,9 +124,12 @@ const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetPro
           fragmentShader={`
             uniform float uTime;
             uniform float uActive;
+            uniform float uShot;
             uniform vec3 uBase;
             uniform vec3 uAccent;
             uniform vec3 uDark;
+            uniform vec3 uShotBase;
+            uniform vec3 uShotAccent;
 
             varying vec2 vUv;
             varying vec3 vNormal;
@@ -125,9 +143,12 @@ const Planet = ({ planet, isNearest, showLabel, canSelect, onSelect }: PlanetPro
 
               vec3 color = mix(uDark, uBase, 0.55 + 0.25 * sin(vUv.y * 10.0 + uTime * 0.35));
               color = mix(color, uAccent, mixA * 0.45);
+              vec3 shotGradient = mix(uShotBase, uShotAccent, 0.5 + 0.5 * sin((vUv.x * 18.0) - uTime * 2.1));
+              color = mix(color, shotGradient, uShot * 0.72);
 
               float fresnel = pow(1.0 - max(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0)), 0.0), 2.4);
               color += uAccent * fresnel * (0.08 + uActive * 0.12);
+              color += uShotAccent * fresnel * uShot * 0.32;
 
               vec3 lightDir = normalize(vec3(0.35, 0.6, 0.5));
               float lightStrength = 0.45 + max(dot(normalize(vNormal), lightDir), 0.0) * 0.55;

@@ -69,9 +69,6 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
             transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
 
-          <div className="planet-ring h-56 w-56 top-[14%] -left-10 opacity-50" />
-          <div className="planet-ring h-72 w-72 bottom-[10%] right-[2%] opacity-30" />
-
           <div className="container mx-auto px-4 sm:px-6 relative z-10">
             <div className="min-h-screen flex items-center py-24">
               <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(340px,0.8fr)] items-center w-full">

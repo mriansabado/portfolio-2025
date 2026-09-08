@@ -61,6 +61,7 @@ interface DecorDebrisEntity {
   position: Vector3;
   drift: Vector3;
   scale: number;
+  radius: number;
   rotationSeed: number;
   tint: string;
   shape: 'box' | 'panel' | 'capsule';
@@ -112,7 +113,11 @@ const createDecorDebris = (id: string, planetPositions: Record<PlanetId, Vector3
   let attempts = 0;
 
   do {
-    position.set(randomRange(-16.5, 16.5), randomRange(-1.1, 2.4), randomRange(-16.5, 16.5));
+    position.set(
+      randomRange(-16.5, 16.5),
+      randomRange(ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX),
+      randomRange(-16.5, 16.5)
+    );
     attempts += 1;
   } while (
     attempts < 20 &&
@@ -125,8 +130,9 @@ const createDecorDebris = (id: string, planetPositions: Record<PlanetId, Vector3
   return {
     id,
     position,
-    drift: new Vector3(randomRange(-0.12, 0.12), randomRange(-0.015, 0.015), randomRange(-0.1, 0.1)),
+    drift: new Vector3(randomRange(-0.12, 0.12), 0, randomRange(-0.1, 0.1)),
     scale: randomRange(0.28, 0.7),
+    radius: randomRange(0.32, 0.5),
     rotationSeed: Math.random() * Math.PI * 2,
     tint: tints[Math.floor(Math.random() * tints.length)],
     shape: shapes[Math.floor(Math.random() * shapes.length)]
@@ -173,12 +179,17 @@ const SpaceWorld = ({
   const [asteroids, setAsteroids] = useState<AsteroidEntity[]>(() =>
     Array.from({ length: ASTEROID_COUNT }, (_, index) => createAsteroid(`asteroid-${index}`, planetPositions))
   );
-  const decorDebris = useMemo(
-    () => Array.from({ length: DECOR_DEBRIS_COUNT }, (_, index) => createDecorDebris(`decor-${index}`, planetPositions)),
-    [planetPositions]
+  const [debrisTargets, setDebrisTargets] = useState<DecorDebrisEntity[]>(() =>
+    Array.from({ length: DECOR_DEBRIS_COUNT }, (_, index) => createDecorDebris(`decor-${index}`, planetPositions))
   );
   const [bullets, setBullets] = useState<BulletEntity[]>([]);
   const [bursts, setBursts] = useState<HitBurst[]>([]);
+  const [planetShotCounts, setPlanetShotCounts] = useState<Record<PlanetId, number>>({
+    projects: 0,
+    about: 0,
+    resume: 0,
+    contact: 0
+  });
   const palette = useMemo(
     () => ({
       nightBackground: new Color('#020617'),
@@ -292,6 +303,20 @@ const SpaceWorld = ({
         nextPosition.y = MathUtils.clamp(nextPosition.y, ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX);
 
         return { ...asteroid, position: nextPosition };
+      })
+    );
+
+    setDebrisTargets((currentDebris) =>
+      currentDebris.map((debris) => {
+        const nextPosition = debris.position.clone().addScaledVector(debris.drift, delta);
+
+        if (nextPosition.x > ASTEROID_RESPAWN_MARGIN) nextPosition.x = -ASTEROID_RESPAWN_MARGIN;
+        if (nextPosition.x < -ASTEROID_RESPAWN_MARGIN) nextPosition.x = ASTEROID_RESPAWN_MARGIN;
+        if (nextPosition.z > ASTEROID_RESPAWN_MARGIN) nextPosition.z = -ASTEROID_RESPAWN_MARGIN;
+        if (nextPosition.z < -ASTEROID_RESPAWN_MARGIN) nextPosition.z = ASTEROID_RESPAWN_MARGIN;
+        nextPosition.y = MathUtils.clamp(nextPosition.y, ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX);
+
+        return { ...debris, position: nextPosition };
       })
     );
 
@@ -420,7 +445,25 @@ const SpaceWorld = ({
   });
 
   useEffect(() => {
-    if (bullets.length === 0 || asteroids.length === 0) {
+    if (bullets.length === 0) {
+      return;
+    }
+
+    const planetHit = planets.find((planet) =>
+      bullets.some((bullet) => bullet.position.distanceTo(planetPositions[planet.id]) <= planet.radius + 0.12)
+    );
+
+    if (planetHit) {
+      const hitBullet = bullets.find((bullet) => bullet.position.distanceTo(planetPositions[planetHit.id]) <= planetHit.radius + 0.12);
+      if (!hitBullet) {
+        return;
+      }
+
+      setBullets((current) => current.filter((bullet) => bullet.id !== hitBullet.id));
+      setPlanetShotCounts((current) => ({
+        ...current,
+        [planetHit.id]: current[planetHit.id] + 1
+      }));
       return;
     }
 
@@ -428,31 +471,57 @@ const SpaceWorld = ({
       bullets.some((bullet) => bullet.position.distanceTo(asteroid.position) <= asteroid.radius + 0.22)
     );
 
-    if (!asteroidHit) {
+    if (asteroidHit) {
+      const hitBullet = bullets.find((bullet) => bullet.position.distanceTo(asteroidHit.position) <= asteroidHit.radius + 0.22);
+      if (!hitBullet) {
+        return;
+      }
+
+      setBullets((current) => current.filter((bullet) => bullet.id !== hitBullet.id));
+      setAsteroids((current) =>
+        current.map((asteroid) =>
+          asteroid.id === asteroidHit.id ? createAsteroid(asteroid.id, planetPositions) : asteroid
+        )
+      );
+      setBursts((current) => [
+        ...current,
+        {
+          id: `burst-${asteroidHit.id}-${performance.now()}`,
+          position: asteroidHit.position.clone(),
+          text: resumeHitSnippets[Math.floor(Math.random() * resumeHitSnippets.length)],
+          age: 0
+        }
+      ]);
       return;
     }
 
-    const hitBullet = bullets.find((bullet) => bullet.position.distanceTo(asteroidHit.position) <= asteroidHit.radius + 0.22);
+    const debrisHit = debrisTargets.find((debris) =>
+      bullets.some((bullet) => bullet.position.distanceTo(debris.position) <= debris.radius + 0.2)
+    );
+
+    if (!debrisHit) {
+      return;
+    }
+
+    const hitBullet = bullets.find((bullet) => bullet.position.distanceTo(debrisHit.position) <= debrisHit.radius + 0.2);
     if (!hitBullet) {
       return;
     }
 
     setBullets((current) => current.filter((bullet) => bullet.id !== hitBullet.id));
-    setAsteroids((current) =>
-      current.map((asteroid) =>
-        asteroid.id === asteroidHit.id ? createAsteroid(asteroid.id, planetPositions) : asteroid
-      )
+    setDebrisTargets((current) =>
+      current.map((debris) => (debris.id === debrisHit.id ? createDecorDebris(debris.id, planetPositions) : debris))
     );
     setBursts((current) => [
       ...current,
       {
-        id: `burst-${asteroidHit.id}-${performance.now()}`,
-        position: asteroidHit.position.clone(),
+        id: `burst-${debrisHit.id}-${performance.now()}`,
+        position: debrisHit.position.clone(),
         text: resumeHitSnippets[Math.floor(Math.random() * resumeHitSnippets.length)],
         age: 0
       }
     ]);
-  }, [asteroids, bullets, planetPositions]);
+  }, [asteroids, bullets, debrisTargets, planetPositions]);
 
   return (
     <>
@@ -489,13 +558,14 @@ const SpaceWorld = ({
           key={planet.id}
           planet={planet}
           isNearest={nearestPlanetId === planet.id || selectedPlanetId === planet.id}
+          shotPulse={planetShotCounts[planet.id]}
           showLabel={!panelOpen}
           canSelect={cameraInput.canSelect.current}
           onSelect={onPlanetSelect}
         />
       ))}
 
-      {decorDebris.map((debris) => (
+      {debrisTargets.map((debris) => (
         <group
           key={debris.id}
           position={[debris.position.x, debris.position.y, debris.position.z]}
