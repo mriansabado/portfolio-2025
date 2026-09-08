@@ -704,6 +704,21 @@ body,
     padding: 1rem;
     max-height: calc(100vh - 7rem);
   }
+
+  .space-panel-backdrop {
+    padding-top: 5.75rem;
+  }
+
+  .space-panel-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding-right: 0;
+  }
+
+  .space-close-button {
+    position: static;
+    align-self: flex-end;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1180px) and (hover: none), (min-width: 769px) and (max-width: 1180px) and (pointer: coarse) {

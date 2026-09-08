@@ -47,6 +47,10 @@ const BULLET_LIFETIME = 1.2;
 const ASTEROID_RESPAWN_MARGIN = 17;
 const ASTEROID_PLANE_Y_MIN = 0.18;
 const ASTEROID_PLANE_Y_MAX = 0.62;
+const SUN_POSITION = new Vector3(9, 8, -16);
+const SUN_CORE_RADIUS = 10.9;
+const RESET_WARNING_BOUNDARY = PLAY_BOUNDS - 0.9;
+const RESET_WARNING_DURATION = 3;
 
 interface AsteroidEntity {
   id: string;
@@ -170,6 +174,7 @@ const SpaceWorld = ({
   const transitionTargetRef = useRef(themeMixRef.current);
   const transitionProgressRef = useRef(1);
   const lastFireSignalRef = useRef(fireSignal);
+  const boundaryDriftTimeRef = useRef(0);
   const planetPositions = useMemo(
     () =>
       Object.fromEntries(planets.map((planet) => [planet.id, new Vector3(...planet.position)])) as Record<PlanetId, Vector3>,
@@ -190,6 +195,26 @@ const SpaceWorld = ({
     resume: 0,
     contact: 0
   });
+  const triggerShipReset = (text: string) => {
+    setBursts((current) => [
+      ...current,
+      {
+        id: `burst-reset-${performance.now()}`,
+        position: shipPosition.current.clone(),
+        text,
+        age: 0
+      }
+    ]);
+    setBullets([]);
+    boundaryDriftTimeRef.current = 0;
+    shipPosition.current.set(0, 0.35, 0);
+    velocity.current = 0;
+    yaw.current = Math.PI;
+    steer.current = 0;
+    touchLockRef.current = null;
+    setNearestPlanetId(null);
+    onNearestPlanetChange(null);
+  };
   const palette = useMemo(
     () => ({
       nightBackground: new Color('#020617'),
@@ -286,6 +311,24 @@ const SpaceWorld = ({
     shipPosition.current.x = MathUtils.clamp(shipPosition.current.x, -PLAY_BOUNDS, PLAY_BOUNDS);
     shipPosition.current.z = MathUtils.clamp(shipPosition.current.z, -PLAY_BOUNDS, PLAY_BOUNDS);
     shipPosition.current.y = 0.35 + Math.sin(performance.now() * 0.0018) * 0.07;
+
+    if (!introActive && shipPosition.current.distanceTo(SUN_POSITION) <= SUN_CORE_RADIUS) {
+      triggerShipReset('Hull integrity: toasted');
+      return;
+    }
+
+    if (!introActive) {
+      const isNearBoundary =
+        Math.abs(shipPosition.current.x) >= RESET_WARNING_BOUNDARY ||
+        Math.abs(shipPosition.current.z) >= RESET_WARNING_BOUNDARY;
+
+      boundaryDriftTimeRef.current = isNearBoundary ? boundaryDriftTimeRef.current + delta : 0;
+
+      if (boundaryDriftTimeRef.current >= RESET_WARNING_DURATION) {
+        triggerShipReset('Deep space recall engaged');
+        return;
+      }
+    }
 
     if (introActive) {
       velocity.current = MathUtils.lerp(velocity.current, 0, 1 - Math.pow(0.02, delta));
@@ -531,7 +574,7 @@ const SpaceWorld = ({
       <directionalLight ref={directionalLightRef} position={[8, 10, 5]} intensity={1.6} color="#ffffff" />
       <pointLight ref={accentLightRef} position={[0, 6, -6]} intensity={10} distance={36} color="#f59e0b" />
       <pointLight ref={sunLightRef} position={[9, 8, -14]} intensity={0} distance={110} color="#fb923c" />
-      <mesh position={[9, 8, -16]}>
+      <mesh position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]}>
         <sphereGeometry args={[11.5, 56, 56]} />
         <meshStandardMaterial
           ref={sunMaterialRef}
@@ -543,7 +586,7 @@ const SpaceWorld = ({
           opacity={0.02}
         />
       </mesh>
-      <mesh position={[9, 8, -16]} scale={1.95}>
+      <mesh position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]} scale={1.95}>
         <sphereGeometry args={[11.5, 40, 40]} />
         <meshBasicMaterial ref={sunGlowMaterialRef} color="#fdba74" transparent opacity={0.01} />
       </mesh>
