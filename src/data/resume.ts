@@ -1,10 +1,33 @@
 export const resumeHitSnippets = [
+  'WordPress dev',
+  'Vue.js builder',
+  'React + TypeScript',
+  'Python workflows',
   '30+ sites managed',
-  '2 iOS apps shipped',
+  'Headless CMS work',
+  'Django CMS',
+  'AI content tools',
   'AWS certified',
+  'AWS Lambda',
+  'CloudFront + S3',
+  'Firebase builds',
+  'Vercel shipping',
+  'Stripe integrations',
+  'App Store published',
+  '2 iOS apps shipped',
   'React Native',
-  'Founder-mode builder',
-  'AI workflow tools'
+  'Expo apps',
+  'Lottie animations',
+  'watchOS experience',
+  'Automation builder',
+  '60-second tool',
+  'Client-facing dev',
+  'Freelance founder',
+  'SEO + web support',
+  'UI system builder',
+  'Cross-device polish',
+  'Mentoring mindset',
+  'Problem solver'
 ] as const;
 
 export const resumeSummary = {

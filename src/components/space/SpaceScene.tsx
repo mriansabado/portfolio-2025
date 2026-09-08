@@ -41,9 +41,12 @@ const PLAY_BOUNDS = 14;
 const INTERACTION_DISTANCE = 2.9;
 const SHIP_CONTACT_RADIUS = 0.8;
 const ASTEROID_COUNT = 10;
+const DECOR_DEBRIS_COUNT = 18;
 const BULLET_SPEED = 16;
 const BULLET_LIFETIME = 1.2;
 const ASTEROID_RESPAWN_MARGIN = 17;
+const ASTEROID_PLANE_Y_MIN = 0.18;
+const ASTEROID_PLANE_Y_MAX = 0.62;
 
 interface AsteroidEntity {
   id: string;
@@ -51,6 +54,16 @@ interface AsteroidEntity {
   drift: Vector3;
   radius: number;
   rotationSeed: number;
+}
+
+interface DecorDebrisEntity {
+  id: string;
+  position: Vector3;
+  drift: Vector3;
+  scale: number;
+  rotationSeed: number;
+  tint: string;
+  shape: 'box' | 'panel' | 'capsule';
 }
 
 interface BulletEntity {
@@ -74,7 +87,11 @@ const createAsteroid = (id: string, planetPositions: Record<PlanetId, Vector3>) 
   let attempts = 0;
 
   do {
-    position.set(randomRange(-PLAY_BOUNDS, PLAY_BOUNDS), randomRange(-0.15, 1.4), randomRange(-PLAY_BOUNDS, PLAY_BOUNDS));
+    position.set(
+      randomRange(-PLAY_BOUNDS, PLAY_BOUNDS),
+      randomRange(ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX),
+      randomRange(-PLAY_BOUNDS, PLAY_BOUNDS)
+    );
     attempts += 1;
   } while (
     attempts < 20 &&
@@ -87,6 +104,32 @@ const createAsteroid = (id: string, planetPositions: Record<PlanetId, Vector3>) 
     drift: new Vector3(randomRange(-0.3, 0.3), 0, randomRange(-0.28, 0.28)),
     radius: randomRange(0.45, 0.8),
     rotationSeed: Math.random() * Math.PI * 2
+  };
+};
+
+const createDecorDebris = (id: string, planetPositions: Record<PlanetId, Vector3>): DecorDebrisEntity => {
+  const position = new Vector3();
+  let attempts = 0;
+
+  do {
+    position.set(randomRange(-16.5, 16.5), randomRange(-1.1, 2.4), randomRange(-16.5, 16.5));
+    attempts += 1;
+  } while (
+    attempts < 20 &&
+    (position.length() < 4.8 || Object.values(planetPositions).some((planetPosition) => position.distanceTo(planetPosition) < 3.2))
+  );
+
+  const shapes: DecorDebrisEntity['shape'][] = ['box', 'panel', 'capsule'];
+  const tints = ['#94a3b8', '#64748b', '#cbd5e1', '#fda4af'];
+
+  return {
+    id,
+    position,
+    drift: new Vector3(randomRange(-0.12, 0.12), randomRange(-0.015, 0.015), randomRange(-0.1, 0.1)),
+    scale: randomRange(0.28, 0.7),
+    rotationSeed: Math.random() * Math.PI * 2,
+    tint: tints[Math.floor(Math.random() * tints.length)],
+    shape: shapes[Math.floor(Math.random() * shapes.length)]
   };
 };
 
@@ -129,6 +172,10 @@ const SpaceWorld = ({
   const [nearestPlanetId, setNearestPlanetId] = useState<PlanetId | null>(null);
   const [asteroids, setAsteroids] = useState<AsteroidEntity[]>(() =>
     Array.from({ length: ASTEROID_COUNT }, (_, index) => createAsteroid(`asteroid-${index}`, planetPositions))
+  );
+  const decorDebris = useMemo(
+    () => Array.from({ length: DECOR_DEBRIS_COUNT }, (_, index) => createDecorDebris(`decor-${index}`, planetPositions)),
+    [planetPositions]
   );
   const [bullets, setBullets] = useState<BulletEntity[]>([]);
   const [bursts, setBursts] = useState<HitBurst[]>([]);
@@ -242,6 +289,7 @@ const SpaceWorld = ({
         if (nextPosition.x < -ASTEROID_RESPAWN_MARGIN) nextPosition.x = ASTEROID_RESPAWN_MARGIN;
         if (nextPosition.z > ASTEROID_RESPAWN_MARGIN) nextPosition.z = -ASTEROID_RESPAWN_MARGIN;
         if (nextPosition.z < -ASTEROID_RESPAWN_MARGIN) nextPosition.z = ASTEROID_RESPAWN_MARGIN;
+        nextPosition.y = MathUtils.clamp(nextPosition.y, ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX);
 
         return { ...asteroid, position: nextPosition };
       })
@@ -434,6 +482,7 @@ const SpaceWorld = ({
       <Stars radius={140} depth={55} count={8500} factor={4.8} fade speed={0.8} />
       <Sparkles count={160} speed={0.24} opacity={0.75} color="#eef2ff" scale={[34, 12, 34]} size={2.3} />
       <Sparkles count={70} speed={0.18} opacity={0.28} color="#fca5a5" scale={[30, 8, 30]} size={3.6} />
+      <Sparkles count={120} speed={0.12} opacity={0.18} color="#fde68a" scale={[40, 14, 40]} size={1.65} />
 
       {planets.map((planet) => (
         <Planet
@@ -444,6 +493,33 @@ const SpaceWorld = ({
           canSelect={cameraInput.canSelect.current}
           onSelect={onPlanetSelect}
         />
+      ))}
+
+      {decorDebris.map((debris) => (
+        <group
+          key={debris.id}
+          position={[debris.position.x, debris.position.y, debris.position.z]}
+          rotation={[debris.rotationSeed * 0.5, debris.rotationSeed, debris.rotationSeed * 0.35]}
+        >
+          {debris.shape === 'box' ? (
+            <mesh scale={[debris.scale * 1.5, debris.scale * 0.5, debris.scale * 0.7]}>
+              <boxGeometry args={[1, 1, 1]} />
+              <meshStandardMaterial color={debris.tint} roughness={0.88} metalness={0.32} transparent opacity={0.45} />
+            </mesh>
+          ) : null}
+          {debris.shape === 'panel' ? (
+            <mesh scale={[debris.scale * 1.8, debris.scale * 0.16, debris.scale]}>
+              <boxGeometry args={[1, 1, 1]} />
+              <meshStandardMaterial color={debris.tint} roughness={0.92} metalness={0.18} transparent opacity={0.36} />
+            </mesh>
+          ) : null}
+          {debris.shape === 'capsule' ? (
+            <mesh scale={[debris.scale, debris.scale, debris.scale]}>
+              <capsuleGeometry args={[0.18, 0.52, 4, 10]} />
+              <meshStandardMaterial color={debris.tint} roughness={0.82} metalness={0.24} transparent opacity={0.42} />
+            </mesh>
+          ) : null}
+        </group>
       ))}
 
       {asteroids.map((asteroid) => (

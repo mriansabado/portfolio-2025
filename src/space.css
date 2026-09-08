@@ -501,22 +501,32 @@ body,
 }
 
 @media (max-width: 768px) {
+  .space-experience-shell {
+    --space-mobile-edge-gap: 0.8rem;
+    --space-mobile-bottom-gap: 1rem;
+    --space-mobile-control-size: 2.8rem;
+    --space-mobile-control-grid-width: calc((var(--space-mobile-control-size) * 3) + 0.7rem);
+    --space-mobile-fire-size: 3.5rem;
+    --space-mobile-chip-width: 6.8rem;
+  }
+
   .space-hud {
     padding-top: 5.75rem;
   }
 
   .space-mobile-controls {
     display: grid;
-    right: 0.75rem;
+    right: var(--space-mobile-edge-gap);
     left: auto;
     transform: none;
-    bottom: 0.75rem;
+    bottom: var(--space-mobile-bottom-gap);
+    padding: 0.45rem;
   }
 
   .space-mobile-fire-wrap {
     position: absolute;
     left: 50%;
-    bottom: 1.1rem;
+    bottom: var(--space-mobile-bottom-gap);
     transform: translateX(-50%);
     z-index: 55;
     display: grid;
@@ -524,11 +534,23 @@ body,
   }
 
   .space-fire-button {
-    width: 4.25rem;
-    height: 4.25rem;
+    width: var(--space-mobile-fire-size);
+    height: var(--space-mobile-fire-size);
     border-radius: 9999px;
     background: rgba(124, 45, 18, 0.86);
     border-color: rgba(251, 146, 60, 0.55);
+  }
+
+  .space-touch-button,
+  .space-mobile-dpad-empty,
+  .space-mobile-dpad-center {
+    width: var(--space-mobile-control-size);
+    height: var(--space-mobile-control-size);
+  }
+
+  .space-mobile-dpad {
+    grid-template-columns: repeat(3, var(--space-mobile-control-size));
+    gap: 0.35rem;
   }
 
   .space-hud-actions,
@@ -556,18 +578,21 @@ body,
 
   .space-planet-strip {
     position: absolute;
-    left: 0.75rem;
+    left: var(--space-mobile-edge-gap);
     right: auto;
-    bottom: 0.9rem;
+    bottom: var(--space-mobile-bottom-gap);
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
+    width: var(--space-mobile-chip-width);
   }
 
   .space-planet-chip {
     justify-content: center;
-    min-width: 8.25rem;
-    padding: 0.75rem 0.9rem;
+    min-width: 0;
+    width: 100%;
+    padding: 0.68rem 0.72rem;
+    font-size: 0.84rem;
   }
 
   .space-panel-shell {
