@@ -29,20 +29,20 @@ export interface ContactLink {
 export const projects: ProjectEntry[] = [
   {
     title: 'Tasqly',
-    type: 'iOS App',
+    type: 'Apple App',
     description:
-      'A planner-first workspace for freelancers, tutors, creatives, and other independent workers who want their schedule, client notes, and invoice-ready summaries in one calm place.',
-    technologies: ['React Native', 'Expo', 'iOS', 'iPadOS', 'macOS', 'iCloud'],
+      'A planner-first workspace for freelancers, tutors, creatives, and other independent workers, built in Swift for the Apple ecosystem with iPhone, iPad, and desktop support, secure iCloud storage, and cloud sync across devices with no ads or subscriptions.',
+    technologies: ['Swift', 'iOS', 'iPadOS', 'macOS', 'iCloud'],
     liveUrl: 'https://apps.apple.com/us/app/tasqly/id6761040872',
     ctaLabel: 'View Tasqly',
     status: 'Live on the App Store'
   },
   {
     title: 'PocketSay',
-    type: 'iOS App',
+    type: 'Mobile App',
     description:
-      'A simple communication app for those moments when being seen matters more than being heard. Large text, fast controls, offline use, and live on the App Store.',
-    technologies: ['React Native', 'Lottie', 'iOS', 'App Store'],
+      'A simple communication app for those moments when being seen matters more than being heard, built with React Native and Expo to work across Android and Apple devices.',
+    technologies: ['React Native', 'Expo', 'iOS', 'Android'],
     liveUrl: 'https://pocket-say-support.vercel.app/',
     ctaLabel: 'Download PocketSay',
     status: 'Live on the App Store'
@@ -51,7 +51,7 @@ export const projects: ProjectEntry[] = [
     title: 'Postachio',
     type: 'Web App',
     description:
-      'A content-writing product built to make publishing easier when the blank page is the bottleneck, with a stronger focus on speed, consistency, and usable output.',
+      'A web app that helps optimize text, ideas, and promotions for stronger social media performance and better SEO.',
     technologies: ['React', 'Vercel', 'Firebase', 'AI'],
     liveUrl: 'https://postachio.app/',
     ctaLabel: 'Try Postachio',
