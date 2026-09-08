@@ -100,6 +100,15 @@ body,
   flex-wrap: wrap;
 }
 
+.space-hud-actions,
+.space-return-bar {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 45;
+  border-radius: 9999px;
+}
+
 .space-ghost-button,
 .space-planet-chip,
 .space-close-button,
@@ -440,10 +449,6 @@ body,
 }
 
 .space-return-bar {
-  position: fixed;
-  top: 5.75rem;
-  left: 1rem;
-  z-index: 45;
   border-radius: 9999px;
   padding: 0.35rem;
 }
@@ -459,6 +464,12 @@ body,
     left: auto;
     transform: none;
     bottom: 0.75rem;
+  }
+
+  .space-hud-actions,
+  .space-return-bar {
+    top: 1rem;
+    left: 1rem;
   }
 
   .space-hud-top,
@@ -498,6 +509,12 @@ body,
     right: 1rem;
     left: auto;
     transform: none;
+  }
+
+  .space-hud-actions,
+  .space-return-bar {
+    top: 1.15rem;
+    left: 1rem;
   }
 
   .space-status-card {

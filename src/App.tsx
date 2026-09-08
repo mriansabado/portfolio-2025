@@ -26,7 +26,7 @@ const AppContent = () => {
         transitionDuration: '2000ms',
         background: isNightMode
           ? 'radial-gradient(circle at top, #1e1b4b 0%, #0f172a 45%, #020617 100%)'
-          : 'radial-gradient(circle at top, #312e81 0%, #1e293b 35%, #0f172a 100%)'
+          : 'radial-gradient(circle at top, #f59e0b 0%, #7dd3fc 28%, #1d4ed8 62%, #0f172a 100%)'
       }}
     >
       <NightModeToggle />

@@ -9,7 +9,11 @@ interface BackgroundProps {
 const Background = ({ isNightMode = false }: BackgroundProps) => {
   const pageBackground = isNightMode
     ? 'linear-gradient(180deg, #111827 0%, #0f172a 58%, #1f2937 100%)'
-    : 'linear-gradient(180deg, #4338ca 0%, #312e81 30%, #0f172a 100%)'
+    : 'linear-gradient(180deg, #7dd3fc 0%, #fef3c7 20%, #f59e0b 42%, #312e81 100%)'
+
+  const heroOverlay = isNightMode
+    ? 'radial-gradient(circle at 14% 16%, rgba(251,191,36,0.18), transparent 24%), radial-gradient(circle at 78% 22%, rgba(251,146,60,0.12), transparent 18%), radial-gradient(circle at 72% 76%, rgba(244,114,182,0.12), transparent 22%), linear-gradient(to bottom, rgba(15,23,42,0.3), rgba(15,23,42,0.72))'
+    : 'radial-gradient(circle at 16% 18%, rgba(251,191,36,0.28), transparent 24%), radial-gradient(circle at 82% 20%, rgba(251,146,60,0.2), transparent 18%), radial-gradient(circle at 70% 74%, rgba(125,211,252,0.18), transparent 24%), linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(15,23,42,0.48))'
 
   const badges = [
     'React',
@@ -31,10 +35,17 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
             right: '50%',
             marginLeft: '-50vw',
             marginRight: '-50vw',
-            background: pageBackground
+            background: pageBackground,
+            transition: 'background 2000ms ease'
           }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_16%,_rgba(251,191,36,0.18),_transparent_24%),radial-gradient(circle_at_78%_22%,_rgba(251,146,60,0.12),_transparent_18%),radial-gradient(circle_at_72%_76%,_rgba(244,114,182,0.12),_transparent_22%),linear-gradient(to_bottom,_rgba(15,23,42,0.3),_rgba(15,23,42,0.72))]" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: heroOverlay,
+              transition: 'background 2000ms ease'
+            }}
+          />
           <div className="galaxy-grid" />
           <div className="hero-noise" />
 
