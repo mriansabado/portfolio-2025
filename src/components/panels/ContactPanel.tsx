@@ -19,8 +19,8 @@ const ContactPanel = ({ isNightMode }: ContactPanelProps) => {
         animate={{ opacity: 1, x: 0 }}
       >
         <p className="space-panel-eyebrow">Reach me directly</p>
-        <h3>Open to frontend, mobile, and product-focused roles</h3>
-        <p>Best fit: teams that care about polished UX, practical engineering, and building software with a high level of care.</p>
+        <h3>Aloha, and thanks for stopping by</h3>
+        <p>Best fit: teams that care about polished UX, practical engineering, and building software with a high level of care and a human touch.</p>
         <div className="space-contact-list">
           <a href={`mailto:${contactSummary.email}`}>{contactSummary.email}</a>
           <a href={`tel:${contactSummary.phone.replace(/-/g, '')}`}>{contactSummary.phone}</a>

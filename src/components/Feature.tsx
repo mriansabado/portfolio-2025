@@ -1,58 +1,9 @@
-import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { FaAws, FaPenNib, FaReact } from 'react-icons/fa';
-import { MdOutlinePhoneIphone } from 'react-icons/md';
-import { RiSparkling2Line } from 'react-icons/ri';
+import { strengths } from '../data/content';
 
 interface FeatureProps {
   isNightMode?: boolean;
 }
-
-interface Strength {
-  title: string;
-  eyebrow: string;
-  description: string;
-  note: string;
-  icon: ReactNode;
-}
-
-const strengths: Strength[] = [
-  {
-    title: 'Frontend craft',
-    eyebrow: 'Production UI',
-    description: 'I like interfaces that feel crisp, readable, and confidently put together across real screen sizes, not just Dribbble-sized ones.',
-    note: 'React, Vue, CMS work, reusable components, and the unglamorous cleanup work that makes a product feel stable.',
-    icon: <FaReact className="h-5 w-5" />
-  },
-  {
-    title: 'Mobile product instinct',
-    eyebrow: 'React Native + iOS',
-    description: 'I enjoy the constraint of small screens. It forces better hierarchy, clearer UX decisions, and fewer lazy interface choices.',
-    note: 'PocketSay is live today, and Tasqly leans into workflow design for people juggling clients, sessions, and admin work.',
-    icon: <MdOutlinePhoneIphone className="h-5 w-5" />
-  },
-  {
-    title: 'Automation with taste',
-    eyebrow: 'Useful > flashy',
-    description: 'I care about tools that save people time while still feeling clear, helpful, and easy to use.',
-    note: 'The good version of automation is boring in the best way: fewer repetitive steps, clearer output, and less friction for the team.',
-    icon: <RiSparkling2Line className="h-5 w-5" />
-  },
-  {
-    title: 'Shipping mindset',
-    eyebrow: 'Get it live',
-    description: 'I’m comfortable following the work past the UI layer into deployment, content systems, production issues, and the last-mile details.',
-    note: 'AWS, Firebase, Vercel, app submission, and the “someone has to own this” parts of product work.',
-    icon: <FaAws className="h-5 w-5" />
-  },
-  {
-    title: 'Taste and storytelling',
-    eyebrow: 'Design-aware',
-    description: 'I pay attention to spacing, language, motion, and visual rhythm because users notice when a product feels assembled versus designed.',
-    note: 'Good frontend is part engineering, part editing. The details either support the idea or quietly fight it.',
-    icon: <FaPenNib className="h-5 w-5" />
-  }
-];
 
 const Feature = ({ isNightMode = false }: FeatureProps) => {
   return (
@@ -90,7 +41,7 @@ const Feature = ({ isNightMode = false }: FeatureProps) => {
             className="text-sm sm:text-base md:text-lg mb-4 leading-relaxed"
             style={{ color: '#e2e8f0' }}
           >
-            I do my best work where product thinking and frontend craft overlap: shaping the interaction, building it cleanly, and making sure the final result is smooth to use.
+            I do my best work where product thinking and frontend craft overlap: shaping the interaction, building it cleanly, and making sure the final result feels smooth, warm, and easy to trust.
           </p>
           <p
             className="text-sm sm:text-base md:text-lg mb-6 leading-relaxed font-medium"

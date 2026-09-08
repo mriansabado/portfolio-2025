@@ -165,9 +165,9 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
         <div className="space-hud-top">
           {showWelcomeCard ? (
             <div className="space-welcome-card">
-              <p>Welcome aboard</p>
+              <p>Aloha aboard</p>
               <strong>Explore Ian&apos;s portfolio in flight mode</strong>
-              <span>Fly around to different planets to explore the site, or click classic view to see the normal website layout.</span>
+              <span>Fly around to explore the site, or jump to classic view if you&apos;d rather browse the warm and grounded version.</span>
             </div>
           ) : null}
           <div className="space-status-card">

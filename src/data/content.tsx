@@ -31,11 +31,11 @@ export const projects: ProjectEntry[] = [
     title: 'Tasqly',
     type: 'iOS App',
     description:
-      'A planner-first app for freelancers and service pros who need their calendar, notes, client context, and invoicing details in one calm place.',
-    technologies: ['Expo', 'React Native', 'iOS', 'iPad'],
-    liveUrl: '#',
-    ctaLabel: 'In Development',
-    status: 'Currently building'
+      'A planner-first workspace for freelancers, tutors, creatives, and other independent workers who want their schedule, client notes, and invoice-ready summaries in one calm place.',
+    technologies: ['React Native', 'Expo', 'iOS', 'iPadOS', 'macOS', 'iCloud'],
+    liveUrl: 'https://apps.apple.com/us/app/tasqly/id6761040872',
+    ctaLabel: 'View Tasqly',
+    status: 'Live on the App Store'
   },
   {
     title: 'PocketSay',
@@ -64,16 +64,16 @@ export const strengths: StrengthEntry[] = [
     title: 'Frontend craft',
     eyebrow: 'Production UI',
     description:
-      'I like interfaces that feel crisp, readable, and confidently put together across real screen sizes, not just Dribbble-sized ones.',
-    note: 'React, Vue, CMS work, reusable components, and the cleanup work that makes a product feel stable.',
+      'I like interfaces that feel crisp, readable, and welcoming across real devices, not just perfect screenshots.',
+    note: 'React, Vue, reusable component systems, CMS work, and the cleanup passes that make a product feel steady.',
     icon: <FaReact className="h-5 w-5" />
   },
   {
     title: 'Mobile product instinct',
     eyebrow: 'React Native + iOS',
     description:
-      'I enjoy the constraint of small screens. It forces better hierarchy, clearer UX decisions, and fewer lazy interface choices.',
-    note: 'PocketSay is live today, and Tasqly leans into workflow design for people juggling clients, sessions, and admin work.',
+      'I enjoy the constraint of small screens because it pushes better hierarchy, clearer UX choices, and less fluff.',
+    note: 'PocketSay and Tasqly both come from that mindset: practical mobile tools that try to feel friendly the second you open them.',
     icon: <MdOutlinePhoneIphone className="h-5 w-5" />
   },
   {
@@ -89,7 +89,7 @@ export const strengths: StrengthEntry[] = [
     eyebrow: 'Get it live',
     description:
       'I am comfortable following the work past the UI layer into deployment, content systems, production issues, and last-mile details.',
-    note: 'AWS, Firebase, Vercel, app submission, and the “someone has to own this” parts of product work.',
+    note: 'AWS, Vercel, Firebase, app submission, and the "someone has to own this" parts of product work.',
     icon: <FaAws className="h-5 w-5" />
   },
   {
@@ -106,6 +106,15 @@ export const contactSummary = {
   email: 'mriansabado@gmail.com',
   phone: '415-971-6114',
   location: 'San Diego, CA'
+};
+
+export const personalSummary = {
+  greeting: 'Aloha, I’m Ian.',
+  locationLine: 'Born and raised in Hawaii, now building from San Diego.',
+  intro:
+    'I am a frontend developer building warm, polished web and mobile products with strong React, Vue, React Native, and product UI experience.',
+  voiceLine:
+    'The goal is simple: make useful software feel clear, human, and thoughtfully put together.'
 };
 
 export const socialLinks: ContactLink[] = [

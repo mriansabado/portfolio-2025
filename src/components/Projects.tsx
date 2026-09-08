@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
+import type { ReactElement } from 'react';
 import postachio from '../assets/postachio.png';
 import pocketsay from '../assets/pocketsay.png';
+import { FaAws, FaReact } from 'react-icons/fa';
+import { SiExpo, SiVercel, SiVuedotjs } from 'react-icons/si';
+import { projects as sharedProjects } from '../data/content';
 
 interface ProjectsProps {
   isNightMode?: boolean;
@@ -17,35 +21,21 @@ interface Project {
   placeholderTint?: string;
 }
 
-const projects: Project[] = [
-  {
-    title: 'Tasqly',
-    type: 'iOS App',
-    description: 'A planner-first app for freelancers and service pros who need their calendar, notes, client context, and invoicing details in one calm place.',
-    technologies: ['Expo', 'React Native', 'iOS', 'iPad'],
-    liveUrl: '#',
-    ctaLabel: 'In Development',
-    placeholderTint: '#0f766e'
-  },
-  {
-    title: 'PocketSay',
-    type: 'iOS App',
-    description: 'A simple communication app for those moments when being seen matters more than being heard. Large text, fast controls, offline use, and live on the App Store.',
-    technologies: ['React Native', 'Lottie', 'iOS', 'App Store'],
-    imageUrl: pocketsay,
-    liveUrl: 'https://pocket-say-support.vercel.app/',
-    ctaLabel: 'Download PocketSay'
-  },
-  {
-    title: 'Postachio',
-    type: 'Web App',
-    description: 'A content-writing product built to make publishing easier when the blank page is the bottleneck, with a stronger focus on speed, consistency, and usable output.',
-    technologies: ['React', 'TypeScript', 'Firebase', 'AI'],
-    imageUrl: postachio,
-    liveUrl: 'https://postachio.app/',
-    ctaLabel: 'Try Postachio'
-  }
-];
+const projects: Project[] = sharedProjects.map((project) => ({
+  ...project,
+  imageUrl:
+    project.title === 'PocketSay' ? pocketsay : project.title === 'Postachio' ? postachio : undefined,
+  placeholderTint: project.title === 'Tasqly' ? '#0f766e' : undefined
+}));
+
+const techIconMap: Record<string, ReactElement> = {
+  React: <FaReact className="h-4 w-4" />,
+  Vue: <SiVuedotjs className="h-4 w-4" />,
+  AWS: <FaAws className="h-4 w-4" />,
+  Vercel: <SiVercel className="h-4 w-4" />,
+  'React Native': <FaReact className="h-4 w-4" />,
+  Expo: <SiExpo className="h-4 w-4" />
+};
 
 const Projects = ({ isNightMode = false }: ProjectsProps) => {
   const containerVariants = {
@@ -117,7 +107,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          A mix of mobile and web products shaped by real constraints, real users, and plenty of iteration along the way.
+          A mix of mobile and web products shaped by real users, real constraints, and a steady preference for software that feels useful and approachable.
         </motion.p>
         
         <motion.div 
@@ -183,7 +173,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                 <div className='flex items-start justify-between gap-3 mb-3'>
                   <div>
                     <p className='text-xs uppercase tracking-[0.16em] mb-2' style={{ color: '#94a3b8' }}>
-                      {index === 0 ? 'Currently building' : index === 1 ? 'Live on the App Store' : 'Built from the product side'}
+                      {index === 0 ? 'Built for independent workers' : index === 1 ? 'Live on the App Store' : 'Built from the product side'}
                     </p>
                     <h3 className='text-xl sm:text-2xl font-bold' style={{ color: '#f8fafc' }}>{project.title}</h3>
                   </div>
@@ -204,7 +194,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                   {project.technologies.map((tech, techIndex) => (
                     <motion.span 
                       key={techIndex}
-                      className='px-3 py-1 rounded-full text-xs sm:text-sm font-medium'
+                      className='px-3 py-1 rounded-full text-xs sm:text-sm font-medium inline-flex items-center gap-2'
                       style={{
                         background: 'rgba(15, 23, 42, 0.45)',
                         color: '#cbd5e1',
@@ -217,6 +207,7 @@ const Projects = ({ isNightMode = false }: ProjectsProps) => {
                         scale: 1.05
                       }}
                     >
+                      {techIconMap[tech] ?? null}
                       {tech}
                     </motion.span>
                   ))}

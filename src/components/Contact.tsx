@@ -38,13 +38,13 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
             style={{ color: '#f8fafc' }}
           >
-            The polished version of “feel free to reach out”
+            Aloha, let&apos;s talk story
           </h2>
           <p
             className="text-base sm:text-lg leading-relaxed"
             style={{ color: '#cbd5e1' }}
           >
-            If you&apos;re hiring, building, or just want to swap notes about product work, frontend craft, or shipping side projects, I&apos;d be happy to talk.
+            If you&apos;re hiring, building, or just want to swap notes about product work, frontend craft, or side projects, I&apos;d be happy to connect from sunny San Diego.
           </p>
         </motion.div>
         <div className="max-w-4xl mx-auto">
@@ -87,7 +87,7 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
                   className="text-sm sm:text-base leading-relaxed"
                   style={{ color: '#cbd5e1' }}
                 >
-                  Best fit: teams that care about polished UX, practical engineering, and building software with a high level of care.
+                  Best fit: teams that care about polished UX, practical engineering, and building software with a high level of care and a neighborly vibe.
                 </p>
               </motion.div>
               <motion.div 
@@ -342,7 +342,7 @@ const Contact = ({ isNightMode = false }: ContactProps) => {
           className="text-center text-xs sm:text-sm mt-10 sm:mt-14"
           style={{ color: '#94a3b8' }}
         >
-          © {new Date().getFullYear()} Ian Sabado · San Diego, CA · mriansabado@gmail.com
+          © {new Date().getFullYear()} Ian Sabado · Hawaii roots, San Diego home base · mriansabado@gmail.com
         </p>
       </motion.div>
     </section>

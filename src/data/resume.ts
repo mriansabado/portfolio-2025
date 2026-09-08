@@ -1,4 +1,5 @@
 export const resumeHitSnippets = [
+  'Aloha-friendly builder',
   'WordPress dev',
   'Vue.js builder',
   'React + TypeScript',
@@ -33,11 +34,11 @@ export const resumeHitSnippets = [
 export const resumeSummary = {
   headline: 'Frontend-focused developer with product instincts and 4+ years of professional experience.',
   intro:
-    'I build polished interfaces, mobile apps, and practical internal tools, and I like carrying the work all the way from idea to production.',
+    'I build polished interfaces, mobile apps, and practical internal tools, and I like carrying the work all the way from idea to production with a warm, reliable style.',
   highlights: [
     {
       label: 'What I build',
-      value: 'React, TypeScript, React Native, Vue, CMS-driven sites, and product UI'
+      value: 'React, Vue, TypeScript, React Native, CMS-driven sites, and product UI'
     },
     {
       label: 'Shipped work',
@@ -49,7 +50,7 @@ export const resumeSummary = {
     },
     {
       label: 'Infra comfort',
-      value: 'AWS Lambda, S3, CloudFront, Amplify, Firebase, Vercel, CI/CD'
+      value: 'AWS Lambda, S3, CloudFront, Amplify, Vercel, Firebase, and CI/CD'
     },
     {
       label: 'How I work',
@@ -61,3 +62,19 @@ export const resumeSummary = {
     }
   ]
 } as const;
+
+export const resumeQuickFacts = [
+  'Open to frontend, product-focused, and contract work',
+  'Strongest in React, Vue, TypeScript, and React Native',
+  'Shipped App Store products and 30+ production sites',
+  'Comfortable owning UI, delivery, and production polish'
+] as const;
+
+export const resumeFocusAreas = [
+  'Frontend engineering with React, Vue, TypeScript, and design-aware UI work',
+  'Mobile product development with React Native, App Store shipping, and cross-device polish',
+  'Cloud and delivery experience across AWS, Vercel, Firebase, CI/CD, and production support',
+  'Product-minded collaboration with clients, teams, and founders from discovery to launch'
+] as const;
+
+export const resumeRequestHref = 'mailto:mriansabado@gmail.com?subject=Resume%20Request';

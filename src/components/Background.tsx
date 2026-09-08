@@ -1,6 +1,9 @@
 import '../Background.css'
 import { motion } from 'framer-motion'
 import { FaArrowRight } from "react-icons/fa";
+import profilePhoto from '../assets/profile-photo.jpg';
+import { personalSummary } from '../data/content';
+import { resumeQuickFacts } from '../data/resume';
 
 interface BackgroundProps {
   isNightMode?: boolean;
@@ -18,8 +21,9 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
   const badges = [
     'React',
     'Vue',
-    'Swift',
-    'Mobile development'
+    'AWS',
+    'Vercel',
+    'React Native'
   ]
 
   return (
@@ -84,7 +88,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.08, duration: 0.5 }}
                   >
-                    San Diego based • Frontend and mobile developer
+                    {personalSummary.locationLine}
                   </motion.p>
                   <motion.h1
                     className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.2rem] font-black tracking-[-0.06em] leading-[0.94] mb-6"
@@ -93,8 +97,8 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                     transition={{ delay: 0.15, duration: 0.7 }}
                     style={{ color: '#f8fafc' }}
                   >
-                    I build products
-                    <span className="block glow-text">with care and follow-through.</span>
+                    {personalSummary.greeting}
+                    <span className="block glow-text">I build products with care and follow-through.</span>
                   </motion.h1>
                   <motion.p
                     className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mb-8"
@@ -103,8 +107,23 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25, duration: 0.65 }}
                   >
-                    I’m Ian, a frontend-focused builder who likes clean interaction design, thoughtful motion, and shipping software people enjoy using, from internal tools to App Store releases.
+                    {personalSummary.intro}
                   </motion.p>
+                  <div className="grid gap-3 sm:grid-cols-2 max-w-3xl mb-8">
+                    {resumeQuickFacts.map((fact) => (
+                      <div
+                        key={fact}
+                        className="rounded-2xl border px-4 py-3 text-sm font-medium"
+                        style={{
+                          borderColor: 'rgba(148, 163, 184, 0.16)',
+                          background: 'rgba(15, 23, 42, 0.34)',
+                          color: '#e2e8f0'
+                        }}
+                      >
+                        {fact}
+                      </div>
+                    ))}
+                  </div>
                   <motion.p
                     className="text-sm sm:text-base font-medium tracking-[0.14em] uppercase mb-8"
                     style={{ color: '#94a3b8' }}
@@ -112,7 +131,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.29, duration: 0.6 }}
                   >
-                    React • Vue • Swift • Mobile development
+                    React • Vue • AWS • Vercel • React Native
                   </motion.p>
                   <motion.div
                     className="flex flex-wrap gap-3 mb-8"
@@ -165,7 +184,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                       whileHover={{ scale: 1.03, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      See what I&apos;ve shipped
+                      See shipped work
                     </motion.a>
                   </motion.div>
                 </motion.div>
@@ -177,14 +196,28 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                   transition={{ delay: 0.22, duration: 0.75 }}
                 >
                   <div className="relative z-10">
+                    <div className="hero-profile-wrap">
+                      <div className="hero-profile-photo-ring">
+                        <img src={profilePhoto} alt="Ian Sabado" className="hero-profile-photo" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] mb-1" style={{ color: '#fcd34d' }}>
+                          Friendly, detail-focused builder
+                        </p>
+                        <p className="text-sm leading-relaxed" style={{ color: '#cbd5e1' }}>
+                          Hawaii roots, San Diego home base, and a frontend skill set built for teams that care about product quality.
+                        </p>
+                      </div>
+                    </div>
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: '#fcd34d' }}>
                       A few quick receipts
                     </p>
                     <div className="space-y-4">
                       {[
                         ['4+ years', 'Shipping production UI across agency, product, and founder-mode work.'],
-                        ['2 iOS apps', 'Built with React Native, including an App Store release that is live today.'],
-                        ['30+ sites', 'Maintained and improved large site portfolios without letting the details get sloppy.']
+                        ['2 iOS apps', 'Built with React Native, including App Store releases and cross-device product thinking.'],
+                        ['30+ sites', 'Maintained and improved large site portfolios without letting the details get sloppy.'],
+                        ['Open to work', 'Frontend roles, freelance builds, and contract work where polish and follow-through matter.']
                       ].map(([label, copy]) => (
                         <div
                           key={label}
@@ -200,7 +233,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                       ))}
                     </div>
                     <p className="mt-6 text-sm leading-relaxed" style={{ color: '#94a3b8' }}>
-                      I care about the last 10 percent. The spacing, the motion, the responsiveness, the tiny moments that make software feel considered.
+                      {personalSummary.voiceLine}
                     </p>
                   </div>
                 </motion.aside>
@@ -242,7 +275,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                 className="text-center text-lg md:text-2xl leading-relaxed"
                 style={{ color: '#e2e8f0' }}
               >
-                I like making software feel clear, polished, and a little memorable. That has meant shipping frontend work for large content platforms, building tools that save teams real time, and making my own products on nights and weekends because I genuinely enjoy the craft.
+                I like making software feel clear, polished, and a little memorable. That has meant shipping frontend work for large content platforms, building tools that save teams real time, and making my own products on nights and weekends, with a little Hawaii warmth and a San Diego product pace in the mix.
               </p>
             </motion.div>
           </div>

@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import type { ReactElement } from 'react';
+import { FaAws, FaReact } from 'react-icons/fa';
+import { SiExpo, SiVercel, SiVuedotjs } from 'react-icons/si';
 import { projects } from '../../data/content';
 
 interface ProjectsPanelProps {
@@ -6,6 +9,15 @@ interface ProjectsPanelProps {
 }
 
 const ProjectsPanel = ({ isNightMode }: ProjectsPanelProps) => {
+  const techIconMap: Record<string, ReactElement> = {
+    React: <FaReact />,
+    Vue: <SiVuedotjs />,
+    AWS: <FaAws />,
+    Vercel: <SiVercel />,
+    'React Native': <FaReact />,
+    Expo: <SiExpo />
+  };
+
   return (
     <div className="space-panel-grid">
       {projects.map((project) => (
@@ -29,16 +41,15 @@ const ProjectsPanel = ({ isNightMode }: ProjectsPanelProps) => {
           <p>{project.description}</p>
           <div className="space-tech-list">
             {project.technologies.map((tech) => (
-              <span key={tech}>{tech}</span>
+              <span key={tech} className="inline-flex items-center gap-2">
+                {techIconMap[tech] ?? null}
+                {tech}
+              </span>
             ))}
           </div>
-          {project.liveUrl === '#' ? (
-            <div className="space-panel-disabled">In development</div>
-          ) : (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="space-panel-link">
-              {project.ctaLabel}
-            </a>
-          )}
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="space-panel-link">
+            {project.ctaLabel}
+          </a>
         </motion.article>
       ))}
     </div>

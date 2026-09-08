@@ -1,6 +1,7 @@
 import Feature from './components/Feature'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
+import Resume from './components/Resume'
 import './App.css'
 import Background from './components/Background'
 import NightModeToggle from './components/NightModeToggle'
@@ -15,6 +16,7 @@ const AppContent = () => {
       <Background isNightMode={isNightMode} />
       <Projects isNightMode={isNightMode} />
       <Feature isNightMode={isNightMode} />
+      <Resume isNightMode={isNightMode} />
       <Contact isNightMode={isNightMode} />
     </>
   );
