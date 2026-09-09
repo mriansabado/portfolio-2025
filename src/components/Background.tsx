@@ -82,7 +82,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                     {personalSummary.locationLine}
                   </motion.p>
                   <motion.h1
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.2rem] font-black tracking-[-0.06em] leading-[0.94] mb-6"
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-[6.2rem] font-black tracking-[-0.06em] leading-[1.02] mb-6"
                     initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.15, duration: 0.7 }}
@@ -103,7 +103,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                       {personalSummary.greeting}
                     </span>
                     <span
-                      className="block glow-text"
+                      className="block pb-[0.08em] glow-text"
                       style={
                         isNightMode
                           ? undefined
