@@ -6,17 +6,16 @@ import {
   Color,
   DirectionalLight,
   MathUtils,
-  MeshBasicMaterial,
-  MeshStandardMaterial,
   PointLight,
   Vector3
 } from 'three';
 import Planet from './Planet';
 import RocketShip from './RocketShip';
+import Sun from './Sun';
+import { playSpaceSound, setThrusterLevel } from './spaceAudio';
 import useRocketControls, { type RocketControlsState } from './useRocketControls';
 import { planets, type PlanetId } from '../../data/planets';
 import { resumeHitSnippets } from '../../data/resume';
-
 interface SpaceSceneProps {
   isNightMode: boolean;
   introActive: boolean;
@@ -166,8 +165,6 @@ const SpaceWorld = ({
   const directionalLightRef = useRef<DirectionalLight>(null);
   const accentLightRef = useRef<PointLight>(null);
   const sunLightRef = useRef<PointLight>(null);
-  const sunMaterialRef = useRef<MeshStandardMaterial>(null);
-  const sunGlowMaterialRef = useRef<MeshBasicMaterial>(null);
   const touchLockRef = useRef<PlanetId | null>(null);
   const themeMixRef = useRef(isNightMode ? 0 : 1);
   const transitionStartRef = useRef(themeMixRef.current);
@@ -196,6 +193,7 @@ const SpaceWorld = ({
     contact: 0
   });
   const triggerShipReset = (text: string) => {
+    playSpaceSound('reset');
     setBursts((current) => [
       ...current,
       {
@@ -214,6 +212,7 @@ const SpaceWorld = ({
     touchLockRef.current = null;
     setNearestPlanetId(null);
     onNearestPlanetChange(null);
+    setThrusterLevel(0);
   };
   const palette = useMemo(
     () => ({
@@ -245,6 +244,7 @@ const SpaceWorld = ({
     const direction = new Vector3(-Math.sin(yaw.current), 0, -Math.cos(yaw.current)).normalize();
     const spawnPosition = shipPosition.current.clone().add(direction.clone().multiplyScalar(1.15));
 
+    playSpaceSound('shoot');
     setBullets((current) => [
       ...current,
       {
@@ -302,6 +302,7 @@ const SpaceWorld = ({
     }
 
     velocity.current = MathUtils.clamp(velocity.current * damping, -8.2, 18.5);
+    setThrusterLevel(movementLocked || introActive ? 0 : Math.min(1, Math.abs(velocity.current) / 10));
 
     const movement = new Vector3(Math.sin(yaw.current), 0, Math.cos(yaw.current)).multiplyScalar(velocity.current * delta);
     if (!introActive) {
@@ -476,15 +477,6 @@ const SpaceWorld = ({
     if (sunLightRef.current) {
       sunLightRef.current.intensity = MathUtils.lerp(0, 68, mix);
     }
-
-    if (sunMaterialRef.current) {
-      sunMaterialRef.current.opacity = MathUtils.lerp(0.02, 1, mix);
-      sunMaterialRef.current.emissiveIntensity = MathUtils.lerp(0.05, 0.95, mix);
-    }
-
-    if (sunGlowMaterialRef.current) {
-      sunGlowMaterialRef.current.opacity = MathUtils.lerp(0.01, 0.24, mix);
-    }
   });
 
   useEffect(() => {
@@ -507,6 +499,7 @@ const SpaceWorld = ({
         ...current,
         [planetHit.id]: current[planetHit.id] + 1
       }));
+      playSpaceSound('planetHit');
       return;
     }
 
@@ -535,6 +528,7 @@ const SpaceWorld = ({
           age: 0
         }
       ]);
+      playSpaceSound('hit');
       return;
     }
 
@@ -564,6 +558,7 @@ const SpaceWorld = ({
         age: 0
       }
     ]);
+    playSpaceSound('hit');
   }, [asteroids, bullets, debrisTargets, planetPositions]);
 
   return (
@@ -574,22 +569,7 @@ const SpaceWorld = ({
       <directionalLight ref={directionalLightRef} position={[8, 10, 5]} intensity={1.6} color="#ffffff" />
       <pointLight ref={accentLightRef} position={[0, 6, -6]} intensity={10} distance={36} color="#f59e0b" />
       <pointLight ref={sunLightRef} position={[9, 8, -14]} intensity={0} distance={110} color="#fb923c" />
-      <mesh position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]}>
-        <sphereGeometry args={[11.5, 56, 56]} />
-        <meshStandardMaterial
-          ref={sunMaterialRef}
-          color="#fb923c"
-          emissive="#fb923c"
-          emissiveIntensity={0.05}
-          roughness={0.85}
-          transparent
-          opacity={0.02}
-        />
-      </mesh>
-      <mesh position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]} scale={1.95}>
-        <sphereGeometry args={[11.5, 40, 40]} />
-        <meshBasicMaterial ref={sunGlowMaterialRef} color="#fdba74" transparent opacity={0.01} />
-      </mesh>
+      <Sun position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]} dayMixRef={themeMixRef} />
 
       <Stars radius={140} depth={55} count={8500} factor={4.8} fade speed={0.8} />
       <Sparkles count={160} speed={0.24} opacity={0.75} color="#eef2ff" scale={[34, 12, 34]} size={2.3} />

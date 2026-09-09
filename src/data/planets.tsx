@@ -10,8 +10,12 @@ export interface PlanetDefinition {
   description: string;
   position: [number, number, number];
   radius: number;
+  /** Primary body color (oceans / base rock / gas) */
   color: string;
+  /** Atmosphere / ring highlight */
   accent: string;
+  /** Continents, storms, or ice veins */
+  land?: string;
   icon: ReactNode;
 }
 
@@ -23,8 +27,9 @@ export const planets: PlanetDefinition[] = [
     description: 'A compact system with the products, platforms, and real-world context behind the work.',
     position: [5.6, 0.55, -5.6],
     radius: 1.7,
-    color: '#fb7185',
-    accent: '#fecdd3',
+    color: '#9a3412',
+    accent: '#fb7185',
+    land: '#c2410c',
     icon: <FaFolderOpen />
   },
   {
@@ -34,8 +39,9 @@ export const planets: PlanetDefinition[] = [
     description: 'A strengths planet covering frontend craft, product thinking, and a warm delivery style.',
     position: [-5.6, 0.45, -5.6],
     radius: 1.85,
-    color: '#8b5cf6',
-    accent: '#ddd6fe',
+    color: '#4c1d95',
+    accent: '#c4b5fd',
+    land: '#7c3aed',
     icon: <FaUserAstronaut />
   },
   {
@@ -45,8 +51,9 @@ export const planets: PlanetDefinition[] = [
     description: 'A quick recruiter-friendly view of role focus, experience, specialties, and how to request the full resume.',
     position: [-5.6, 0.8, 5.6],
     radius: 1.5,
-    color: '#38bdf8',
-    accent: '#bae6fd',
+    color: '#0c4a6e',
+    accent: '#7dd3fc',
+    land: '#38bdf8',
     icon: <FaIdBadge />
   },
   {
@@ -56,8 +63,9 @@ export const planets: PlanetDefinition[] = [
     description: 'Ways to connect, plus the corners of the internet where I show my work from San Diego with Hawaii roots.',
     position: [5.6, 0.35, 5.6],
     radius: 1.45,
-    color: '#22c55e',
-    accent: '#bbf7d0',
+    color: '#1e3a8a',
+    accent: '#86efac',
+    land: '#15803d',
     icon: <FaEnvelope />
   }
 ];

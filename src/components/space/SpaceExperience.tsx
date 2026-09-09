@@ -5,6 +5,13 @@ import ProjectsPanel from '../panels/ProjectsPanel';
 import ResumePanel from '../panels/ResumePanel';
 import SpaceScene from './SpaceScene';
 import PlanetPanel from './PlanetPanel';
+import {
+  isSpaceAudioMuted,
+  playSpaceSound,
+  setSpaceAudioMuted,
+  setThrusterLevel,
+  unlockSpaceAudio
+} from './spaceAudio';
 import { planets, type PlanetId } from '../../data/planets';
 import { type RocketControlsState } from './useRocketControls';
 import '../../space.css';
@@ -63,8 +70,10 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
   const [lastClosedPlanetKey, setLastClosedPlanetKey] = useState(0);
   const [introActive, setIntroActive] = useState(true);
   const [showWelcomeCard, setShowWelcomeCard] = useState(true);
+  const [audioMuted, setAudioMuted] = useState(() => isSpaceAudioMuted());
 
   const dismissIntro = () => {
+    void unlockSpaceAudio();
     setIntroActive(false);
     setShowWelcomeCard(false);
   };
@@ -74,14 +83,41 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
     setFireSignal((current) => current + 1);
   };
 
+  const selectPlanet = (planetId: PlanetId) => {
+    void unlockSpaceAudio();
+    if (planetId !== selectedPlanetId) {
+      playSpaceSound('select');
+    }
+    setSelectedPlanetId(planetId);
+  };
+
+  const toggleAudio = () => {
+    void unlockSpaceAudio();
+    const next = !audioMuted;
+    setSpaceAudioMuted(next);
+    setAudioMuted(next);
+    if (!next) {
+      playSpaceSound('ui');
+    } else {
+      setThrusterLevel(0);
+    }
+  };
+
   useEffect(() => {
     const welcomeTimer = window.setTimeout(() => {
       setShowWelcomeCard(false);
     }, 10000);
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      void unlockSpaceAudio();
+
       if (event.key === 'Escape') {
-        setSelectedPlanetId(null);
+        setSelectedPlanetId((current) => {
+          if (current) {
+            playSpaceSound('ui');
+          }
+          return null;
+        });
         return;
       }
 
@@ -102,6 +138,7 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
     return () => {
       window.clearTimeout(welcomeTimer);
       window.removeEventListener('keydown', handleKeyDown);
+      setThrusterLevel(0);
     };
   }, []);
 
@@ -158,7 +195,7 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
         fireSignal={fireSignal}
         touchControls={touchControls}
         onNearestPlanetChange={setNearestPlanetId}
-        onPlanetSelect={setSelectedPlanetId}
+        onPlanetSelect={selectPlanet}
       />
 
       <div className="space-hud">
@@ -187,7 +224,13 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
             </div>
           </div>
           <div className="space-hud-actions">
-            <button type="button" className="space-ghost-button" onClick={() => setShowClassicView(true)}>
+            <button type="button" className="space-ghost-button" onClick={toggleAudio} aria-pressed={audioMuted}>
+              {audioMuted ? 'Sound off' : 'Sound on'}
+            </button>
+            <button type="button" className="space-ghost-button" onClick={() => {
+              setThrusterLevel(0);
+              setShowClassicView(true);
+            }}>
               Skip to classic view
             </button>
           </div>
@@ -237,9 +280,9 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
               key={planet.id}
               type="button"
               className={`space-planet-chip ${nearestPlanetId === planet.id || selectedPlanetId === planet.id ? 'is-active' : ''}`}
-              onClick={() => setSelectedPlanetId(planet.id)}
+              onClick={() => selectPlanet(planet.id)}
             >
-              <span className="space-planet-dot" style={{ background: planet.color }} />
+              <span className="space-planet-dot" style={{ background: planet.accent }} />
               {planet.title}
             </button>
           ))}
@@ -250,6 +293,7 @@ const SpaceExperience = ({ isNightMode, classicPortfolio }: SpaceExperienceProps
         planetId={selectedPlanetId}
         isNightMode={isNightMode}
         onClose={() => {
+          playSpaceSound('ui');
           if (selectedPlanetId) {
             setLastClosedPlanetId(selectedPlanetId);
             setLastClosedPlanetKey((current) => current + 1);
