@@ -54,15 +54,6 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
           <div className="hero-noise" />
 
           <motion.div
-            className="hero-scribble h-24 w-24 sm:h-32 sm:w-32"
-            style={{
-              top: '11%',
-              right: '12%'
-            }}
-            animate={{ y: [0, -6, 0], rotate: [0, 4, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
             className="hero-scribble h-14 w-36"
             style={{
               bottom: '14%',
