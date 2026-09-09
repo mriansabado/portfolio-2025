@@ -120,7 +120,7 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                   </motion.h1>
                   <motion.p
                     className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mb-8"
-                    style={{ color: '#e2e8f0' }}
+                    style={{ color: isNightMode ? '#e2e8f0' : '#0f172a' }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25, duration: 0.65 }}
