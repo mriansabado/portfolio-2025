@@ -5,6 +5,7 @@ import postachio from '../assets/postachio.png';
 import pocketsay from '../assets/pocketsay.png';
 import pocketsayLogo from '../assets/pocketsay-logo.png';
 import tasqlyLogo from '../assets/tasqly-logo.png';
+import tasqlyScreenshot from '../assets/tasqly-sc.png';
 import { FaAws, FaReact } from 'react-icons/fa';
 import { SiExpo, SiVercel, SiVuedotjs } from 'react-icons/si';
 import { projects as sharedProjects } from '../data/content';
@@ -27,7 +28,13 @@ interface Project {
 const projects: Project[] = sharedProjects.map((project) => ({
   ...project,
   imageUrl:
-    project.title === 'PocketSay' ? pocketsay : project.title === 'Postachio' ? postachio : undefined,
+    project.title === 'Tasqly'
+      ? tasqlyScreenshot
+      : project.title === 'PocketSay'
+        ? pocketsay
+        : project.title === 'Postachio'
+          ? postachio
+          : undefined,
   placeholderTint: project.title === 'Tasqly' ? '#0f766e' : undefined
 }));
 

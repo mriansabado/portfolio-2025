@@ -88,8 +88,35 @@ const Background = ({ isNightMode = false }: BackgroundProps) => {
                     transition={{ delay: 0.15, duration: 0.7 }}
                     style={{ color: '#f8fafc' }}
                   >
-                    {personalSummary.greeting}
-                    <span className="block glow-text">I build products with care and follow-through.</span>
+                    <span
+                      style={
+                        isNightMode
+                          ? undefined
+                          : {
+                              background: 'linear-gradient(120deg, #0f172a 0%, #1e3a8a 45%, #312e81 100%)',
+                              color: 'transparent',
+                              backgroundClip: 'text',
+                              WebkitBackgroundClip: 'text'
+                            }
+                      }
+                    >
+                      {personalSummary.greeting}
+                    </span>
+                    <span
+                      className="block glow-text"
+                      style={
+                        isNightMode
+                          ? undefined
+                          : {
+                              background: 'linear-gradient(120deg, #0f172a 0%, #1e3a8a 45%, #312e81 100%)',
+                              color: 'transparent',
+                              backgroundClip: 'text',
+                              WebkitBackgroundClip: 'text'
+                            }
+                      }
+                    >
+                      I build products with care and follow-through.
+                    </span>
                   </motion.h1>
                   <motion.p
                     className="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-3xl mb-8"
