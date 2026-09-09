@@ -42,12 +42,12 @@ const Sun = ({ position, dayMixRef }: SunProps) => {
       flareMatRef.current.uniforms.uMix.value = mix;
     }
     if (coreSparkMatRef.current) {
-      coreSparkMatRef.current.opacity = MathUtils.lerp(0.02, 0.55, mix);
+      coreSparkMatRef.current.opacity = MathUtils.lerp(0, 0.55, mix);
     }
 
     prominenceMatsRef.current.forEach((mat, i) => {
       if (mat) {
-        mat.opacity = MathUtils.lerp(0.01, 0.28 + (i % 2) * 0.1, mix);
+        mat.opacity = MathUtils.lerp(0, 0.28 + (i % 2) * 0.1, mix);
       }
     });
 
@@ -145,7 +145,7 @@ const Sun = ({ position, dayMixRef }: SunProps) => {
               color *= 0.45 + limb * 0.7;
               color = mix(color, bright, (1.0 - limb) * 0.15);
 
-              gl_FragColor = vec4(color, mix(0.02, 1.0, uMix));
+              gl_FragColor = vec4(color, mix(0.0, 1.0, uMix));
             }
           `}
         />
@@ -212,7 +212,7 @@ const Sun = ({ position, dayMixRef }: SunProps) => {
               float fresnel = pow(1.0 - abs(dot(normalize(vNormal), normalize(vView))), 2.2);
               float boil = noise(normalize(vLocalPos) * 4.0 + vec3(uTime * 0.2, 0.0, uTime * 0.15));
               vec3 color = mix(vec3(1.0, 0.7, 0.25), vec3(1.0, 0.45, 0.08), boil);
-              float alpha = fresnel * (0.18 + boil * 0.22) * mix(0.02, 1.0, uMix);
+              float alpha = fresnel * (0.18 + boil * 0.22) * mix(0.0, 1.0, uMix);
               gl_FragColor = vec4(color, alpha);
             }
           `}
@@ -245,7 +245,7 @@ const Sun = ({ position, dayMixRef }: SunProps) => {
             void main() {
               float fresnel = pow(1.0 - abs(dot(normalize(vNormal), normalize(vView))), 3.4);
               vec3 color = mix(vec3(1.0, 0.75, 0.35), vec3(1.0, 0.5, 0.15), fresnel);
-              gl_FragColor = vec4(color, fresnel * mix(0.01, 0.32, uMix));
+              gl_FragColor = vec4(color, fresnel * mix(0.0, 0.32, uMix));
             }
           `}
         />
@@ -276,7 +276,7 @@ const Sun = ({ position, dayMixRef }: SunProps) => {
             varying vec3 vView;
             void main() {
               float fresnel = pow(1.0 - abs(dot(normalize(vNormal), normalize(vView))), 4.5);
-              gl_FragColor = vec4(1.0, 0.78, 0.4, fresnel * mix(0.005, 0.12, uMix));
+              gl_FragColor = vec4(1.0, 0.78, 0.4, fresnel * mix(0.0, 0.12, uMix));
             }
           `}
         />
@@ -312,7 +312,7 @@ const Sun = ({ position, dayMixRef }: SunProps) => {
               float angle = atan(centered.y, centered.x);
               float rays = pow(abs(sin(angle * 10.0 + uTime * 0.3)), 5.0);
               float disc = smoothstep(0.42, 0.55, dist) * (1.0 - smoothstep(0.72, 1.0, dist));
-              float alpha = rays * disc * mix(0.01, 0.2, uMix);
+              float alpha = rays * disc * mix(0.0, 0.2, uMix);
               vec3 color = mix(vec3(1.0, 0.85, 0.4), vec3(1.0, 0.4, 0.08), rays);
               gl_FragColor = vec4(color, alpha);
             }

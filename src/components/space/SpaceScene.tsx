@@ -9,8 +9,10 @@ import {
   PointLight,
   Vector3
 } from 'three';
+import Asteroid from './Asteroid';
 import Planet from './Planet';
 import RocketShip from './RocketShip';
+import BlackHole from './BlackHole';
 import Sun from './Sun';
 import { playSpaceSound, setThrusterLevel } from './spaceAudio';
 import useRocketControls, { type RocketControlsState } from './useRocketControls';
@@ -39,8 +41,7 @@ interface CameraInputRefs {
 const PLAY_BOUNDS = 14;
 const INTERACTION_DISTANCE = 2.9;
 const SHIP_CONTACT_RADIUS = 0.8;
-const ASTEROID_COUNT = 10;
-const DECOR_DEBRIS_COUNT = 18;
+const ASTEROID_COUNT = 12;
 const BULLET_SPEED = 16;
 const BULLET_LIFETIME = 1.2;
 const ASTEROID_RESPAWN_MARGIN = 17;
@@ -57,17 +58,11 @@ interface AsteroidEntity {
   drift: Vector3;
   radius: number;
   rotationSeed: number;
-}
-
-interface DecorDebrisEntity {
-  id: string;
-  position: Vector3;
-  drift: Vector3;
-  scale: number;
-  radius: number;
-  rotationSeed: number;
   tint: string;
-  shape: 'box' | 'panel' | 'capsule';
+  accent: string;
+  spin: [number, number, number];
+  stretch: [number, number, number];
+  detail: number;
 }
 
 interface BulletEntity {
@@ -86,7 +81,16 @@ interface HitBurst {
 
 const randomRange = (min: number, max: number) => min + Math.random() * (max - min);
 
-const createAsteroid = (id: string, planetPositions: Record<PlanetId, Vector3>) => {
+const ASTEROID_PALETTE = [
+  { tint: '#8b7355', accent: '#c4a574' },
+  { tint: '#6b7280', accent: '#a8b0bc' },
+  { tint: '#78716c', accent: '#d6c3a8' },
+  { tint: '#57534e', accent: '#a78bfa' },
+  { tint: '#7c6f64', accent: '#f0ab9a' },
+  { tint: '#64748b', accent: '#93c5fd' }
+] as const;
+
+const createAsteroid = (id: string, planetPositions: Record<PlanetId, Vector3>): AsteroidEntity => {
   const position = new Vector3();
   let attempts = 0;
 
@@ -102,43 +106,19 @@ const createAsteroid = (id: string, planetPositions: Record<PlanetId, Vector3>) 
     (position.length() < 5.5 || Object.values(planetPositions).some((planetPosition) => position.distanceTo(planetPosition) < 3.6))
   );
 
+  const palette = ASTEROID_PALETTE[Math.floor(Math.random() * ASTEROID_PALETTE.length)];
+
   return {
     id,
     position,
     drift: new Vector3(randomRange(-0.3, 0.3), 0, randomRange(-0.28, 0.28)),
-    radius: randomRange(0.45, 0.8),
-    rotationSeed: Math.random() * Math.PI * 2
-  };
-};
-
-const createDecorDebris = (id: string, planetPositions: Record<PlanetId, Vector3>): DecorDebrisEntity => {
-  const position = new Vector3();
-  let attempts = 0;
-
-  do {
-    position.set(
-      randomRange(-16.5, 16.5),
-      randomRange(ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX),
-      randomRange(-16.5, 16.5)
-    );
-    attempts += 1;
-  } while (
-    attempts < 20 &&
-    (position.length() < 4.8 || Object.values(planetPositions).some((planetPosition) => position.distanceTo(planetPosition) < 3.2))
-  );
-
-  const shapes: DecorDebrisEntity['shape'][] = ['box', 'panel', 'capsule'];
-  const tints = ['#94a3b8', '#64748b', '#cbd5e1', '#fda4af'];
-
-  return {
-    id,
-    position,
-    drift: new Vector3(randomRange(-0.12, 0.12), 0, randomRange(-0.1, 0.1)),
-    scale: randomRange(0.28, 0.7),
-    radius: randomRange(0.32, 0.5),
+    radius: randomRange(0.48, 0.92),
     rotationSeed: Math.random() * Math.PI * 2,
-    tint: tints[Math.floor(Math.random() * tints.length)],
-    shape: shapes[Math.floor(Math.random() * shapes.length)]
+    tint: palette.tint,
+    accent: palette.accent,
+    spin: [randomRange(-0.35, 0.35), randomRange(-0.55, 0.55), randomRange(-0.28, 0.28)],
+    stretch: [randomRange(0.82, 1.18), randomRange(0.78, 1.12), randomRange(0.85, 1.2)],
+    detail: randomRange(0.4, 1.6)
   };
 };
 
@@ -165,6 +145,7 @@ const SpaceWorld = ({
   const directionalLightRef = useRef<DirectionalLight>(null);
   const accentLightRef = useRef<PointLight>(null);
   const sunLightRef = useRef<PointLight>(null);
+  const blackHoleLightRef = useRef<PointLight>(null);
   const touchLockRef = useRef<PlanetId | null>(null);
   const themeMixRef = useRef(isNightMode ? 0 : 1);
   const transitionStartRef = useRef(themeMixRef.current);
@@ -180,9 +161,6 @@ const SpaceWorld = ({
   const [nearestPlanetId, setNearestPlanetId] = useState<PlanetId | null>(null);
   const [asteroids, setAsteroids] = useState<AsteroidEntity[]>(() =>
     Array.from({ length: ASTEROID_COUNT }, (_, index) => createAsteroid(`asteroid-${index}`, planetPositions))
-  );
-  const [debrisTargets, setDebrisTargets] = useState<DecorDebrisEntity[]>(() =>
-    Array.from({ length: DECOR_DEBRIS_COUNT }, (_, index) => createDecorDebris(`decor-${index}`, planetPositions))
   );
   const [bullets, setBullets] = useState<BulletEntity[]>([]);
   const [bursts, setBursts] = useState<HitBurst[]>([]);
@@ -350,20 +328,6 @@ const SpaceWorld = ({
       })
     );
 
-    setDebrisTargets((currentDebris) =>
-      currentDebris.map((debris) => {
-        const nextPosition = debris.position.clone().addScaledVector(debris.drift, delta);
-
-        if (nextPosition.x > ASTEROID_RESPAWN_MARGIN) nextPosition.x = -ASTEROID_RESPAWN_MARGIN;
-        if (nextPosition.x < -ASTEROID_RESPAWN_MARGIN) nextPosition.x = ASTEROID_RESPAWN_MARGIN;
-        if (nextPosition.z > ASTEROID_RESPAWN_MARGIN) nextPosition.z = -ASTEROID_RESPAWN_MARGIN;
-        if (nextPosition.z < -ASTEROID_RESPAWN_MARGIN) nextPosition.z = ASTEROID_RESPAWN_MARGIN;
-        nextPosition.y = MathUtils.clamp(nextPosition.y, ASTEROID_PLANE_Y_MIN, ASTEROID_PLANE_Y_MAX);
-
-        return { ...debris, position: nextPosition };
-      })
-    );
-
     setBullets((currentBullets) =>
       currentBullets
         .map((bullet) => ({
@@ -477,6 +441,10 @@ const SpaceWorld = ({
     if (sunLightRef.current) {
       sunLightRef.current.intensity = MathUtils.lerp(0, 68, mix);
     }
+
+    if (blackHoleLightRef.current) {
+      blackHoleLightRef.current.intensity = MathUtils.lerp(28, 0, mix);
+    }
   });
 
   useEffect(() => {
@@ -531,35 +499,7 @@ const SpaceWorld = ({
       playSpaceSound('hit');
       return;
     }
-
-    const debrisHit = debrisTargets.find((debris) =>
-      bullets.some((bullet) => bullet.position.distanceTo(debris.position) <= debris.radius + 0.2)
-    );
-
-    if (!debrisHit) {
-      return;
-    }
-
-    const hitBullet = bullets.find((bullet) => bullet.position.distanceTo(debrisHit.position) <= debrisHit.radius + 0.2);
-    if (!hitBullet) {
-      return;
-    }
-
-    setBullets((current) => current.filter((bullet) => bullet.id !== hitBullet.id));
-    setDebrisTargets((current) =>
-      current.map((debris) => (debris.id === debrisHit.id ? createDecorDebris(debris.id, planetPositions) : debris))
-    );
-    setBursts((current) => [
-      ...current,
-      {
-        id: `burst-${debrisHit.id}-${performance.now()}`,
-        position: debrisHit.position.clone(),
-        text: resumeHitSnippets[Math.floor(Math.random() * resumeHitSnippets.length)],
-        age: 0
-      }
-    ]);
-    playSpaceSound('hit');
-  }, [asteroids, bullets, debrisTargets, planetPositions]);
+  }, [asteroids, bullets, planetPositions]);
 
   return (
     <>
@@ -569,7 +509,15 @@ const SpaceWorld = ({
       <directionalLight ref={directionalLightRef} position={[8, 10, 5]} intensity={1.6} color="#ffffff" />
       <pointLight ref={accentLightRef} position={[0, 6, -6]} intensity={10} distance={36} color="#f59e0b" />
       <pointLight ref={sunLightRef} position={[9, 8, -14]} intensity={0} distance={110} color="#fb923c" />
+      <pointLight
+        ref={blackHoleLightRef}
+        position={[9, 8, -14]}
+        intensity={isNightMode ? 28 : 0}
+        distance={95}
+        color="#8b5cf6"
+      />
       <Sun position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]} dayMixRef={themeMixRef} />
+      <BlackHole position={[SUN_POSITION.x, SUN_POSITION.y, SUN_POSITION.z]} dayMixRef={themeMixRef} />
 
       <Stars radius={140} depth={55} count={8500} factor={4.8} fade speed={0.8} />
       <Sparkles count={160} speed={0.24} opacity={0.75} color="#eef2ff" scale={[34, 12, 34]} size={2.3} />
@@ -588,40 +536,8 @@ const SpaceWorld = ({
         />
       ))}
 
-      {debrisTargets.map((debris) => (
-        <group
-          key={debris.id}
-          position={[debris.position.x, debris.position.y, debris.position.z]}
-          rotation={[debris.rotationSeed * 0.5, debris.rotationSeed, debris.rotationSeed * 0.35]}
-        >
-          {debris.shape === 'box' ? (
-            <mesh scale={[debris.scale * 1.5, debris.scale * 0.5, debris.scale * 0.7]}>
-              <boxGeometry args={[1, 1, 1]} />
-              <meshStandardMaterial color={debris.tint} roughness={0.88} metalness={0.32} transparent opacity={0.45} />
-            </mesh>
-          ) : null}
-          {debris.shape === 'panel' ? (
-            <mesh scale={[debris.scale * 1.8, debris.scale * 0.16, debris.scale]}>
-              <boxGeometry args={[1, 1, 1]} />
-              <meshStandardMaterial color={debris.tint} roughness={0.92} metalness={0.18} transparent opacity={0.36} />
-            </mesh>
-          ) : null}
-          {debris.shape === 'capsule' ? (
-            <mesh scale={[debris.scale, debris.scale, debris.scale]}>
-              <capsuleGeometry args={[0.18, 0.52, 4, 10]} />
-              <meshStandardMaterial color={debris.tint} roughness={0.82} metalness={0.24} transparent opacity={0.42} />
-            </mesh>
-          ) : null}
-        </group>
-      ))}
-
       {asteroids.map((asteroid) => (
-        <group key={asteroid.id} position={[asteroid.position.x, asteroid.position.y, asteroid.position.z]}>
-          <mesh rotation={[asteroid.rotationSeed, asteroid.rotationSeed * 0.5, asteroid.rotationSeed * 0.75]}>
-            <icosahedronGeometry args={[asteroid.radius, 0]} />
-            <meshStandardMaterial color="#94a3b8" roughness={0.95} metalness={0.08} />
-          </mesh>
-        </group>
+        <Asteroid key={asteroid.id} asteroid={asteroid} />
       ))}
 
       {bullets.map((bullet) => (
